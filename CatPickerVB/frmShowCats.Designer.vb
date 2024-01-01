@@ -23,6 +23,7 @@ Partial Class frmShowCats
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmShowCats))
         Me.dgvShowCats = New System.Windows.Forms.DataGridView()
         Me.picCatPic = New System.Windows.Forms.PictureBox()
         Me.txtCatPicName = New System.Windows.Forms.TextBox()
@@ -39,14 +40,17 @@ Partial Class frmShowCats
         Me.btnSave = New System.Windows.Forms.Button()
         Me.dlgPictures = New System.Windows.Forms.OpenFileDialog()
         Me.pnlEdit = New System.Windows.Forms.Panel()
-        Me.btnInsert = New System.Windows.Forms.Button()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.btnSelectCatPic = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.cmbBreed = New System.Windows.Forms.ComboBox()
         Me.cmbGender = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.btnInsert = New System.Windows.Forms.Button()
         Me.txtStatus = New System.Windows.Forms.TextBox()
         Me.pnlSearch = New System.Windows.Forms.Panel()
+        Me.btnClearSearch = New System.Windows.Forms.Button()
         Me.txtSearchAge = New System.Windows.Forms.TextBox()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -57,15 +61,17 @@ Partial Class frmShowCats
         Me.Label6 = New System.Windows.Forms.Label()
         Me.radEdit = New System.Windows.Forms.RadioButton()
         Me.grpMenu = New System.Windows.Forms.GroupBox()
+        Me.radNew = New System.Windows.Forms.RadioButton()
         Me.radSearch = New System.Windows.Forms.RadioButton()
         Me.CatBreedBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.btnClearSearch = New System.Windows.Forms.Button()
         Me.btnNewCat = New System.Windows.Forms.Button()
         Me.pnlNewCat = New System.Windows.Forms.Panel()
-        Me.Label13 = New System.Windows.Forms.Label()
+        Me.btnSelectNewCatPic = New System.Windows.Forms.Button()
+        Me.txtNewCatPicName = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
+        Me.cmbNewCatBreed = New System.Windows.Forms.ComboBox()
         Me.cmbNewCatGender = New System.Windows.Forms.ComboBox()
         Me.picNewCatPic = New System.Windows.Forms.PictureBox()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -75,14 +81,9 @@ Partial Class frmShowCats
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.txtNewCatDate = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.openFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.txtNewCatPicName = New System.Windows.Forms.TextBox()
-        Me.btnSelectNewCatPic = New System.Windows.Forms.Button()
-        Me.radNew = New System.Windows.Forms.RadioButton()
-        Me.cmbNewCatBreed = New System.Windows.Forms.ComboBox()
-        Me.btnSelectCatPic = New System.Windows.Forms.Button()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Label19 = New System.Windows.Forms.Label()
         CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlEdit.SuspendLayout()
@@ -100,7 +101,7 @@ Partial Class frmShowCats
         Me.dgvShowCats.Location = New System.Drawing.Point(12, 12)
         Me.dgvShowCats.Name = "dgvShowCats"
         Me.dgvShowCats.ReadOnly = True
-        Me.dgvShowCats.Size = New System.Drawing.Size(1347, 413)
+        Me.dgvShowCats.Size = New System.Drawing.Size(672, 413)
         Me.dgvShowCats.TabIndex = 0
         Me.dgvShowCats.VirtualMode = True
         '
@@ -248,14 +249,24 @@ Partial Class frmShowCats
         Me.pnlEdit.Size = New System.Drawing.Size(493, 291)
         Me.pnlEdit.TabIndex = 15
         '
-        'btnInsert
+        'Label19
         '
-        Me.btnInsert.Location = New System.Drawing.Point(333, 229)
-        Me.btnInsert.Name = "btnInsert"
-        Me.btnInsert.Size = New System.Drawing.Size(70, 27)
-        Me.btnInsert.TabIndex = 26
-        Me.btnInsert.Text = "Save New"
-        Me.btnInsert.UseVisualStyleBackColor = True
+        Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.Location = New System.Drawing.Point(213, 13)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(118, 20)
+        Me.Label19.TabIndex = 33
+        Me.Label19.Text = "(Has validation)"
+        '
+        'btnSelectCatPic
+        '
+        Me.btnSelectCatPic.Location = New System.Drawing.Point(333, 173)
+        Me.btnSelectCatPic.Name = "btnSelectCatPic"
+        Me.btnSelectCatPic.Size = New System.Drawing.Size(77, 26)
+        Me.btnSelectCatPic.TabIndex = 32
+        Me.btnSelectCatPic.Text = "Find Image"
+        Me.btnSelectCatPic.UseVisualStyleBackColor = True
         '
         'btnDelete
         '
@@ -305,6 +316,15 @@ Partial Class frmShowCats
         Me.Label5.TabIndex = 15
         Me.Label5.Text = "Editor"
         '
+        'btnInsert
+        '
+        Me.btnInsert.Location = New System.Drawing.Point(333, 229)
+        Me.btnInsert.Name = "btnInsert"
+        Me.btnInsert.Size = New System.Drawing.Size(70, 27)
+        Me.btnInsert.TabIndex = 26
+        Me.btnInsert.Text = "Save New"
+        Me.btnInsert.UseVisualStyleBackColor = True
+        '
         'txtStatus
         '
         Me.txtStatus.Location = New System.Drawing.Point(237, 782)
@@ -324,10 +344,19 @@ Partial Class frmShowCats
         Me.pnlSearch.Controls.Add(Me.cmbSearchBreed)
         Me.pnlSearch.Controls.Add(Me.cmbSearchGender)
         Me.pnlSearch.Controls.Add(Me.Label6)
-        Me.pnlSearch.Location = New System.Drawing.Point(482, 81)
+        Me.pnlSearch.Location = New System.Drawing.Point(178, 474)
         Me.pnlSearch.Name = "pnlSearch"
         Me.pnlSearch.Size = New System.Drawing.Size(493, 291)
         Me.pnlSearch.TabIndex = 16
+        '
+        'btnClearSearch
+        '
+        Me.btnClearSearch.Location = New System.Drawing.Point(248, 199)
+        Me.btnClearSearch.Name = "btnClearSearch"
+        Me.btnClearSearch.Size = New System.Drawing.Size(75, 23)
+        Me.btnClearSearch.TabIndex = 25
+        Me.btnClearSearch.Text = "Clear"
+        Me.btnClearSearch.UseVisualStyleBackColor = True
         '
         'txtSearchAge
         '
@@ -423,6 +452,17 @@ Partial Class frmShowCats
         Me.grpMenu.TabIndex = 18
         Me.grpMenu.TabStop = False
         '
+        'radNew
+        '
+        Me.radNew.AutoSize = True
+        Me.radNew.Location = New System.Drawing.Point(7, 20)
+        Me.radNew.Name = "radNew"
+        Me.radNew.Size = New System.Drawing.Size(69, 17)
+        Me.radNew.TabIndex = 19
+        Me.radNew.TabStop = True
+        Me.radNew.Text = "Add New"
+        Me.radNew.UseVisualStyleBackColor = True
+        '
         'radSearch
         '
         Me.radSearch.AutoSize = True
@@ -440,9 +480,10 @@ Partial Class frmShowCats
         '
         'Label11
         '
-        Me.Label11.Location = New System.Drawing.Point(969, 432)
+        Me.Label11.BackColor = System.Drawing.Color.Transparent
+        Me.Label11.Location = New System.Drawing.Point(868, 780)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(390, 53)
+        Me.Label11.Size = New System.Drawing.Size(390, 47)
         Me.Label11.TabIndex = 19
         Me.Label11.Text = "To read Cat data from api:  " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Run C:\Users\Ken\source\repos\EmployeesAPI\Employee" &
     "sAPI\EmployeesAPI. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Change repository data source in CatBLL" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
@@ -456,15 +497,6 @@ Partial Class frmShowCats
         Me.Label12.TabIndex = 26
         Me.Label12.Text = "Status: "
         '
-        'btnClearSearch
-        '
-        Me.btnClearSearch.Location = New System.Drawing.Point(248, 199)
-        Me.btnClearSearch.Name = "btnClearSearch"
-        Me.btnClearSearch.Size = New System.Drawing.Size(75, 23)
-        Me.btnClearSearch.TabIndex = 25
-        Me.btnClearSearch.Text = "Clear"
-        Me.btnClearSearch.UseVisualStyleBackColor = True
-        '
         'btnNewCat
         '
         Me.btnNewCat.Location = New System.Drawing.Point(1311, 721)
@@ -473,6 +505,7 @@ Partial Class frmShowCats
         Me.btnNewCat.TabIndex = 27
         Me.btnNewCat.Text = "New Cat"
         Me.btnNewCat.UseVisualStyleBackColor = True
+        Me.btnNewCat.Visible = False
         '
         'pnlNewCat
         '
@@ -491,20 +524,27 @@ Partial Class frmShowCats
         Me.pnlNewCat.Controls.Add(Me.Label18)
         Me.pnlNewCat.Controls.Add(Me.txtNewCatDate)
         Me.pnlNewCat.Controls.Add(Me.Label13)
-        Me.pnlNewCat.Location = New System.Drawing.Point(792, 511)
+        Me.pnlNewCat.Location = New System.Drawing.Point(178, 474)
         Me.pnlNewCat.Name = "pnlNewCat"
         Me.pnlNewCat.Size = New System.Drawing.Size(493, 291)
         Me.pnlNewCat.TabIndex = 27
         '
-        'Label13
+        'btnSelectNewCatPic
         '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(217, 10)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(69, 20)
-        Me.Label13.TabIndex = 16
-        Me.Label13.Text = "New Cat"
+        Me.btnSelectNewCatPic.Location = New System.Drawing.Point(333, 180)
+        Me.btnSelectNewCatPic.Name = "btnSelectNewCatPic"
+        Me.btnSelectNewCatPic.Size = New System.Drawing.Size(77, 26)
+        Me.btnSelectNewCatPic.TabIndex = 31
+        Me.btnSelectNewCatPic.Text = "Find Image"
+        Me.btnSelectNewCatPic.UseVisualStyleBackColor = True
+        '
+        'txtNewCatPicName
+        '
+        Me.txtNewCatPicName.Location = New System.Drawing.Point(18, 267)
+        Me.txtNewCatPicName.Name = "txtNewCatPicName"
+        Me.txtNewCatPicName.ReadOnly = True
+        Me.txtNewCatPicName.Size = New System.Drawing.Size(236, 20)
+        Me.txtNewCatPicName.TabIndex = 30
         '
         'Label14
         '
@@ -514,6 +554,15 @@ Partial Class frmShowCats
         Me.Label14.Size = New System.Drawing.Size(35, 13)
         Me.Label14.TabIndex = 29
         Me.Label14.Text = "Breed"
+        '
+        'cmbNewCatBreed
+        '
+        Me.cmbNewCatBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbNewCatBreed.FormattingEnabled = True
+        Me.cmbNewCatBreed.Location = New System.Drawing.Point(333, 98)
+        Me.cmbNewCatBreed.Name = "cmbNewCatBreed"
+        Me.cmbNewCatBreed.Size = New System.Drawing.Size(141, 21)
+        Me.cmbNewCatBreed.TabIndex = 28
         '
         'cmbNewCatGender
         '
@@ -591,70 +640,26 @@ Partial Class frmShowCats
         Me.txtNewCatDate.Size = New System.Drawing.Size(76, 20)
         Me.txtNewCatDate.TabIndex = 25
         '
-        'txtNewCatPicName
+        'Label13
         '
-        Me.txtNewCatPicName.Location = New System.Drawing.Point(18, 267)
-        Me.txtNewCatPicName.Name = "txtNewCatPicName"
-        Me.txtNewCatPicName.ReadOnly = True
-        Me.txtNewCatPicName.Size = New System.Drawing.Size(236, 20)
-        Me.txtNewCatPicName.TabIndex = 30
-        '
-        'btnSelectNewCatPic
-        '
-        Me.btnSelectNewCatPic.Location = New System.Drawing.Point(333, 180)
-        Me.btnSelectNewCatPic.Name = "btnSelectNewCatPic"
-        Me.btnSelectNewCatPic.Size = New System.Drawing.Size(77, 26)
-        Me.btnSelectNewCatPic.TabIndex = 31
-        Me.btnSelectNewCatPic.Text = "Find Image"
-        Me.btnSelectNewCatPic.UseVisualStyleBackColor = True
-        '
-        'radNew
-        '
-        Me.radNew.AutoSize = True
-        Me.radNew.Location = New System.Drawing.Point(7, 20)
-        Me.radNew.Name = "radNew"
-        Me.radNew.Size = New System.Drawing.Size(69, 17)
-        Me.radNew.TabIndex = 19
-        Me.radNew.TabStop = True
-        Me.radNew.Text = "Add New"
-        Me.radNew.UseVisualStyleBackColor = True
-        '
-        'cmbNewCatBreed
-        '
-        Me.cmbNewCatBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbNewCatBreed.FormattingEnabled = True
-        Me.cmbNewCatBreed.Location = New System.Drawing.Point(333, 98)
-        Me.cmbNewCatBreed.Name = "cmbNewCatBreed"
-        Me.cmbNewCatBreed.Size = New System.Drawing.Size(141, 21)
-        Me.cmbNewCatBreed.TabIndex = 28
-        '
-        'btnSelectCatPic
-        '
-        Me.btnSelectCatPic.Location = New System.Drawing.Point(333, 173)
-        Me.btnSelectCatPic.Name = "btnSelectCatPic"
-        Me.btnSelectCatPic.Size = New System.Drawing.Size(77, 26)
-        Me.btnSelectCatPic.TabIndex = 32
-        Me.btnSelectCatPic.Text = "Find Image"
-        Me.btnSelectCatPic.UseVisualStyleBackColor = True
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(217, 10)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(69, 20)
+        Me.Label13.TabIndex = 16
+        Me.Label13.Text = "New Cat"
         '
         'ErrorProvider1
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(213, 13)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(118, 20)
-        Me.Label19.TabIndex = 33
-        Me.Label19.Text = "(Has validation)"
-        '
         'frmShowCats
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1386, 839)
         Me.Controls.Add(Me.btnNewCat)
         Me.Controls.Add(Me.btnShowSelected)
