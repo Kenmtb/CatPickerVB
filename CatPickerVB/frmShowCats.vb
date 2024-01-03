@@ -25,11 +25,6 @@ Public Class frmShowCats
   Dim lastRowBoxSelected As Integer = -1 'Preserve the last row's selected box check state
   Dim lastRowSelected As Integer = -1 'Preserve the las row selected
 
-  'move to resource file
-  'dim imageDir As String = "C:\Users\Ken\source\repos\CatPicker\CatPicker\Images\Cats\"
-  'get the form data
-  'Public Property vm As CatVM
-
   Public Sub New()
     ' This call is required by the designer.
     InitializeComponent()
@@ -37,6 +32,9 @@ Public Class frmShowCats
     pnlSearch.Visible = False
     pnlNewCat.Visible = False
     pnlEdit.Visible = True
+
+    grpMenu.Controls.Find("radEdit", True)(0).Select()
+
     'ctrl = New CatController
   End Sub
 
@@ -48,20 +46,6 @@ Public Class frmShowCats
   Private Sub setUpForm(vm As CatVM)
 
   End Sub
-
-
-  'Private Sub ClearAllBindings()
-  '  Dim c As Control
-  '  For Each c In Me.Controls
-  '    c.DataBindings.Clear()
-  '    If c.HasChildren Then
-  '      For Each cc In c.Controls
-  '        cc.DataBindings.Clear()
-  '      Next cc
-  '    End If
-  '  Next c
-
-  'End Sub
 
   Public Sub initForm(vm As CatVM) Implements IFormView(Of CatVM).initForm
 
@@ -113,13 +97,9 @@ Public Class frmShowCats
 
       txtName.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "name", True))
       txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True))
-      'txtGender.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "gender", True))
       cmbGender.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "gender", True))
-      'cmbBreed.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "breedId", True))
-      txtArrivalDate.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "arrivalDate", True))
+      tdpEditArivalDate.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "arrivalDate", True))
       txtCatPicName.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "pic", True))
-      'Dim colCheckBox As New DataGridViewCheckBoxColumn
-
 
       'Hide
       dgvShowCats.Columns("Id").Visible = False
@@ -207,11 +187,6 @@ endd:
 
       cmbBreed.Text = breedNames(0).breedName
 
-
-      '  txtAge.Text = cells("age").Value
-      '  txtGender.Text = cells("gender").Value
-      '  txtArrivalDate.Text = cells("arrivalDate").Value
-
     End If
   End Sub
 
@@ -268,27 +243,6 @@ endd:
 
     ctrl = New CatController
     ctrl.ShowEditor(vm)
-  End Sub
-
-  '  Private Sub txtSave_Click(sender As Object, e As EventArgs)
-
-  '    rec = catList(recIndex)
-
-  'Handle unbound controls
-  '    rec.breedId = cmbBreed.SelectedItem.Id
-
-  '    bll.save(rec)
-
-  '    dgvShowCats.DataSource = Nothing
-
-  '    vm = bll.getAll(parmList)
-
-  '    initForm(vm)
-
-  '  End Sub
-
-  Private Sub frmShowCats_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
   End Sub
 
   Private Sub picCatPic_Click(sender As Object, e As EventArgs) Handles picCatPic.Click
@@ -397,7 +351,8 @@ endd:
       rec.pic = txtNewCatPicName.Text
     End If
 
-    rec.arrivalDate = If(IsDate(txtNewCatDate.Text), txtNewCatDate.Text, #01/01/1900#)
+    'rec.arrivalDate = If(IsDate(txtNewCatDate.Text), txtNewCatDate.Text, #01/01/1900#)
+    rec.arrivalDate = If(IsDate(tdpNewArivalDate.Text), tdpNewArivalDate.Text, #01/01/1900#)
     bll.insert(rec)
 
     dgvShowCats.DataSource = Nothing
