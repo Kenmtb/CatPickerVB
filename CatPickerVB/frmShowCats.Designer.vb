@@ -98,10 +98,10 @@ Partial Class frmShowCats
         'dgvShowCats
         '
         Me.dgvShowCats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvShowCats.Location = New System.Drawing.Point(12, 12)
+        Me.dgvShowCats.Location = New System.Drawing.Point(641, 47)
         Me.dgvShowCats.Name = "dgvShowCats"
         Me.dgvShowCats.ReadOnly = True
-        Me.dgvShowCats.Size = New System.Drawing.Size(672, 413)
+        Me.dgvShowCats.Size = New System.Drawing.Size(664, 767)
         Me.dgvShowCats.TabIndex = 0
         Me.dgvShowCats.VirtualMode = True
         '
@@ -244,7 +244,7 @@ Partial Class frmShowCats
         Me.pnlEdit.Controls.Add(Me.Label2)
         Me.pnlEdit.Controls.Add(Me.Label3)
         Me.pnlEdit.Controls.Add(Me.txtArrivalDate)
-        Me.pnlEdit.Location = New System.Drawing.Point(178, 474)
+        Me.pnlEdit.Location = New System.Drawing.Point(112, 312)
         Me.pnlEdit.Name = "pnlEdit"
         Me.pnlEdit.Size = New System.Drawing.Size(493, 291)
         Me.pnlEdit.TabIndex = 15
@@ -327,7 +327,7 @@ Partial Class frmShowCats
         '
         'txtStatus
         '
-        Me.txtStatus.Location = New System.Drawing.Point(237, 782)
+        Me.txtStatus.Location = New System.Drawing.Point(171, 616)
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(434, 20)
         Me.txtStatus.TabIndex = 25
@@ -344,7 +344,7 @@ Partial Class frmShowCats
         Me.pnlSearch.Controls.Add(Me.cmbSearchBreed)
         Me.pnlSearch.Controls.Add(Me.cmbSearchGender)
         Me.pnlSearch.Controls.Add(Me.Label6)
-        Me.pnlSearch.Location = New System.Drawing.Point(178, 474)
+        Me.pnlSearch.Location = New System.Drawing.Point(112, 312)
         Me.pnlSearch.Name = "pnlSearch"
         Me.pnlSearch.Size = New System.Drawing.Size(493, 291)
         Me.pnlSearch.TabIndex = 16
@@ -403,7 +403,6 @@ Partial Class frmShowCats
         '
         'cmbSearchBreed
         '
-        Me.cmbSearchBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbSearchBreed.FormattingEnabled = True
         Me.cmbSearchBreed.Location = New System.Drawing.Point(216, 126)
         Me.cmbSearchBreed.Name = "cmbSearchBreed"
@@ -412,7 +411,6 @@ Partial Class frmShowCats
         '
         'cmbSearchGender
         '
-        Me.cmbSearchGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbSearchGender.FormattingEnabled = True
         Me.cmbSearchGender.Location = New System.Drawing.Point(216, 99)
         Me.cmbSearchGender.Name = "cmbSearchGender"
@@ -446,9 +444,9 @@ Partial Class frmShowCats
         Me.grpMenu.Controls.Add(Me.radNew)
         Me.grpMenu.Controls.Add(Me.radSearch)
         Me.grpMenu.Controls.Add(Me.radEdit)
-        Me.grpMenu.Location = New System.Drawing.Point(52, 577)
+        Me.grpMenu.Location = New System.Drawing.Point(28, 415)
         Me.grpMenu.Name = "grpMenu"
-        Me.grpMenu.Size = New System.Drawing.Size(109, 98)
+        Me.grpMenu.Size = New System.Drawing.Size(82, 98)
         Me.grpMenu.TabIndex = 18
         Me.grpMenu.TabStop = False
         '
@@ -481,17 +479,18 @@ Partial Class frmShowCats
         'Label11
         '
         Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Location = New System.Drawing.Point(868, 780)
+        Me.Label11.Location = New System.Drawing.Point(32, 780)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(390, 47)
         Me.Label11.TabIndex = 19
         Me.Label11.Text = "To read Cat data from api:  " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Run C:\Users\Ken\source\repos\EmployeesAPI\Employee" &
     "sAPI\EmployeesAPI. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Change repository data source in CatBLL" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Label11.Visible = False
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(178, 785)
+        Me.Label12.Location = New System.Drawing.Point(112, 619)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(43, 13)
         Me.Label12.TabIndex = 26
@@ -524,7 +523,7 @@ Partial Class frmShowCats
         Me.pnlNewCat.Controls.Add(Me.Label18)
         Me.pnlNewCat.Controls.Add(Me.txtNewCatDate)
         Me.pnlNewCat.Controls.Add(Me.Label13)
-        Me.pnlNewCat.Location = New System.Drawing.Point(178, 474)
+        Me.pnlNewCat.Location = New System.Drawing.Point(159, 52)
         Me.pnlNewCat.Name = "pnlNewCat"
         Me.pnlNewCat.Size = New System.Drawing.Size(493, 291)
         Me.pnlNewCat.TabIndex = 27

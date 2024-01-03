@@ -552,4 +552,12 @@ abort:
   Private Sub txtAge_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtAge.Validating
 
   End Sub
+
+  Private Sub cmbSearchGender_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbSearchGender.KeyDown
+    e.SuppressKeyPress = True
+  End Sub
+
+  Private Sub cmbSearchBreed_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbSearchBreed.KeyDown
+    e.SuppressKeyPress = True
+  End Sub
 End Class
