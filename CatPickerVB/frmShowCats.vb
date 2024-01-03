@@ -35,6 +35,8 @@ Public Class frmShowCats
 
     grpMenu.Controls.Find("radEdit", True)(0).Select()
 
+
+
     'ctrl = New CatController
   End Sub
 
@@ -93,7 +95,8 @@ Public Class frmShowCats
       dgvShowCats.RowHeadersVisible = False
 
       'bind editor controls to data grid  *move to sep. sub
-      ClearFormBindings(Me)
+      'ClearParentElementBindings(pnlMain)
+      clearControlBinding()
 
       txtName.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "name", True))
       txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True))
@@ -157,7 +160,13 @@ endd:
 
     End Try
   End Sub
-
+  Private Sub clearControlBinding()
+    txtName.DataBindings.Clear()
+    txtAge.DataBindings.Clear()
+    cmbGender.DataBindings.Clear()
+    tdpEditArivalDate.DataBindings.Clear()
+    txtCatPicName.DataBindings.Clear()
+  End Sub
 
   Private Function getImageFromStringPathName(imagePathName As String) As Image
     Return Image.FromFile(imagePathName)

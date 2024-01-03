@@ -84,7 +84,7 @@ Partial Class frmShowCats
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.tdpEditArivalDate = New System.Windows.Forms.DateTimePicker()
         Me.tdpNewArivalDate = New System.Windows.Forms.DateTimePicker()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.pnlMain = New System.Windows.Forms.Panel()
         CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlEdit.SuspendLayout()
@@ -94,7 +94,7 @@ Partial Class frmShowCats
         Me.pnlNewCat.SuspendLayout()
         CType(Me.picNewCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
+        Me.pnlMain.SuspendLayout()
         Me.SuspendLayout()
         '
         'dgvShowCats
@@ -661,17 +661,17 @@ Partial Class frmShowCats
         Me.tdpNewArivalDate.Size = New System.Drawing.Size(86, 20)
         Me.tdpNewArivalDate.TabIndex = 32
         '
-        'Panel1
+        'pnlMain
         '
-        Me.Panel1.BackColor = System.Drawing.SystemColors.AppWorkspace
-        Me.Panel1.Controls.Add(Me.pnlEdit)
-        Me.Panel1.Controls.Add(Me.grpMenu)
-        Me.Panel1.Controls.Add(Me.txtStatus)
-        Me.Panel1.Controls.Add(Me.Label12)
-        Me.Panel1.Location = New System.Drawing.Point(30, 375)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(590, 349)
-        Me.Panel1.TabIndex = 28
+        Me.pnlMain.BackColor = System.Drawing.SystemColors.AppWorkspace
+        Me.pnlMain.Controls.Add(Me.pnlEdit)
+        Me.pnlMain.Controls.Add(Me.grpMenu)
+        Me.pnlMain.Controls.Add(Me.txtStatus)
+        Me.pnlMain.Controls.Add(Me.Label12)
+        Me.pnlMain.Location = New System.Drawing.Point(30, 375)
+        Me.pnlMain.Name = "pnlMain"
+        Me.pnlMain.Size = New System.Drawing.Size(590, 349)
+        Me.pnlMain.TabIndex = 28
         '
         'frmShowCats
         '
@@ -680,7 +680,7 @@ Partial Class frmShowCats
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1386, 839)
-        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.pnlMain)
         Me.Controls.Add(Me.btnNewCat)
         Me.Controls.Add(Me.btnShowSelected)
         Me.Controls.Add(Me.pnlNewCat)
@@ -704,8 +704,8 @@ Partial Class frmShowCats
         Me.pnlNewCat.PerformLayout()
         CType(Me.picNewCatPic, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
+        Me.pnlMain.ResumeLayout(False)
+        Me.pnlMain.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -770,5 +770,5 @@ Partial Class frmShowCats
     Friend WithEvents Label19 As Label
     Friend WithEvents tdpEditArivalDate As DateTimePicker
     Friend WithEvents tdpNewArivalDate As DateTimePicker
-    Friend WithEvents Panel1 As Panel
+    Friend WithEvents pnlMain As Panel
 End Class
