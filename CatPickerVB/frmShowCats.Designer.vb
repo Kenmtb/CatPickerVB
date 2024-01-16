@@ -39,6 +39,7 @@ Partial Class frmShowCats
         Me.btnSave = New System.Windows.Forms.Button()
         Me.dlgPictures = New System.Windows.Forms.OpenFileDialog()
         Me.pnlEdit = New System.Windows.Forms.Panel()
+        Me.tdpEditArivalDate = New System.Windows.Forms.DateTimePicker()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.btnSelectCatPic = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
@@ -62,11 +63,11 @@ Partial Class frmShowCats
         Me.grpMenu = New System.Windows.Forms.GroupBox()
         Me.radNew = New System.Windows.Forms.RadioButton()
         Me.radSearch = New System.Windows.Forms.RadioButton()
-        Me.CatBreedBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.btnNewCat = New System.Windows.Forms.Button()
         Me.pnlNewCat = New System.Windows.Forms.Panel()
+        Me.tdpNewArivalDate = New System.Windows.Forms.DateTimePicker()
         Me.btnSelectNewCatPic = New System.Windows.Forms.Button()
         Me.txtNewCatPicName = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -82,19 +83,18 @@ Partial Class frmShowCats
         Me.Label13 = New System.Windows.Forms.Label()
         Me.openFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.tdpEditArivalDate = New System.Windows.Forms.DateTimePicker()
-        Me.tdpNewArivalDate = New System.Windows.Forms.DateTimePicker()
         Me.pnlMain = New System.Windows.Forms.Panel()
+        Me.CatBreedBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlEdit.SuspendLayout()
         Me.pnlSearch.SuspendLayout()
         Me.grpMenu.SuspendLayout()
-        CType(Me.CatBreedBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlNewCat.SuspendLayout()
         CType(Me.picNewCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlMain.SuspendLayout()
+        CType(Me.CatBreedBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dgvShowCats
@@ -247,6 +247,14 @@ Partial Class frmShowCats
         Me.pnlEdit.Size = New System.Drawing.Size(493, 291)
         Me.pnlEdit.TabIndex = 15
         '
+        'tdpEditArivalDate
+        '
+        Me.tdpEditArivalDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.tdpEditArivalDate.Location = New System.Drawing.Point(333, 147)
+        Me.tdpEditArivalDate.Name = "tdpEditArivalDate"
+        Me.tdpEditArivalDate.Size = New System.Drawing.Size(86, 20)
+        Me.tdpEditArivalDate.TabIndex = 26
+        '
         'Label19
         '
         Me.Label19.AutoSize = True
@@ -325,6 +333,8 @@ Partial Class frmShowCats
         '
         'txtStatus
         '
+        Me.txtStatus.BackColor = System.Drawing.SystemColors.Window
+        Me.txtStatus.ForeColor = System.Drawing.SystemColors.ControlText
         Me.txtStatus.Location = New System.Drawing.Point(145, 319)
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(434, 20)
@@ -332,6 +342,7 @@ Partial Class frmShowCats
         '
         'pnlSearch
         '
+        Me.pnlSearch.BackColor = System.Drawing.SystemColors.Control
         Me.pnlSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnlSearch.Controls.Add(Me.btnClearSearch)
         Me.pnlSearch.Controls.Add(Me.txtSearchAge)
@@ -342,7 +353,7 @@ Partial Class frmShowCats
         Me.pnlSearch.Controls.Add(Me.cmbSearchBreed)
         Me.pnlSearch.Controls.Add(Me.cmbSearchGender)
         Me.pnlSearch.Controls.Add(Me.Label6)
-        Me.pnlSearch.Location = New System.Drawing.Point(676, 433)
+        Me.pnlSearch.Location = New System.Drawing.Point(86, 15)
         Me.pnlSearch.Name = "pnlSearch"
         Me.pnlSearch.Size = New System.Drawing.Size(493, 291)
         Me.pnlSearch.TabIndex = 16
@@ -428,7 +439,7 @@ Partial Class frmShowCats
         'radEdit
         '
         Me.radEdit.AutoSize = True
-        Me.radEdit.Location = New System.Drawing.Point(7, 45)
+        Me.radEdit.Location = New System.Drawing.Point(7, 17)
         Me.radEdit.Name = "radEdit"
         Me.radEdit.Size = New System.Drawing.Size(43, 17)
         Me.radEdit.TabIndex = 17
@@ -451,7 +462,7 @@ Partial Class frmShowCats
         'radNew
         '
         Me.radNew.AutoSize = True
-        Me.radNew.Location = New System.Drawing.Point(7, 20)
+        Me.radNew.Location = New System.Drawing.Point(7, 45)
         Me.radNew.Name = "radNew"
         Me.radNew.Size = New System.Drawing.Size(69, 17)
         Me.radNew.TabIndex = 19
@@ -470,14 +481,10 @@ Partial Class frmShowCats
         Me.radSearch.Text = "Search"
         Me.radSearch.UseVisualStyleBackColor = True
         '
-        'CatBreedBindingSource
-        '
-        Me.CatBreedBindingSource.DataSource = GetType(Models.CatBreed)
-        '
         'Label11
         '
         Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Location = New System.Drawing.Point(32, 780)
+        Me.Label11.Location = New System.Drawing.Point(25, 47)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(390, 47)
         Me.Label11.TabIndex = 19
@@ -487,12 +494,14 @@ Partial Class frmShowCats
         '
         'Label12
         '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(86, 322)
+        Me.Label12.BackColor = System.Drawing.SystemColors.Window
+        Me.Label12.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label12.Location = New System.Drawing.Point(86, 320)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(43, 13)
+        Me.Label12.Size = New System.Drawing.Size(56, 18)
         Me.Label12.TabIndex = 26
         Me.Label12.Text = "Status: "
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btnNewCat
         '
@@ -506,6 +515,7 @@ Partial Class frmShowCats
         '
         'pnlNewCat
         '
+        Me.pnlNewCat.BackColor = System.Drawing.SystemColors.Control
         Me.pnlNewCat.Controls.Add(Me.tdpNewArivalDate)
         Me.pnlNewCat.Controls.Add(Me.btnSelectNewCatPic)
         Me.pnlNewCat.Controls.Add(Me.txtNewCatPicName)
@@ -521,10 +531,18 @@ Partial Class frmShowCats
         Me.pnlNewCat.Controls.Add(Me.Label17)
         Me.pnlNewCat.Controls.Add(Me.Label18)
         Me.pnlNewCat.Controls.Add(Me.Label13)
-        Me.pnlNewCat.Location = New System.Drawing.Point(812, 365)
+        Me.pnlNewCat.Location = New System.Drawing.Point(86, 15)
         Me.pnlNewCat.Name = "pnlNewCat"
         Me.pnlNewCat.Size = New System.Drawing.Size(493, 291)
         Me.pnlNewCat.TabIndex = 27
+        '
+        'tdpNewArivalDate
+        '
+        Me.tdpNewArivalDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.tdpNewArivalDate.Location = New System.Drawing.Point(333, 154)
+        Me.tdpNewArivalDate.Name = "tdpNewArivalDate"
+        Me.tdpNewArivalDate.Size = New System.Drawing.Size(86, 20)
+        Me.tdpNewArivalDate.TabIndex = 32
         '
         'btnSelectNewCatPic
         '
@@ -645,33 +663,23 @@ Partial Class frmShowCats
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'tdpEditArivalDate
-        '
-        Me.tdpEditArivalDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.tdpEditArivalDate.Location = New System.Drawing.Point(333, 147)
-        Me.tdpEditArivalDate.Name = "tdpEditArivalDate"
-        Me.tdpEditArivalDate.Size = New System.Drawing.Size(86, 20)
-        Me.tdpEditArivalDate.TabIndex = 26
-        '
-        'tdpNewArivalDate
-        '
-        Me.tdpNewArivalDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.tdpNewArivalDate.Location = New System.Drawing.Point(333, 154)
-        Me.tdpNewArivalDate.Name = "tdpNewArivalDate"
-        Me.tdpNewArivalDate.Size = New System.Drawing.Size(86, 20)
-        Me.tdpNewArivalDate.TabIndex = 32
-        '
         'pnlMain
         '
         Me.pnlMain.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.pnlMain.Controls.Add(Me.pnlEdit)
         Me.pnlMain.Controls.Add(Me.grpMenu)
         Me.pnlMain.Controls.Add(Me.txtStatus)
+        Me.pnlMain.Controls.Add(Me.pnlNewCat)
+        Me.pnlMain.Controls.Add(Me.pnlSearch)
         Me.pnlMain.Controls.Add(Me.Label12)
-        Me.pnlMain.Location = New System.Drawing.Point(30, 375)
+        Me.pnlMain.Location = New System.Drawing.Point(28, 465)
         Me.pnlMain.Name = "pnlMain"
         Me.pnlMain.Size = New System.Drawing.Size(590, 349)
         Me.pnlMain.TabIndex = 28
+        '
+        'CatBreedBindingSource
+        '
+        Me.CatBreedBindingSource.DataSource = GetType(Models.CatBreed)
         '
         'frmShowCats
         '
@@ -683,14 +691,12 @@ Partial Class frmShowCats
         Me.Controls.Add(Me.pnlMain)
         Me.Controls.Add(Me.btnNewCat)
         Me.Controls.Add(Me.btnShowSelected)
-        Me.Controls.Add(Me.pnlNewCat)
         Me.Controls.Add(Me.btnShowEditor)
-        Me.Controls.Add(Me.pnlSearch)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.dgvShowCats)
         Me.Name = "frmShowCats"
-        Me.Text = "Form1"
+        Me.Text = "Cat Picker"
         CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlEdit.ResumeLayout(False)
@@ -699,13 +705,13 @@ Partial Class frmShowCats
         Me.pnlSearch.PerformLayout()
         Me.grpMenu.ResumeLayout(False)
         Me.grpMenu.PerformLayout()
-        CType(Me.CatBreedBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlNewCat.ResumeLayout(False)
         Me.pnlNewCat.PerformLayout()
         CType(Me.picNewCatPic, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlMain.ResumeLayout(False)
         Me.pnlMain.PerformLayout()
+        CType(Me.CatBreedBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

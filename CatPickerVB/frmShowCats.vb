@@ -32,9 +32,10 @@ Public Class frmShowCats
     pnlSearch.Visible = False
     pnlNewCat.Visible = False
     pnlEdit.Visible = True
+    pnlMain.BackColor = Color.FromArgb(100, 44, 44, 44)
 
     grpMenu.Controls.Find("radEdit", True)(0).Select()
-
+    Messages.statusMsg = ""
 
 
     'ctrl = New CatController
@@ -54,10 +55,9 @@ Public Class frmShowCats
     Try
       ' Add any initialization after the InitializeComponent() call.
 
+
       txtStatus.Text = Messages.statusMsg 'get any prev. message
-
-
-      'If vm.catList.Count = 0 Then GoTo endd
+      If IsNothing(vm) Or Messages.statusMsg.Contains("Error") Then GoTo endd
 
       Me.vm = vm
       catList = vm.catList
@@ -69,18 +69,25 @@ Public Class frmShowCats
       'Move to resource file
       Dim img As Image
 
-      'Format
-      For Each col As DataGridViewColumn In dgvShowCats.Columns
-        col.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-      Next
+
 
       dgvShowCats.RowTemplate.Height = 40 '80
       dgvShowCats.CellBorderStyle = DataGridViewCellBorderStyle.None
+
+      'Format
+      For Each col As DataGridViewColumn In dgvShowCats.Columns
+        'col.SortMode = DataGridViewColumnSortMode.NotSortable
+        col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        col.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+      Next
 
       'Format image column
       Dim imageCol As DataGridViewImageColumn = dgvShowCats.Columns("image")
       imageCol.Width = 150
       imageCol.ImageLayout = DataGridViewImageCellLayout.Zoom
+
+      'dgvShowCats.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter
 
       dgvShowCats.Columns("Image").DisplayIndex = 0
       dgvShowCats.Columns("image").HeaderText = "Picture"
@@ -94,8 +101,7 @@ Public Class frmShowCats
       dgvShowCats.Columns("selected").HeaderText = "Selected"
       dgvShowCats.RowHeadersVisible = False
 
-      'bind editor controls to data grid  *move to sep. sub
-      'ClearParentElementBindings(pnlMain)
+      'bind editor controls to data grid  *move to sep. sub      
       clearControlBinding()
 
       txtName.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "name", True))
@@ -300,8 +306,8 @@ endd:
 
   Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
 
-    'Messages.statusMsg = "Searching"
-    txtStatus.Text = "Searching..."
+    Messages.statusMsg = "Searching"
+    txtStatus.Text = Messages.statusMsg
 
     Dim breedId As String = If(IsNothing(cmbSearchBreed.SelectedValue) Or cmbSearchBreed.Text = "", "", cmbSearchBreed.SelectedValue)
     Dim gender As String = cmbSearchGender.Text
@@ -317,9 +323,11 @@ endd:
     parmList.Add(ValueTuple.Create("age", age))
 
     Dim vm As CatVM = bll.getAll(parmList)
-    initForm(vm)
+    If IsNothing(vm) Then GoTo abort
 
-    txtStatus.Text = Messages.statusMsg
+    Messages.statusMsg = "Record count: " + vm.catList.Count.ToString
+abort:
+    initForm(vm)
   End Sub
 
   Private Sub dgvShowCats_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvShowCats.CellContentClick
@@ -343,6 +351,10 @@ endd:
 
   Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
     'get the record
+
+    Messages.statusMsg = "Adding new record ..."
+    txtStatus.Text = Messages.statusMsg
+
     Dim rec As New Cat
     rec.name = txtNewCatName.Text
     rec.age = txtNewCatAge.Text
@@ -363,30 +375,42 @@ endd:
     'rec.arrivalDate = If(IsDate(txtNewCatDate.Text), txtNewCatDate.Text, #01/01/1900#)
     rec.arrivalDate = If(IsDate(tdpNewArivalDate.Text), tdpNewArivalDate.Text, #01/01/1900#)
     bll.insert(rec)
+    If Messages.statusMsg.Contains("Error") Then GoTo abort
 
     dgvShowCats.DataSource = Nothing
     vm = bll.getAll()
+    If IsNothing(vm) Then GoTo abort
 
-    Messages.statusMsg = "Record count: " + vm.catList.Count.ToString
+    If Not IsNothing(vm) Then Messages.statusMsg = "New record created, Record count: " + vm.catList.Count.ToString
+abort:
     initForm(vm)
 
   End Sub
 
   Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+
     Dim response As String
     rec = catList(recIndex)
 
     response = MsgBox("Delete Y/N?", vbYesNo)
     If response = vbYes Then
+      Messages.statusMsg = "Deleting record ..."
+      txtStatus.Text = Messages.statusMsg
       bll.delete(rec.Id)
+      If Messages.statusMsg.Contains("Error") Then GoTo abort
 
       dgvShowCats.DataSource = Nothing
       vm = bll.getAll()
+      If IsNothing(vm) Then GoTo abort
 
-      Messages.statusMsg = "Record count: " + vm.catList.Count.ToString
-      initForm(vm)
+      If Not IsNothing(vm) Then Messages.statusMsg = "Delete successful, Record count: " + vm.catList.Count.ToString
+
 
     End If
+
+abort:
+
+    initForm(vm)
   End Sub
 
   Private Sub btnClearSearch_Click(sender As Object, e As EventArgs) Handles btnClearSearch.Click
@@ -408,20 +432,27 @@ endd:
   Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
     If Not validateForm() Then GoTo abort
 
+    Messages.statusMsg = "Saving record ..."
+    txtStatus.Text = Messages.statusMsg
+
     rec = catList(recIndex)
 
     'Handle unbound controls
     rec.breedId = cmbBreed.SelectedItem.Id
 
     bll.save(rec)
+    If Messages.statusMsg.Contains("Error") Then GoTo abort
 
     dgvShowCats.DataSource = Nothing
-    'vm = bll.getAll()
     vm = bll.getAll(parmList)
+    If IsNothing(vm) Then GoTo abort
 
-    Messages.statusMsg = "Record count: " + vm.catList.Count.ToString
-    initForm(vm)
+    Messages.statusMsg = "Save successful, Record count: " + vm.catList.Count.ToString
+
 abort:
+
+    initForm(vm)
+
   End Sub
 
   Private Sub btnNewCat_Click(sender As Object, e As EventArgs) Handles btnNewCat.Click
@@ -472,9 +503,11 @@ abort:
 
   Private Sub btnSelectCatPic_Click(sender As Object, e As EventArgs) Handles btnSelectCatPic.Click
     Dim picFile As String = getCatPicFile()
+    If picFile = "" Then GoTo abort
     picCatPic.Image = Image.FromFile(imageDir + picFile)
     txtCatPicName.Text = picFile
     txtCatPicName.DataBindings("Text").WriteValue() 'the control is bound so if it changes programatically then update the binding
+abort:
   End Sub
 
   Private Function validateForm() As Boolean
