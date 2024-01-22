@@ -87,7 +87,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL.vb" />
+    <Compile Include="PasswordDAL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -107,9 +107,12 @@
     <Compile Include="Repositories\APIRep\CatVmApiRepository.vb" />
     <Compile Include="Repositories\CatBreedRepository.vb" />
     <Compile Include="Repositories\CatDetailRepository.vb" />
+    <Compile Include="Repositories\CatPasswordRepository.vb" />
+    <Compile Include="Repositories\CatPasswordVMRepository.vb" />
     <Compile Include="Repositories\CatVMFilterepository.vb" />
     <Compile Include="Repositories\CatRepository.vb" />
     <Compile Include="Repositories\CatVMRepository.vb" />
+    <Compile Include="Repositories\ICatPasswordRepository.vb" />
     <Compile Include="Repositories\ICatRepository.vb" />
     <Compile Include="Repositories\ODBCRep\ODBCRep.vb" />
     <Compile Include="Repositories\ODBCRep\StoredProcRep.vb" />

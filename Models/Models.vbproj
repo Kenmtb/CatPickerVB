@@ -68,6 +68,7 @@
     <Compile Include="Models\Cat.vb" />
     <Compile Include="Models\CatBreed.vb" />
     <Compile Include="Models\CatDetail.vb" />
+    <Compile Include="Models\CatPassword.vb" />
     <Compile Include="Models\SQLParam.vb" />
     <Compile Include="Models\StoredProc.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

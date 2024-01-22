@@ -81,6 +81,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="PasswordBLL.vb" />
     <Compile Include="StoredProcBLL.vb" />
     <Compile Include="Utilities.vb" />
   </ItemGroup>

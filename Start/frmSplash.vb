@@ -5,6 +5,8 @@ Imports Globals
 
 Public Class frmSplash
   Dim controller As CatController
+  Dim bll As New BLL.passwordBLL
+
 
   Public Sub New()
 
@@ -26,4 +28,25 @@ Public Class frmSplash
     txtStatus.Text = Messages.statusMsg
   End Sub
 
+  Private Sub ToolTip1_Popup(sender As Object, e As PopupEventArgs)
+
+  End Sub
+
+  Private Sub picShowHidePassword_Click(sender As Object, e As EventArgs) Handles picShowHidePassword.Click
+    txtPassword.UseSystemPasswordChar = Not txtPassword.UseSystemPasswordChar
+  End Sub
+
+  Private Sub btnPasswordSubmit_Click(sender As Object, e As EventArgs) Handles btnPasswordSubmit.Click
+    Dim passwordList As New List(Of Models.CatPassword)
+    passwordList = bll.getAll()
+
+    If bll.validatePassword(txtUsername.Text, txtPassword.Text, passwordList) Then
+      txtStatus.Text = "Logged In"
+    Else
+      txtStatus.Text = "Login Failed"
+    End If
+
+
+
+  End Sub
 End Class
