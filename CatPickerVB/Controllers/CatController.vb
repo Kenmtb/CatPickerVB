@@ -36,6 +36,14 @@ Public Class CatController
     End Try
   End Sub
 
+  Public Sub showform()
+    viewShowCats.frm.Show()
+  End Sub
+
+  Public Sub hideForm()
+    viewShowCats.frm.Hide()
+  End Sub
+
   Public Sub ShowSelected(vm As CatVM)
 
     Dim model As List(Of Cat) = vm.catList

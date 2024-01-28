@@ -23,17 +23,20 @@ Partial Class frmSplash
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSplash))
         Me.txtStatus = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblMain = New System.Windows.Forms.Label()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtUsername = New System.Windows.Forms.TextBox()
         Me.txtPassword = New System.Windows.Forms.TextBox()
         Me.picShowHidePassword = New System.Windows.Forms.PictureBox()
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnPasswordSubmit = New System.Windows.Forms.Button()
+        Me.pnlLogin = New System.Windows.Forms.Panel()
+        Me.lblWarning = New System.Windows.Forms.Label()
+        Me.btnRetry = New System.Windows.Forms.Button()
         CType(Me.picShowHidePassword, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlLogin.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtStatus
@@ -43,21 +46,21 @@ Partial Class frmSplash
         Me.txtStatus.Size = New System.Drawing.Size(452, 20)
         Me.txtStatus.TabIndex = 0
         '
-        'Label1
+        'lblMain
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 40.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(190, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(271, 63)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "CatPicker"
+        Me.lblMain.AutoSize = True
+        Me.lblMain.BackColor = System.Drawing.Color.Transparent
+        Me.lblMain.Font = New System.Drawing.Font("Microsoft Sans Serif", 40.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMain.Location = New System.Drawing.Point(165, 9)
+        Me.lblMain.Name = "lblMain"
+        Me.lblMain.Size = New System.Drawing.Size(271, 63)
+        Me.lblMain.TabIndex = 1
+        Me.lblMain.Text = "CatPicker"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(299, 298)
+        Me.Label2.Location = New System.Drawing.Point(38, 6)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(60, 13)
         Me.Label2.TabIndex = 2
@@ -66,7 +69,7 @@ Partial Class frmSplash
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(306, 322)
+        Me.Label3.Location = New System.Drawing.Point(45, 30)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(53, 13)
         Me.Label3.TabIndex = 3
@@ -74,14 +77,14 @@ Partial Class frmSplash
         '
         'txtUsername
         '
-        Me.txtUsername.Location = New System.Drawing.Point(365, 295)
+        Me.txtUsername.Location = New System.Drawing.Point(104, 3)
         Me.txtUsername.Name = "txtUsername"
         Me.txtUsername.Size = New System.Drawing.Size(100, 20)
         Me.txtUsername.TabIndex = 4
         '
         'txtPassword
         '
-        Me.txtPassword.Location = New System.Drawing.Point(365, 319)
+        Me.txtPassword.Location = New System.Drawing.Point(104, 27)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.Size = New System.Drawing.Size(100, 20)
         Me.txtPassword.TabIndex = 5
@@ -90,7 +93,7 @@ Partial Class frmSplash
         'picShowHidePassword
         '
         Me.picShowHidePassword.Image = Global.Start.My.Resources.Resources.passwordEye
-        Me.picShowHidePassword.Location = New System.Drawing.Point(471, 319)
+        Me.picShowHidePassword.Location = New System.Drawing.Point(210, 27)
         Me.picShowHidePassword.Name = "picShowHidePassword"
         Me.picShowHidePassword.Size = New System.Drawing.Size(20, 20)
         Me.picShowHidePassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -99,44 +102,80 @@ Partial Class frmSplash
         '
         'btnPasswordSubmit
         '
-        Me.btnPasswordSubmit.Location = New System.Drawing.Point(365, 345)
+        Me.btnPasswordSubmit.Location = New System.Drawing.Point(104, 53)
         Me.btnPasswordSubmit.Name = "btnPasswordSubmit"
         Me.btnPasswordSubmit.Size = New System.Drawing.Size(100, 23)
         Me.btnPasswordSubmit.TabIndex = 7
-        Me.btnPasswordSubmit.Text = "Submit"
+        Me.btnPasswordSubmit.Text = "Run Cat Picker"
         Me.btnPasswordSubmit.UseVisualStyleBackColor = True
+        '
+        'pnlLogin
+        '
+        Me.pnlLogin.Controls.Add(Me.btnPasswordSubmit)
+        Me.pnlLogin.Controls.Add(Me.picShowHidePassword)
+        Me.pnlLogin.Controls.Add(Me.txtPassword)
+        Me.pnlLogin.Controls.Add(Me.txtUsername)
+        Me.pnlLogin.Controls.Add(Me.Label3)
+        Me.pnlLogin.Controls.Add(Me.Label2)
+        Me.pnlLogin.Location = New System.Drawing.Point(176, 283)
+        Me.pnlLogin.Name = "pnlLogin"
+        Me.pnlLogin.Size = New System.Drawing.Size(284, 80)
+        Me.pnlLogin.TabIndex = 8
+        '
+        'lblWarning
+        '
+        Me.lblWarning.BackColor = System.Drawing.Color.Transparent
+        Me.lblWarning.ForeColor = System.Drawing.Color.DarkRed
+        Me.lblWarning.Location = New System.Drawing.Point(442, 19)
+        Me.lblWarning.Name = "lblWarning"
+        Me.lblWarning.Size = New System.Drawing.Size(231, 53)
+        Me.lblWarning.TabIndex = 20
+        Me.lblWarning.Text = "To read Cat data from api:  " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Run C:\Users\Ken\source\repos\" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "EmployeesAPI\Employ" &
+    "eesAPI\EmployeesAPI. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Change repository data source in CatBLL" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblWarning.Visible = False
+        '
+        'btnRetry
+        '
+        Me.btnRetry.Location = New System.Drawing.Point(292, 365)
+        Me.btnRetry.Name = "btnRetry"
+        Me.btnRetry.Size = New System.Drawing.Size(75, 50)
+        Me.btnRetry.TabIndex = 21
+        Me.btnRetry.Text = "Retry Running Cat Picker"
+        Me.btnRetry.UseVisualStyleBackColor = True
         '
         'frmSplash
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImage = Global.Start.My.Resources.Resources.catPickerSplash
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(670, 472)
-        Me.Controls.Add(Me.btnPasswordSubmit)
-        Me.Controls.Add(Me.picShowHidePassword)
-        Me.Controls.Add(Me.txtPassword)
-        Me.Controls.Add(Me.txtUsername)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.btnRetry)
+        Me.Controls.Add(Me.lblWarning)
+        Me.Controls.Add(Me.pnlLogin)
+        Me.Controls.Add(Me.lblMain)
         Me.Controls.Add(Me.txtStatus)
         Me.Name = "frmSplash"
         Me.Text = "Splash"
         Me.ToolTip1.SetToolTip(Me, "Show/Hide Password")
         CType(Me.picShowHidePassword, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlLogin.ResumeLayout(False)
+        Me.pnlLogin.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents txtStatus As TextBox
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lblMain As Label
+    Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents txtUsername As TextBox
     Friend WithEvents txtPassword As TextBox
     Friend WithEvents picShowHidePassword As PictureBox
-    Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents btnPasswordSubmit As Button
+    Friend WithEvents pnlLogin As Panel
+    Friend WithEvents lblWarning As Label
+    Friend WithEvents btnRetry As Button
 End Class
