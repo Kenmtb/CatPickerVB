@@ -13,6 +13,7 @@ Public Class Cat
   Public Property age As Nullable(Of Integer)
   Public Property pic As String
   Public Property gender As String
+  Public Property breedName As String ' foriegn
   Public Property mainColor As String
   Public Property secondColor As String
   Public Property thirdColor As String

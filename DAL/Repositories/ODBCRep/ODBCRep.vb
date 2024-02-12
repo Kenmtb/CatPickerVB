@@ -159,8 +159,22 @@ Public Class ODBCRep(Of T)
     Return Nothing
   End Function
 
-  Protected Function getRecordByID(Id As Integer) As T
-    Return Nothing
+  Protected Function getRecordByID(Id As String) As T
+    Dim list = New List(Of T)()
+    Dim reader As DataTable = Nothing
+
+    reader = getDataObject(baseSQLIdString + Id)
+
+    Try
+      If reader.Rows.Count > 0 Then
+        For Each rec As DataRow In reader.Rows
+          list.Add(populateRecord(rec))
+        Next
+      End If
+    Catch ex As Exception
+      Throw New Globals.CustomException("Record fetch failed. (check repository model mapping for missing or misspelled fields or null data)")
+    End Try
+    Return list(0)
   End Function
 
 
@@ -228,7 +242,7 @@ Public Class ODBCRep(Of T)
   End Sub
 
 
-  Public Function delete(id As Object)
+  Protected Sub deleteRecord(id As String)
     Try
       Dim cmd As SqlCommand
       cmd = getCommand(baseSQLDeleteString + id)
@@ -236,15 +250,15 @@ Public Class ODBCRep(Of T)
       Dim dt As New DataTable()
       da.Fill(dt)
 
-      Dim dr As DataRow = dt.Rows(0)
-
-      dr.Delete()
-      da.Update(dt)
+      'The code below is not needed, the data adapter will have an sql delete performed
+      'Dim dr As DataRow = dt.Rows(0)
+      'dr.Delete()
+      'da.Update(dt)
 
     Catch ex As Exception
       Throw New Globals.CustomException("Delete changes failed, check editor for invalid or missing entries.")
     End Try
-  End Function
+  End Sub
 
   Public Overridable Function populateDataRow(datarec As T, dr As DataRow) As DataRow
     Return Nothing

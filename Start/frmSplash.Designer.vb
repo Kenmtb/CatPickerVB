@@ -106,7 +106,7 @@ Partial Class frmSplash
         Me.btnPasswordSubmit.Name = "btnPasswordSubmit"
         Me.btnPasswordSubmit.Size = New System.Drawing.Size(100, 23)
         Me.btnPasswordSubmit.TabIndex = 7
-        Me.btnPasswordSubmit.Text = "Run Cat Picker"
+        Me.btnPasswordSubmit.Text = "Login"
         Me.btnPasswordSubmit.UseVisualStyleBackColor = True
         '
         'pnlLogin
@@ -117,7 +117,7 @@ Partial Class frmSplash
         Me.pnlLogin.Controls.Add(Me.txtUsername)
         Me.pnlLogin.Controls.Add(Me.Label3)
         Me.pnlLogin.Controls.Add(Me.Label2)
-        Me.pnlLogin.Location = New System.Drawing.Point(176, 283)
+        Me.pnlLogin.Location = New System.Drawing.Point(176, 354)
         Me.pnlLogin.Name = "pnlLogin"
         Me.pnlLogin.Size = New System.Drawing.Size(284, 80)
         Me.pnlLogin.TabIndex = 8

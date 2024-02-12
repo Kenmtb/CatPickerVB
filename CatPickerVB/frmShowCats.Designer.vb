@@ -125,6 +125,7 @@ Partial Class frmShowCats
         Me.txtCatPicName.ReadOnly = True
         Me.txtCatPicName.Size = New System.Drawing.Size(237, 20)
         Me.txtCatPicName.TabIndex = 2
+        Me.txtCatPicName.TabStop = False
         '
         'Button1
         '
@@ -162,7 +163,7 @@ Partial Class frmShowCats
         Me.txtName.Location = New System.Drawing.Point(333, 36)
         Me.txtName.Name = "txtName"
         Me.txtName.Size = New System.Drawing.Size(141, 20)
-        Me.txtName.TabIndex = 6
+        Me.txtName.TabIndex = 1
         '
         'txtAge
         '
@@ -170,7 +171,7 @@ Partial Class frmShowCats
         Me.txtAge.Location = New System.Drawing.Point(333, 62)
         Me.txtAge.Name = "txtAge"
         Me.txtAge.Size = New System.Drawing.Size(40, 20)
-        Me.txtAge.TabIndex = 7
+        Me.txtAge.TabIndex = 2
         '
         'Label1
         '
@@ -213,7 +214,7 @@ Partial Class frmShowCats
         Me.btnSave.Location = New System.Drawing.Point(292, 245)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(70, 27)
-        Me.btnSave.TabIndex = 14
+        Me.btnSave.TabIndex = 7
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
         '
@@ -253,7 +254,7 @@ Partial Class frmShowCats
         Me.tdpEditArivalDate.Location = New System.Drawing.Point(333, 147)
         Me.tdpEditArivalDate.Name = "tdpEditArivalDate"
         Me.tdpEditArivalDate.Size = New System.Drawing.Size(86, 20)
-        Me.tdpEditArivalDate.TabIndex = 26
+        Me.tdpEditArivalDate.TabIndex = 5
         '
         'Label19
         '
@@ -270,7 +271,7 @@ Partial Class frmShowCats
         Me.btnSelectCatPic.Location = New System.Drawing.Point(333, 173)
         Me.btnSelectCatPic.Name = "btnSelectCatPic"
         Me.btnSelectCatPic.Size = New System.Drawing.Size(86, 26)
-        Me.btnSelectCatPic.TabIndex = 32
+        Me.btnSelectCatPic.TabIndex = 6
         Me.btnSelectCatPic.Text = "Find Image"
         Me.btnSelectCatPic.UseVisualStyleBackColor = True
         '
@@ -279,7 +280,7 @@ Partial Class frmShowCats
         Me.btnDelete.Location = New System.Drawing.Point(368, 245)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(66, 26)
-        Me.btnDelete.TabIndex = 26
+        Me.btnDelete.TabIndex = 8
         Me.btnDelete.Text = "Delete"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
@@ -300,7 +301,7 @@ Partial Class frmShowCats
         Me.cmbBreed.Location = New System.Drawing.Point(333, 91)
         Me.cmbBreed.Name = "cmbBreed"
         Me.cmbBreed.Size = New System.Drawing.Size(141, 21)
-        Me.cmbBreed.TabIndex = 17
+        Me.cmbBreed.TabIndex = 3
         '
         'cmbGender
         '
@@ -310,7 +311,7 @@ Partial Class frmShowCats
         Me.cmbGender.Location = New System.Drawing.Point(333, 120)
         Me.cmbGender.Name = "cmbGender"
         Me.cmbGender.Size = New System.Drawing.Size(86, 21)
-        Me.cmbGender.TabIndex = 16
+        Me.cmbGender.TabIndex = 4
         '
         'Label5
         '
@@ -339,6 +340,7 @@ Partial Class frmShowCats
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(434, 20)
         Me.txtStatus.TabIndex = 25
+        Me.txtStatus.TabStop = False
         '
         'pnlSearch
         '
@@ -363,7 +365,7 @@ Partial Class frmShowCats
         Me.btnClearSearch.Location = New System.Drawing.Point(248, 199)
         Me.btnClearSearch.Name = "btnClearSearch"
         Me.btnClearSearch.Size = New System.Drawing.Size(75, 23)
-        Me.btnClearSearch.TabIndex = 25
+        Me.btnClearSearch.TabIndex = 34
         Me.btnClearSearch.Text = "Clear"
         Me.btnClearSearch.UseVisualStyleBackColor = True
         '
@@ -372,14 +374,14 @@ Partial Class frmShowCats
         Me.txtSearchAge.Location = New System.Drawing.Point(216, 153)
         Me.txtSearchAge.Name = "txtSearchAge"
         Me.txtSearchAge.Size = New System.Drawing.Size(32, 20)
-        Me.txtSearchAge.TabIndex = 24
+        Me.txtSearchAge.TabIndex = 32
         '
         'btnSearch
         '
         Me.btnSearch.Location = New System.Drawing.Point(167, 199)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(75, 23)
-        Me.btnSearch.TabIndex = 23
+        Me.btnSearch.TabIndex = 33
         Me.btnSearch.Text = "Search"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
@@ -416,7 +418,7 @@ Partial Class frmShowCats
         Me.cmbSearchBreed.Location = New System.Drawing.Point(216, 126)
         Me.cmbSearchBreed.Name = "cmbSearchBreed"
         Me.cmbSearchBreed.Size = New System.Drawing.Size(121, 21)
-        Me.cmbSearchBreed.TabIndex = 18
+        Me.cmbSearchBreed.TabIndex = 31
         '
         'cmbSearchGender
         '
@@ -424,7 +426,7 @@ Partial Class frmShowCats
         Me.cmbSearchGender.Location = New System.Drawing.Point(216, 99)
         Me.cmbSearchGender.Name = "cmbSearchGender"
         Me.cmbSearchGender.Size = New System.Drawing.Size(121, 21)
-        Me.cmbSearchGender.TabIndex = 17
+        Me.cmbSearchGender.TabIndex = 30
         '
         'Label6
         '
@@ -439,10 +441,10 @@ Partial Class frmShowCats
         'radEdit
         '
         Me.radEdit.AutoSize = True
-        Me.radEdit.Location = New System.Drawing.Point(7, 17)
+        Me.radEdit.Location = New System.Drawing.Point(7, 19)
         Me.radEdit.Name = "radEdit"
         Me.radEdit.Size = New System.Drawing.Size(43, 17)
-        Me.radEdit.TabIndex = 17
+        Me.radEdit.TabIndex = 10
         Me.radEdit.TabStop = True
         Me.radEdit.Text = "Edit"
         Me.radEdit.UseVisualStyleBackColor = True
@@ -465,7 +467,7 @@ Partial Class frmShowCats
         Me.radNew.Location = New System.Drawing.Point(7, 45)
         Me.radNew.Name = "radNew"
         Me.radNew.Size = New System.Drawing.Size(69, 17)
-        Me.radNew.TabIndex = 19
+        Me.radNew.TabIndex = 11
         Me.radNew.TabStop = True
         Me.radNew.Text = "Add New"
         Me.radNew.UseVisualStyleBackColor = True
@@ -476,7 +478,7 @@ Partial Class frmShowCats
         Me.radSearch.Location = New System.Drawing.Point(7, 71)
         Me.radSearch.Name = "radSearch"
         Me.radSearch.Size = New System.Drawing.Size(59, 17)
-        Me.radSearch.TabIndex = 18
+        Me.radSearch.TabIndex = 12
         Me.radSearch.TabStop = True
         Me.radSearch.Text = "Search"
         Me.radSearch.UseVisualStyleBackColor = True
@@ -542,14 +544,14 @@ Partial Class frmShowCats
         Me.tdpNewArivalDate.Location = New System.Drawing.Point(333, 154)
         Me.tdpNewArivalDate.Name = "tdpNewArivalDate"
         Me.tdpNewArivalDate.Size = New System.Drawing.Size(86, 20)
-        Me.tdpNewArivalDate.TabIndex = 32
+        Me.tdpNewArivalDate.TabIndex = 24
         '
         'btnSelectNewCatPic
         '
         Me.btnSelectNewCatPic.Location = New System.Drawing.Point(333, 180)
         Me.btnSelectNewCatPic.Name = "btnSelectNewCatPic"
         Me.btnSelectNewCatPic.Size = New System.Drawing.Size(86, 26)
-        Me.btnSelectNewCatPic.TabIndex = 31
+        Me.btnSelectNewCatPic.TabIndex = 25
         Me.btnSelectNewCatPic.Text = "Find Image"
         Me.btnSelectNewCatPic.UseVisualStyleBackColor = True
         '
@@ -560,6 +562,7 @@ Partial Class frmShowCats
         Me.txtNewCatPicName.ReadOnly = True
         Me.txtNewCatPicName.Size = New System.Drawing.Size(236, 20)
         Me.txtNewCatPicName.TabIndex = 30
+        Me.txtNewCatPicName.TabStop = False
         '
         'Label14
         '
@@ -577,7 +580,7 @@ Partial Class frmShowCats
         Me.cmbNewCatBreed.Location = New System.Drawing.Point(333, 98)
         Me.cmbNewCatBreed.Name = "cmbNewCatBreed"
         Me.cmbNewCatBreed.Size = New System.Drawing.Size(141, 21)
-        Me.cmbNewCatBreed.TabIndex = 28
+        Me.cmbNewCatBreed.TabIndex = 22
         '
         'cmbNewCatGender
         '
@@ -587,7 +590,7 @@ Partial Class frmShowCats
         Me.cmbNewCatGender.Location = New System.Drawing.Point(333, 127)
         Me.cmbNewCatGender.Name = "cmbNewCatGender"
         Me.cmbNewCatGender.Size = New System.Drawing.Size(76, 21)
-        Me.cmbNewCatGender.TabIndex = 27
+        Me.cmbNewCatGender.TabIndex = 23
         '
         'picNewCatPic
         '

@@ -62,12 +62,14 @@ Public Class frmSplash
       Me.Visible = True
       controller.hideForm()
       startupError = True
+      txtStatus.BackColor = Color.Salmon
     Else
       'No error or the startup form has not been run yet due to login being required
 
       'Reset this form to indicate no error
       Me.BackgroundImage = My.Resources.catPickerSplash
       lblWarning.Visible = False
+      txtStatus.BackColor = SystemColors.Window
     End If
 
     Return startupError
@@ -83,6 +85,9 @@ Public Class frmSplash
   End Sub
 
   Private Sub btnPasswordSubmit_Click(sender As Object, e As EventArgs) Handles btnPasswordSubmit.Click
+
+    txtStatus.BackColor = SystemColors.Window
+
     Dim passwordList As New List(Of Models.CatPassword)
     passwordList = bll.getAll()
 
@@ -101,6 +106,7 @@ Public Class frmSplash
       'login failed, reset this form's background
       Me.BackgroundImage = My.Resources.catPickerSplash
       lblWarning.Visible = False
+      txtStatus.BackColor = Color.Salmon
       txtStatus.Text = "Login Failed"
     End If
   End Sub

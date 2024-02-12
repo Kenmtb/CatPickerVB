@@ -28,9 +28,14 @@ Public Class CatVMRepository
       vm = New CatVM()
 
       vm.catList = rep.getAll().ToList()
+
       'vm.catList = (New CatRepository(Of Cat)).getAll().ToList()
       vm.catBreedList = catbreed.getAll.ToList()
       vm.catBreedList.Insert(0, New CatBreed() With {.Id = -1, .breedName = Globals.Defs.selectString}) 'add -- Select -- to front of list 
+
+      'For Each rec In vm.catList
+      ' rec.breedName = catbreed.getById(rec.breedId).breedName
+      ' Next
 
       Return vm
     Catch ex As Exception

@@ -6,6 +6,8 @@ Public Class CatRepository(Of T)
   Implements ICatRepository(Of Cat)
 
   Dim rec As Cat
+  'foriegn
+  Private catbreed As New CatBreedRepository(Of CatBreed)
 
   Public Sub New()
     MyBase.conStrName = "CatsContext"
@@ -18,7 +20,7 @@ Public Class CatRepository(Of T)
   End Sub
 
   Public Function delete(id As Object) As Object Implements ICatRepository(Of Cat).delete
-
+    deleteRecord(id)
   End Function
 
 
@@ -66,7 +68,6 @@ Public Class CatRepository(Of T)
   End Function
 
   Public Overrides Function populateRecord(dr As DataRow) As Cat
-    'Return MyBase.populateRecord(dr)
     Dim catRec = New Cat()
     catRec.Id = dr("ID")
     catRec.name = dr("Name")
@@ -79,7 +80,10 @@ Public Class CatRepository(Of T)
     catRec.arrivalDate = If(Not IsDBNull(dr("arrivalDate")), dr("arrivalDate").ToString(), DateTime.MinValue.ToString())
     catRec.breedId = If(Not IsDBNull(dr("breedId")), DirectCast(dr("breedId"), Integer?), Nothing)
     catRec.detailsId = If(Not IsDBNull(dr("detailsId")), DirectCast(dr("detailsId"), Nullable(Of Integer)), Nothing)
-    'catRec.selected = If(Not IsDBNull(dr("selected")), DirectCast(dr("selected"), Nullable(Of Boolean)), Nothing)
+    'foriegn
+    catRec.breedName = catbreed.getById(catRec.breedId).breedName
+
+
     Return catRec
   End Function
 

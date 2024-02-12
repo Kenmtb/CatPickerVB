@@ -89,14 +89,17 @@ Public Class frmShowCats
 
       'dgvShowCats.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter
 
+      Label12.TabStop = False
+
       dgvShowCats.Columns("Image").DisplayIndex = 0
       dgvShowCats.Columns("image").HeaderText = "Picture"
       dgvShowCats.Columns("name").HeaderText = "Name"
       dgvShowCats.Columns("age").HeaderText = "Age"
       dgvShowCats.Columns("gender").HeaderText = "Gender"
-      dgvShowCats.Columns("mainColor").HeaderText = "Main Color"
-      dgvShowCats.Columns("secondColor").HeaderText = "Second Color"
-      dgvShowCats.Columns("thirdColor").HeaderText = "Third Color"
+      dgvShowCats.Columns("breedName").HeaderText = "Breed"
+      'dgvShowCats.Columns("mainColor").HeaderText = "Main Color"
+      'dgvShowCats.Columns("secondColor").HeaderText = "Second Color"
+      'dgvShowCats.Columns("thirdColor").HeaderText = "Third Color"
       dgvShowCats.Columns("arrivalDate").HeaderText = "Arrival Date"
       dgvShowCats.Columns("selected").HeaderText = "Selected"
       dgvShowCats.RowHeadersVisible = False
@@ -104,17 +107,21 @@ Public Class frmShowCats
       'bind editor controls to data grid  *move to sep. sub      
       clearControlBinding()
 
+      'editor bindings
       txtName.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "name", True))
       txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True))
       cmbGender.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "gender", True))
       tdpEditArivalDate.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "arrivalDate", True))
       txtCatPicName.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "pic", True))
 
-      'Hide
+      'hide
       dgvShowCats.Columns("Id").Visible = False
       dgvShowCats.Columns("breedId").Visible = False
       dgvShowCats.Columns("detailsId").Visible = False
       dgvShowCats.Columns("pic").Visible = False
+      dgvShowCats.Columns("mainColor").Visible = False
+      dgvShowCats.Columns("secondColor").Visible = False
+      dgvShowCats.Columns("thirdColor").Visible = False
       'dgvShowCats.Columns("selected").Visible = False
 
       'ADD images to columns
@@ -360,6 +367,7 @@ abort:
     rec.age = txtNewCatAge.Text
     rec.gender = cmbNewCatGender.Text
     rec.breedId = cmbNewCatBreed.SelectedValue
+    'rec.breedName = txtn
     rec.detailsId = defaultDetailsId
     rec.mainColor = defaultCatColor
     rec.secondColor = defaultCatColor
@@ -439,6 +447,8 @@ abort:
 
     'Handle unbound controls
     rec.breedId = cmbBreed.SelectedItem.Id
+
+    rec.breedName = cmbBreed.Text
 
     bll.save(rec)
     If Messages.statusMsg.Contains("Error") Then GoTo abort
