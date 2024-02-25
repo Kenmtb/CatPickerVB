@@ -22,69 +22,69 @@ Partial Class frmShowCats
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmShowCats))
-        Me.dgvShowCats = New System.Windows.Forms.DataGridView()
-        Me.picCatPic = New System.Windows.Forms.PictureBox()
-        Me.txtCatPicName = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.btnShowSelected = New System.Windows.Forms.Button()
-        Me.btnShowEditor = New System.Windows.Forms.Button()
-        Me.txtName = New System.Windows.Forms.TextBox()
-        Me.txtAge = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.btnSave = New System.Windows.Forms.Button()
-        Me.dlgPictures = New System.Windows.Forms.OpenFileDialog()
-        Me.pnlEdit = New System.Windows.Forms.Panel()
-        Me.tdpEditArivalDate = New System.Windows.Forms.DateTimePicker()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.btnSelectCatPic = New System.Windows.Forms.Button()
-        Me.btnDelete = New System.Windows.Forms.Button()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.cmbBreed = New System.Windows.Forms.ComboBox()
-        Me.cmbGender = New System.Windows.Forms.ComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.btnInsert = New System.Windows.Forms.Button()
-        Me.txtStatus = New System.Windows.Forms.TextBox()
-        Me.pnlSearch = New System.Windows.Forms.Panel()
-        Me.btnClearSearch = New System.Windows.Forms.Button()
-        Me.txtSearchAge = New System.Windows.Forms.TextBox()
-        Me.btnSearch = New System.Windows.Forms.Button()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.cmbSearchBreed = New System.Windows.Forms.ComboBox()
-        Me.cmbSearchGender = New System.Windows.Forms.ComboBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.radEdit = New System.Windows.Forms.RadioButton()
-        Me.grpMenu = New System.Windows.Forms.GroupBox()
-        Me.radNew = New System.Windows.Forms.RadioButton()
-        Me.radSearch = New System.Windows.Forms.RadioButton()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.btnNewCat = New System.Windows.Forms.Button()
-        Me.pnlNewCat = New System.Windows.Forms.Panel()
-        Me.tdpNewArivalDate = New System.Windows.Forms.DateTimePicker()
-        Me.btnSelectNewCatPic = New System.Windows.Forms.Button()
-        Me.txtNewCatPicName = New System.Windows.Forms.TextBox()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.cmbNewCatBreed = New System.Windows.Forms.ComboBox()
-        Me.cmbNewCatGender = New System.Windows.Forms.ComboBox()
-        Me.picNewCatPic = New System.Windows.Forms.PictureBox()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.txtNewCatAge = New System.Windows.Forms.TextBox()
-        Me.txtNewCatName = New System.Windows.Forms.TextBox()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.openFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.pnlMain = New System.Windows.Forms.Panel()
-        Me.CatBreedBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+    Me.components = New System.ComponentModel.Container()
+    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmShowCats))
+    Me.dgvShowCats = New System.Windows.Forms.DataGridView()
+    Me.picCatPic = New System.Windows.Forms.PictureBox()
+    Me.txtCatPicName = New System.Windows.Forms.TextBox()
+    Me.Button1 = New System.Windows.Forms.Button()
+    Me.btnShowSelected = New System.Windows.Forms.Button()
+    Me.btnShowEditor = New System.Windows.Forms.Button()
+    Me.txtName = New System.Windows.Forms.TextBox()
+    Me.txtAge = New System.Windows.Forms.TextBox()
+    Me.Label1 = New System.Windows.Forms.Label()
+    Me.Label2 = New System.Windows.Forms.Label()
+    Me.Label3 = New System.Windows.Forms.Label()
+    Me.Label4 = New System.Windows.Forms.Label()
+    Me.btnSave = New System.Windows.Forms.Button()
+    Me.dlgPictures = New System.Windows.Forms.OpenFileDialog()
+    Me.pnlEdit = New System.Windows.Forms.Panel()
+    Me.tdpEditArrivalDate = New System.Windows.Forms.DateTimePicker()
+    Me.Label19 = New System.Windows.Forms.Label()
+    Me.btnSelectCatPic = New System.Windows.Forms.Button()
+    Me.btnDelete = New System.Windows.Forms.Button()
+    Me.Label10 = New System.Windows.Forms.Label()
+    Me.cmbBreed = New System.Windows.Forms.ComboBox()
+    Me.cmbGender = New System.Windows.Forms.ComboBox()
+    Me.Label5 = New System.Windows.Forms.Label()
+    Me.btnInsert = New System.Windows.Forms.Button()
+    Me.txtStatus = New System.Windows.Forms.TextBox()
+    Me.pnlSearch = New System.Windows.Forms.Panel()
+    Me.btnClearSearch = New System.Windows.Forms.Button()
+    Me.txtSearchAge = New System.Windows.Forms.TextBox()
+    Me.btnSearch = New System.Windows.Forms.Button()
+    Me.Label9 = New System.Windows.Forms.Label()
+    Me.Label8 = New System.Windows.Forms.Label()
+    Me.Label7 = New System.Windows.Forms.Label()
+    Me.cmbSearchBreed = New System.Windows.Forms.ComboBox()
+    Me.cmbSearchGender = New System.Windows.Forms.ComboBox()
+    Me.Label6 = New System.Windows.Forms.Label()
+    Me.radEdit = New System.Windows.Forms.RadioButton()
+    Me.grpMenu = New System.Windows.Forms.GroupBox()
+    Me.radNew = New System.Windows.Forms.RadioButton()
+    Me.radSearch = New System.Windows.Forms.RadioButton()
+    Me.Label11 = New System.Windows.Forms.Label()
+    Me.Label12 = New System.Windows.Forms.Label()
+    Me.btnNewCat = New System.Windows.Forms.Button()
+    Me.pnlNewCat = New System.Windows.Forms.Panel()
+    Me.tdpNewArivalDate = New System.Windows.Forms.DateTimePicker()
+    Me.btnSelectNewCatPic = New System.Windows.Forms.Button()
+    Me.txtNewCatPicName = New System.Windows.Forms.TextBox()
+    Me.Label14 = New System.Windows.Forms.Label()
+    Me.cmbNewCatBreed = New System.Windows.Forms.ComboBox()
+    Me.cmbNewCatGender = New System.Windows.Forms.ComboBox()
+    Me.picNewCatPic = New System.Windows.Forms.PictureBox()
+    Me.Label15 = New System.Windows.Forms.Label()
+    Me.txtNewCatAge = New System.Windows.Forms.TextBox()
+    Me.txtNewCatName = New System.Windows.Forms.TextBox()
+    Me.Label16 = New System.Windows.Forms.Label()
+    Me.Label17 = New System.Windows.Forms.Label()
+    Me.Label18 = New System.Windows.Forms.Label()
+    Me.Label13 = New System.Windows.Forms.Label()
+    Me.openFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+    Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+    Me.pnlMain = New System.Windows.Forms.Panel()
+    Me.CatBreedBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlEdit.SuspendLayout()
@@ -102,6 +102,7 @@ Partial Class frmShowCats
         Me.dgvShowCats.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.dgvShowCats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvShowCats.Location = New System.Drawing.Point(641, 47)
+        Me.dgvShowCats.MultiSelect = False
         Me.dgvShowCats.Name = "dgvShowCats"
         Me.dgvShowCats.ReadOnly = True
         Me.dgvShowCats.Size = New System.Drawing.Size(664, 767)
@@ -167,7 +168,6 @@ Partial Class frmShowCats
         '
         'txtAge
         '
-        Me.txtAge.CausesValidation = False
         Me.txtAge.Location = New System.Drawing.Point(333, 62)
         Me.txtAge.Name = "txtAge"
         Me.txtAge.Size = New System.Drawing.Size(40, 20)
@@ -226,7 +226,7 @@ Partial Class frmShowCats
         '
         Me.pnlEdit.BackColor = System.Drawing.SystemColors.Control
         Me.pnlEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnlEdit.Controls.Add(Me.tdpEditArivalDate)
+        Me.pnlEdit.Controls.Add(Me.tdpEditArrivalDate)
         Me.pnlEdit.Controls.Add(Me.Label19)
         Me.pnlEdit.Controls.Add(Me.btnSelectCatPic)
         Me.pnlEdit.Controls.Add(Me.btnDelete)
@@ -248,13 +248,13 @@ Partial Class frmShowCats
         Me.pnlEdit.Size = New System.Drawing.Size(493, 291)
         Me.pnlEdit.TabIndex = 15
         '
-        'tdpEditArivalDate
+        'tdpEditArrivalDate
         '
-        Me.tdpEditArivalDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.tdpEditArivalDate.Location = New System.Drawing.Point(333, 147)
-        Me.tdpEditArivalDate.Name = "tdpEditArivalDate"
-        Me.tdpEditArivalDate.Size = New System.Drawing.Size(86, 20)
-        Me.tdpEditArivalDate.TabIndex = 5
+        Me.tdpEditArrivalDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.tdpEditArrivalDate.Location = New System.Drawing.Point(333, 147)
+        Me.tdpEditArrivalDate.Name = "tdpEditArrivalDate"
+        Me.tdpEditArrivalDate.Size = New System.Drawing.Size(86, 20)
+        Me.tdpEditArrivalDate.TabIndex = 5
         '
         'Label19
         '
@@ -777,7 +777,7 @@ Partial Class frmShowCats
     Friend WithEvents btnSelectCatPic As Button
     Friend WithEvents ErrorProvider1 As ErrorProvider
     Friend WithEvents Label19 As Label
-    Friend WithEvents tdpEditArivalDate As DateTimePicker
+    Friend WithEvents tdpEditArrivalDate As DateTimePicker
     Friend WithEvents tdpNewArivalDate As DateTimePicker
     Friend WithEvents pnlMain As Panel
 End Class

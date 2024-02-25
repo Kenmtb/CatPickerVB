@@ -10,7 +10,7 @@ Public Class Cat
 
   'display
   Public Property name As String
-  Public Property age As Nullable(Of Integer)
+  Public Property age As String 'string to bypass form validation locking the user to an invalid cell
   Public Property pic As String
   Public Property gender As String
   Public Property breedName As String ' foriegn

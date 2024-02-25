@@ -22,8 +22,10 @@ Public Class frmShowCats
 
   Dim parmList As New List(Of ValueTuple(Of String, String))
 
+  Dim changesFromDataLoading As Boolean = True
   Dim lastRowBoxSelected As Integer = -1 'Preserve the last row's selected box check state
   Dim lastRowSelected As Integer = -1 'Preserve the las row selected
+
 
   Public Sub New()
     ' This call is required by the designer.
@@ -59,28 +61,32 @@ Public Class frmShowCats
       txtStatus.Text = Messages.statusMsg 'get any prev. message
       If IsNothing(vm) Or Messages.statusMsg.Contains("Error") Then GoTo endd
 
-      Me.vm = vm
+      changesFromDataLoading = True
+      Me.vm = bll.getAll(parmList)
       catList = vm.catList
 
       bs = New BindingSource()
       bs.DataSource = catList
       dgvShowCats.DataSource = catList
+      changesFromDataLoading = False
 
       'Move to resource file
       Dim img As Image
 
-
-
       dgvShowCats.RowTemplate.Height = 40 '80
       dgvShowCats.CellBorderStyle = DataGridViewCellBorderStyle.None
 
-      'Format
+      'Default cell format
       For Each col As DataGridViewColumn In dgvShowCats.Columns
         'col.SortMode = DataGridViewColumnSortMode.NotSortable
-        col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+        col.DefaultCellStyle.Padding = New Padding(5, 10, 0, 0)
         col.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+        col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft
       Next
+
+      'Custom cell format
+      dgvShowCats.Columns("selected").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
       'Format image column
       Dim imageCol As DataGridViewImageColumn = dgvShowCats.Columns("image")
@@ -104,15 +110,22 @@ Public Class frmShowCats
       dgvShowCats.Columns("selected").HeaderText = "Selected"
       dgvShowCats.RowHeadersVisible = False
 
+      'disable columns
+      dgvShowCats.Columns("age").ReadOnly = True
+
+
       'bind editor controls to data grid  *move to sep. sub      
       clearControlBinding()
 
       'editor bindings
-      txtName.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "name", True))
-      txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True))
-      cmbGender.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "gender", True))
-      tdpEditArivalDate.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "arrivalDate", True))
-      txtCatPicName.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "pic", True))
+      'Note the binding mode is 2 which makes the control read only. This prevents the control from 
+      'writing to the binding source which would immediately update the datagridview with out executing a
+      'save. At the same time read only allows the control to be updated when moving through dgv records.
+      txtName.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "name", True, 2))
+      txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True, 2))
+      cmbGender.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "gender", True, 2))
+      tdpEditArrivalDate.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "arrivalDate", True, 2))
+      txtCatPicName.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "pic", True, 2))
 
       'hide
       dgvShowCats.Columns("Id").Visible = False
@@ -130,10 +143,14 @@ Public Class frmShowCats
         'dirImg = imageDir + row.Cells("pic").Value.ToString()
 
         'get the stored image
-        img = Image.FromFile(imageDir + row.Cells("pic").Value.ToString())
-        'update the image control
-        row.Cells("image").Value = img
+        Try
+          img = Image.FromFile(imageDir + row.Cells("pic").Value.ToString())
+          'update the image control
 
+        Catch e As Exception
+          img = Image.FromFile(imageDir + "noImage.jpg")
+        End Try
+        row.Cells("image").Value = img
       Next
 
       'Initialize data
@@ -177,7 +194,7 @@ endd:
     txtName.DataBindings.Clear()
     txtAge.DataBindings.Clear()
     cmbGender.DataBindings.Clear()
-    tdpEditArivalDate.DataBindings.Clear()
+    tdpEditArrivalDate.DataBindings.Clear()
     txtCatPicName.DataBindings.Clear()
   End Sub
 
@@ -192,6 +209,7 @@ endd:
 
   Private Sub dgvShowCats_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgvShowCats.RowEnter
 
+    validateFormRow()
 
     If e.RowIndex > -1 Then
       recIndex = e.RowIndex
@@ -200,7 +218,14 @@ endd:
       '  'catDetails(Image.FromFile(imageDir + dgvShowCats.Rows(row).Cells("pic").Value), dgvShowCats.Rows(row).Cells("name").Value)
       '  'Not sure why this is a composite object, my try breaking into a pic box and text box
       'catDetails(Image.FromFile(imageDir + cells("pic").Value), cells("pic").Value)
-      picCatPic.Image = Image.FromFile(imageDir + cells("pic").Value)
+      Try
+        picCatPic.Image = Image.FromFile(imageDir + cells("pic").Value)
+      Catch ex As Exception
+        'if there is no image in the dirctory that matches the image in the dgv then insert a no image jpg.
+        picCatPic.Image = Image.FromFile(imageDir + "noImage.jpg")
+        cells("pic").Value = "noImage.jpg"
+      End Try
+
 
       'editor controls
       Dim breeds As List(Of CatBreed) = vm.catBreedList
@@ -269,16 +294,22 @@ endd:
 
   Private Sub picCatPic_Click(sender As Object, e As EventArgs) Handles picCatPic.Click
 
-    dlgPictures.ShowDialog()
+    'dlgPictures.ShowDialog()
+    'txtCatPicName.Text = System.IO.Path.GetFileName(dlgPictures.FileName)
+    'txtCatPicName.DataBindings("Text").WriteValue() ' required to programatically update controls because ms is to stupid to make it simple
+    'picCatPic.Image = Image.FromFile(dlgPictures.FileName)
 
-    'txtCatPicName.Select()
-    txtCatPicName.Text = System.IO.Path.GetFileName(dlgPictures.FileName)
-    txtCatPicName.DataBindings("Text").WriteValue() ' required to programatically update controls because ms is to stupid to make it simple
+    Dim picFile As String = getCatPicFile()
+    If picFile = "" Then GoTo abort
+    picCatPic.Image = Image.FromFile(imageDir + picFile)
+    txtCatPicName.Text = picFile
+    txtCatPicName.DataBindings("Text").WriteValue() 'the control is bound so if it changes programatically then update the binding
 
-    picCatPic.Image = Image.FromFile(dlgPictures.FileName)
-
-    'btnSave.Select()
     bs.EndEdit()
+
+
+
+abort:
 
   End Sub
 
@@ -338,6 +369,7 @@ abort:
   End Sub
 
   Private Sub dgvShowCats_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvShowCats.CellContentClick
+
     If dgvShowCats.Columns(e.ColumnIndex).Name.ToString = "selected" Then
 
       'Toggle the selected check box
@@ -438,17 +470,21 @@ abort:
   End Sub
 
   Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-    If Not validateForm() Then GoTo abort
+    If Not validateFormRow() Then GoTo abort
 
     Messages.statusMsg = "Saving record ..."
     txtStatus.Text = Messages.statusMsg
 
     rec = catList(recIndex)
 
-    'Handle unbound controls
+    'pack control data into data object. 
     rec.breedId = cmbBreed.SelectedItem.Id
-
     rec.breedName = cmbBreed.Text
+    rec.age = txtAge.Text
+    rec.name = txtName.Text
+    rec.gender = cmbGender.SelectedItem.ToString
+    rec.arrivalDate = tdpEditArrivalDate.Value
+    rec.pic = txtCatPicName.Text
 
     bll.save(rec)
     If Messages.statusMsg.Contains("Error") Then GoTo abort
@@ -520,7 +556,7 @@ abort:
 abort:
   End Sub
 
-  Private Function validateForm() As Boolean
+  Private Function validateFormRow() As Boolean
     Dim valid As Boolean = True
     'Note, txtAge is bound so set prop CausesValidation=false otherwise errors will prevent leaving control's editor.
 
@@ -541,13 +577,8 @@ abort:
       valid = False
       txtAge.Focus()
 
-    ElseIf Convert.ToInt32(txtAge.Text) > 99 Or Convert.ToInt32(txtAge.Text) < 1 Then
-      ErrorProvider1.SetError(txtAge, "Please enter age (1-99)")
-      valid = False
-      txtAge.Focus()
-
-    ElseIf Not IsNumeric(txtAge.Text.Trim) Then
-      ErrorProvider1.SetError(txtAge, "Please enter a numeric value")
+    ElseIf (Not IsNumeric(txtAge.Text.Trim)) OrElse (Convert.ToInt32(txtAge.Text) > 99 Or Convert.ToInt32(txtAge.Text) < 1) Then
+      ErrorProvider1.SetError(txtAge, "Please enter number (1-99)")
       valid = False
       txtAge.Focus()
     End If
@@ -556,7 +587,7 @@ abort:
 
   End Function
 
-  Private Sub txtAge_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtAge.Validating
+  Private Sub txtAge_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs)
 
   End Sub
 
@@ -567,4 +598,55 @@ abort:
   Private Sub cmbSearchBreed_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbSearchBreed.KeyDown
     e.SuppressKeyPress = True
   End Sub
+
+  Private Sub dgvShowCats_RowLeave(sender As Object, e As DataGridViewCellEventArgs) Handles dgvShowCats.RowLeave
+
+    'Initialize the DGV row
+    ErrorProvider1.Clear()
+
+    validateFormRow()
+  End Sub
+
+  Private Sub dgvShowCats_SelectionChanged(sender As Object, e As EventArgs) Handles dgvShowCats.SelectionChanged
+    'Initialize the DGV row
+    ErrorProvider1.Clear()
+    validateFormRow()
+  End Sub
+
+  Private Sub txtAge_Enter(sender As Object, e As EventArgs) Handles txtAge.Enter
+    'txtAge.DataBindings.Clear()
+    'txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True))
+  End Sub
+
+  Private Sub dgvShowCats_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs)
+
+
+  End Sub
+
+  Private Sub dgvShowCats_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs)
+
+  End Sub
+
+  Private Sub txtAge_Leave(sender As Object, e As EventArgs) Handles txtAge.Leave
+    'txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True))
+  End Sub
+
+  Private Sub dgvShowCats_Leave(sender As Object, e As EventArgs) Handles dgvShowCats.Leave
+    'txtAge.DataBindings.Clear()
+  End Sub
+
+  Private Sub dgvShowCats_Enter(sender As Object, e As EventArgs) Handles dgvShowCats.Enter
+    'txtAge.DataBindings.Clear()
+    'txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True, 2))
+    'txtAge.DataBindings.DefaultDataSourceUpdateMode = 2
+  End Sub
+
+  Private Sub txtAge_TextChanged(sender As Object, e As EventArgs) Handles txtAge.TextChanged
+
+  End Sub
+
+  Private Sub txtAge_Validating_1(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtAge.Validating
+
+  End Sub
+
 End Class
