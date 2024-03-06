@@ -209,7 +209,7 @@ endd:
 
   Private Sub dgvShowCats_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgvShowCats.RowEnter
 
-    validateFormRow()
+    validateEditor()
 
     If e.RowIndex > -1 Then
       recIndex = e.RowIndex
@@ -243,14 +243,17 @@ endd:
 
   Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-    If Not frm.Visible Then
-      'frm = New Form1()
-      frm.Show()
-    End If
+    ErrorProvider1.SetError(txtName, "Maximum of 20 characters")
 
-    frm.Show()
-    frm.TextBox1.Text = txtCatPicName.Text
-    txtCatPicName.Text = frm.sayHi() + " " + txtCatPicName.Text
+
+    'If Not frm.Visible Then
+    '  'frm = New Form1()
+    '  frm.Show()
+    'End If
+
+    'frm.Show()
+    'frm.TextBox1.Text = txtCatPicName.Text
+    'txtCatPicName.Text = frm.sayHi() + " " + txtCatPicName.Text
   End Sub
 
   Private Sub IFormView_Show() Implements IFormView(Of CatVM).Show
@@ -343,6 +346,7 @@ abort:
   End Sub
 
   Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+    If Not validateSearchEditor() Then GoTo abort
 
     Messages.statusMsg = "Searching"
     txtStatus.Text = Messages.statusMsg
@@ -364,8 +368,11 @@ abort:
     If IsNothing(vm) Then GoTo abort
 
     Messages.statusMsg = "Record count: " + vm.catList.Count.ToString
-abort:
+
     initForm(vm)
+
+abort:
+
   End Sub
 
   Private Sub dgvShowCats_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvShowCats.CellContentClick
@@ -390,6 +397,7 @@ abort:
 
   Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
     'get the record
+    If Not validateNewCatEditor() Then GoTo abort
 
     Messages.statusMsg = "Adding new record ..."
     txtStatus.Text = Messages.statusMsg
@@ -422,9 +430,9 @@ abort:
     If IsNothing(vm) Then GoTo abort
 
     If Not IsNothing(vm) Then Messages.statusMsg = "New record created, Record count: " + vm.catList.Count.ToString
-abort:
-    initForm(vm)
 
+    initForm(vm)
+abort:
   End Sub
 
   Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
@@ -470,7 +478,7 @@ abort:
   End Sub
 
   Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-    If Not validateFormRow() Then GoTo abort
+    If Not validateEditor() Then GoTo abort
 
     Messages.statusMsg = "Saving record ..."
     txtStatus.Text = Messages.statusMsg
@@ -495,10 +503,8 @@ abort:
 
     Messages.statusMsg = "Save successful, Record count: " + vm.catList.Count.ToString
 
-abort:
-
     initForm(vm)
-
+abort:
   End Sub
 
   Private Sub btnNewCat_Click(sender As Object, e As EventArgs) Handles btnNewCat.Click
@@ -556,7 +562,7 @@ abort:
 abort:
   End Sub
 
-  Private Function validateFormRow() As Boolean
+  Private Function validateEditor() As Boolean
     Dim valid As Boolean = True
     'Note, txtAge is bound so set prop CausesValidation=false otherwise errors will prevent leaving control's editor.
 
@@ -587,6 +593,51 @@ abort:
 
   End Function
 
+  Private Function validateNewCatEditor() As Boolean
+    Dim valid As Boolean = True
+
+    ErrorProvider1.Clear()
+
+    If String.IsNullOrEmpty(txtNewCatName.Text.Trim) Then
+      ErrorProvider1.SetError(txtNewCatName, "Please enter a value")
+      valid = False
+      txtNewCatName.Focus()
+
+    ElseIf txtNewCatName.Text.Length > 20 Then
+      ErrorProvider1.SetError(txtNewCatName, "Maximum of 20 characters")
+      valid = False
+      txtNewCatName.Focus()
+
+    ElseIf String.IsNullOrEmpty(txtNewCatAge.Text.Trim) Then
+      ErrorProvider1.SetError(txtNewCatAge, "Please enter a value")
+      valid = False
+      txtNewCatAge.Focus()
+
+    ElseIf (Not IsNumeric(txtNewCatAge.Text.Trim)) OrElse (Convert.ToInt32(txtNewCatAge.Text) > 99 Or Convert.ToInt32(txtNewCatAge.Text) < 1) Then
+      ErrorProvider1.SetError(txtNewCatAge, "Please enter number (1-99)")
+      valid = False
+      txtNewCatAge.Focus()
+    End If
+
+    Return valid
+
+  End Function
+
+  Private Function validateSearchEditor() As Boolean
+    Dim valid As Boolean = True
+
+    ErrorProvider1.Clear()
+
+    If (txtSearchAge.Text.Length > 0) AndAlso ((Not IsNumeric(txtSearchAge.Text.Trim)) OrElse (Convert.ToInt32(txtSearchAge.Text) > 99 Or Convert.ToInt32(txtSearchAge.Text) < 1)) Then
+      ErrorProvider1.SetError(txtSearchAge, "Please enter number (1-99)")
+      valid = False
+      txtSearchAge.Focus()
+    End If
+
+    Return valid
+
+  End Function
+
   Private Sub txtAge_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs)
 
   End Sub
@@ -604,13 +655,13 @@ abort:
     'Initialize the DGV row
     ErrorProvider1.Clear()
 
-    validateFormRow()
+    validateEditor()
   End Sub
 
   Private Sub dgvShowCats_SelectionChanged(sender As Object, e As EventArgs) Handles dgvShowCats.SelectionChanged
     'Initialize the DGV row
     ErrorProvider1.Clear()
-    validateFormRow()
+    validateEditor()
   End Sub
 
   Private Sub txtAge_Enter(sender As Object, e As EventArgs) Handles txtAge.Enter

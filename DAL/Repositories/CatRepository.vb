@@ -102,7 +102,7 @@ Public Class CatRepository(Of T)
     'dr("arrivalDate") = DirectCast(datarec.arrivalDate, DateTime).Date.ToString("yyyy-MM-dd")
     dr("arrivalDate") = (datarec.arrivalDate).Date.ToString("yyyy-MM-dd")
     If (datarec.breedId IsNot Nothing) Then dr("breedId") = datarec.breedId
-    'If (datarec.detailsId IsNot Nothing) Then dr("catDetailsId") = datarec.detailsId
+    If (datarec.detailsId IsNot Nothing) Then dr("detailsId") = datarec.detailsId
     'dr("selected") = datarec.selected
     Return dr
 

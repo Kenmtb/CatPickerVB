@@ -85,641 +85,641 @@ Partial Class frmShowCats
     Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
     Me.pnlMain = New System.Windows.Forms.Panel()
     Me.CatBreedBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnlEdit.SuspendLayout()
-        Me.pnlSearch.SuspendLayout()
-        Me.grpMenu.SuspendLayout()
-        Me.pnlNewCat.SuspendLayout()
-        CType(Me.picNewCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnlMain.SuspendLayout()
-        CType(Me.CatBreedBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
-        '
-        'dgvShowCats
-        '
-        Me.dgvShowCats.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.dgvShowCats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvShowCats.Location = New System.Drawing.Point(641, 47)
-        Me.dgvShowCats.MultiSelect = False
-        Me.dgvShowCats.Name = "dgvShowCats"
-        Me.dgvShowCats.ReadOnly = True
-        Me.dgvShowCats.Size = New System.Drawing.Size(664, 767)
-        Me.dgvShowCats.TabIndex = 0
-        Me.dgvShowCats.VirtualMode = True
-        '
-        'picCatPic
-        '
-        Me.picCatPic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.picCatPic.Location = New System.Drawing.Point(17, 36)
-        Me.picCatPic.Name = "picCatPic"
-        Me.picCatPic.Size = New System.Drawing.Size(237, 222)
-        Me.picCatPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.picCatPic.TabIndex = 1
-        Me.picCatPic.TabStop = False
-        '
-        'txtCatPicName
-        '
-        Me.txtCatPicName.Location = New System.Drawing.Point(17, 264)
-        Me.txtCatPicName.Name = "txtCatPicName"
-        Me.txtCatPicName.ReadOnly = True
-        Me.txtCatPicName.Size = New System.Drawing.Size(237, 20)
-        Me.txtCatPicName.TabIndex = 2
-        Me.txtCatPicName.TabStop = False
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(1291, 788)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(88, 39)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        Me.Button1.Visible = False
-        '
-        'btnShowSelected
-        '
-        Me.btnShowSelected.Location = New System.Drawing.Point(1291, 740)
-        Me.btnShowSelected.Name = "btnShowSelected"
-        Me.btnShowSelected.Size = New System.Drawing.Size(88, 40)
-        Me.btnShowSelected.TabIndex = 4
-        Me.btnShowSelected.Text = "Selected Cats"
-        Me.btnShowSelected.UseVisualStyleBackColor = True
-        Me.btnShowSelected.Visible = False
-        '
-        'btnShowEditor
-        '
-        Me.btnShowEditor.Enabled = False
-        Me.btnShowEditor.Location = New System.Drawing.Point(1291, 758)
-        Me.btnShowEditor.Name = "btnShowEditor"
-        Me.btnShowEditor.Size = New System.Drawing.Size(88, 40)
-        Me.btnShowEditor.TabIndex = 5
-        Me.btnShowEditor.Text = "Edit Cat"
-        Me.btnShowEditor.UseVisualStyleBackColor = True
-        Me.btnShowEditor.Visible = False
-        '
-        'txtName
-        '
-        Me.txtName.Location = New System.Drawing.Point(333, 36)
-        Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(141, 20)
-        Me.txtName.TabIndex = 1
-        '
-        'txtAge
-        '
-        Me.txtAge.Location = New System.Drawing.Point(333, 62)
-        Me.txtAge.Name = "txtAge"
-        Me.txtAge.Size = New System.Drawing.Size(40, 20)
-        Me.txtAge.TabIndex = 2
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(260, 39)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(35, 13)
-        Me.Label1.TabIndex = 9
-        Me.Label1.Text = "Name"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(260, 65)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(26, 13)
-        Me.Label2.TabIndex = 10
-        Me.Label2.Text = "Age"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(260, 123)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(42, 13)
-        Me.Label3.TabIndex = 11
-        Me.Label3.Text = "Gender"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(260, 150)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(62, 13)
-        Me.Label4.TabIndex = 13
-        Me.Label4.Text = "Arrival Date"
-        '
-        'btnSave
-        '
-        Me.btnSave.Location = New System.Drawing.Point(292, 245)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(70, 27)
-        Me.btnSave.TabIndex = 7
-        Me.btnSave.Text = "Save"
-        Me.btnSave.UseVisualStyleBackColor = True
-        '
-        'dlgPictures
-        '
-        Me.dlgPictures.FileName = "OpenFileDialog1"
-        '
-        'pnlEdit
-        '
-        Me.pnlEdit.BackColor = System.Drawing.SystemColors.Control
-        Me.pnlEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnlEdit.Controls.Add(Me.tdpEditArrivalDate)
-        Me.pnlEdit.Controls.Add(Me.Label19)
-        Me.pnlEdit.Controls.Add(Me.btnSelectCatPic)
-        Me.pnlEdit.Controls.Add(Me.btnDelete)
-        Me.pnlEdit.Controls.Add(Me.Label10)
-        Me.pnlEdit.Controls.Add(Me.cmbBreed)
-        Me.pnlEdit.Controls.Add(Me.cmbGender)
-        Me.pnlEdit.Controls.Add(Me.Label5)
-        Me.pnlEdit.Controls.Add(Me.picCatPic)
-        Me.pnlEdit.Controls.Add(Me.btnSave)
-        Me.pnlEdit.Controls.Add(Me.Label1)
-        Me.pnlEdit.Controls.Add(Me.txtAge)
-        Me.pnlEdit.Controls.Add(Me.txtCatPicName)
-        Me.pnlEdit.Controls.Add(Me.txtName)
-        Me.pnlEdit.Controls.Add(Me.Label4)
-        Me.pnlEdit.Controls.Add(Me.Label2)
-        Me.pnlEdit.Controls.Add(Me.Label3)
-        Me.pnlEdit.Location = New System.Drawing.Point(86, 15)
-        Me.pnlEdit.Name = "pnlEdit"
-        Me.pnlEdit.Size = New System.Drawing.Size(493, 291)
-        Me.pnlEdit.TabIndex = 15
-        '
-        'tdpEditArrivalDate
-        '
-        Me.tdpEditArrivalDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.tdpEditArrivalDate.Location = New System.Drawing.Point(333, 147)
-        Me.tdpEditArrivalDate.Name = "tdpEditArrivalDate"
-        Me.tdpEditArrivalDate.Size = New System.Drawing.Size(86, 20)
-        Me.tdpEditArrivalDate.TabIndex = 5
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(213, 13)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(118, 20)
-        Me.Label19.TabIndex = 33
-        Me.Label19.Text = "(Has validation)"
-        '
-        'btnSelectCatPic
-        '
-        Me.btnSelectCatPic.Location = New System.Drawing.Point(333, 173)
-        Me.btnSelectCatPic.Name = "btnSelectCatPic"
-        Me.btnSelectCatPic.Size = New System.Drawing.Size(86, 26)
-        Me.btnSelectCatPic.TabIndex = 6
-        Me.btnSelectCatPic.Text = "Find Image"
-        Me.btnSelectCatPic.UseVisualStyleBackColor = True
-        '
-        'btnDelete
-        '
-        Me.btnDelete.Location = New System.Drawing.Point(368, 245)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(66, 26)
-        Me.btnDelete.TabIndex = 8
-        Me.btnDelete.Text = "Delete"
-        Me.btnDelete.UseVisualStyleBackColor = True
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(260, 94)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(35, 13)
-        Me.Label10.TabIndex = 18
-        Me.Label10.Text = "Breed"
-        '
-        'cmbBreed
-        '
-        Me.cmbBreed.AllowDrop = True
-        Me.cmbBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbBreed.FormattingEnabled = True
-        Me.cmbBreed.Location = New System.Drawing.Point(333, 91)
-        Me.cmbBreed.Name = "cmbBreed"
-        Me.cmbBreed.Size = New System.Drawing.Size(141, 21)
-        Me.cmbBreed.TabIndex = 3
-        '
-        'cmbGender
-        '
-        Me.cmbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbGender.FormattingEnabled = True
-        Me.cmbGender.Items.AddRange(New Object() {"Male", "Female"})
-        Me.cmbGender.Location = New System.Drawing.Point(333, 120)
-        Me.cmbGender.Name = "cmbGender"
-        Me.cmbGender.Size = New System.Drawing.Size(86, 21)
-        Me.cmbGender.TabIndex = 4
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(156, 13)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(51, 20)
-        Me.Label5.TabIndex = 15
-        Me.Label5.Text = "Editor"
-        '
-        'btnInsert
-        '
-        Me.btnInsert.Location = New System.Drawing.Point(333, 212)
-        Me.btnInsert.Name = "btnInsert"
-        Me.btnInsert.Size = New System.Drawing.Size(86, 27)
-        Me.btnInsert.TabIndex = 26
-        Me.btnInsert.Text = "Save New"
-        Me.btnInsert.UseVisualStyleBackColor = True
-        '
-        'txtStatus
-        '
-        Me.txtStatus.BackColor = System.Drawing.SystemColors.Window
-        Me.txtStatus.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.txtStatus.Location = New System.Drawing.Point(145, 319)
-        Me.txtStatus.Name = "txtStatus"
-        Me.txtStatus.Size = New System.Drawing.Size(434, 20)
-        Me.txtStatus.TabIndex = 25
-        Me.txtStatus.TabStop = False
-        '
-        'pnlSearch
-        '
-        Me.pnlSearch.BackColor = System.Drawing.SystemColors.Control
-        Me.pnlSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnlSearch.Controls.Add(Me.btnClearSearch)
-        Me.pnlSearch.Controls.Add(Me.txtSearchAge)
-        Me.pnlSearch.Controls.Add(Me.btnSearch)
-        Me.pnlSearch.Controls.Add(Me.Label9)
-        Me.pnlSearch.Controls.Add(Me.Label8)
-        Me.pnlSearch.Controls.Add(Me.Label7)
-        Me.pnlSearch.Controls.Add(Me.cmbSearchBreed)
-        Me.pnlSearch.Controls.Add(Me.cmbSearchGender)
-        Me.pnlSearch.Controls.Add(Me.Label6)
-        Me.pnlSearch.Location = New System.Drawing.Point(86, 15)
-        Me.pnlSearch.Name = "pnlSearch"
-        Me.pnlSearch.Size = New System.Drawing.Size(493, 291)
-        Me.pnlSearch.TabIndex = 16
-        '
-        'btnClearSearch
-        '
-        Me.btnClearSearch.Location = New System.Drawing.Point(248, 199)
-        Me.btnClearSearch.Name = "btnClearSearch"
-        Me.btnClearSearch.Size = New System.Drawing.Size(75, 23)
-        Me.btnClearSearch.TabIndex = 34
-        Me.btnClearSearch.Text = "Clear"
-        Me.btnClearSearch.UseVisualStyleBackColor = True
-        '
-        'txtSearchAge
-        '
-        Me.txtSearchAge.Location = New System.Drawing.Point(216, 153)
-        Me.txtSearchAge.Name = "txtSearchAge"
-        Me.txtSearchAge.Size = New System.Drawing.Size(32, 20)
-        Me.txtSearchAge.TabIndex = 32
-        '
-        'btnSearch
-        '
-        Me.btnSearch.Location = New System.Drawing.Point(167, 199)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(75, 23)
-        Me.btnSearch.TabIndex = 33
-        Me.btnSearch.Text = "Search"
-        Me.btnSearch.UseVisualStyleBackColor = True
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(134, 160)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(26, 13)
-        Me.Label9.TabIndex = 22
-        Me.Label9.Text = "Age"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(134, 131)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(35, 13)
-        Me.Label8.TabIndex = 21
-        Me.Label8.Text = "Breed"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(134, 102)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(42, 13)
-        Me.Label7.TabIndex = 20
-        Me.Label7.Text = "Gender"
-        '
-        'cmbSearchBreed
-        '
-        Me.cmbSearchBreed.FormattingEnabled = True
-        Me.cmbSearchBreed.Location = New System.Drawing.Point(216, 126)
-        Me.cmbSearchBreed.Name = "cmbSearchBreed"
-        Me.cmbSearchBreed.Size = New System.Drawing.Size(121, 21)
-        Me.cmbSearchBreed.TabIndex = 31
-        '
-        'cmbSearchGender
-        '
-        Me.cmbSearchGender.FormattingEnabled = True
-        Me.cmbSearchGender.Location = New System.Drawing.Point(216, 99)
-        Me.cmbSearchGender.Name = "cmbSearchGender"
-        Me.cmbSearchGender.Size = New System.Drawing.Size(121, 21)
-        Me.cmbSearchGender.TabIndex = 30
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(212, 10)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(60, 20)
-        Me.Label6.TabIndex = 16
-        Me.Label6.Text = "Search"
-        '
-        'radEdit
-        '
-        Me.radEdit.AutoSize = True
-        Me.radEdit.Location = New System.Drawing.Point(7, 19)
-        Me.radEdit.Name = "radEdit"
-        Me.radEdit.Size = New System.Drawing.Size(43, 17)
-        Me.radEdit.TabIndex = 10
-        Me.radEdit.TabStop = True
-        Me.radEdit.Text = "Edit"
-        Me.radEdit.UseVisualStyleBackColor = True
-        '
-        'grpMenu
-        '
-        Me.grpMenu.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.grpMenu.Controls.Add(Me.radNew)
-        Me.grpMenu.Controls.Add(Me.radSearch)
-        Me.grpMenu.Controls.Add(Me.radEdit)
-        Me.grpMenu.Location = New System.Drawing.Point(9, 117)
-        Me.grpMenu.Name = "grpMenu"
-        Me.grpMenu.Size = New System.Drawing.Size(82, 98)
-        Me.grpMenu.TabIndex = 18
-        Me.grpMenu.TabStop = False
-        '
-        'radNew
-        '
-        Me.radNew.AutoSize = True
-        Me.radNew.Location = New System.Drawing.Point(7, 45)
-        Me.radNew.Name = "radNew"
-        Me.radNew.Size = New System.Drawing.Size(69, 17)
-        Me.radNew.TabIndex = 11
-        Me.radNew.TabStop = True
-        Me.radNew.Text = "Add New"
-        Me.radNew.UseVisualStyleBackColor = True
-        '
-        'radSearch
-        '
-        Me.radSearch.AutoSize = True
-        Me.radSearch.Location = New System.Drawing.Point(7, 71)
-        Me.radSearch.Name = "radSearch"
-        Me.radSearch.Size = New System.Drawing.Size(59, 17)
-        Me.radSearch.TabIndex = 12
-        Me.radSearch.TabStop = True
-        Me.radSearch.Text = "Search"
-        Me.radSearch.UseVisualStyleBackColor = True
-        '
-        'Label11
-        '
-        Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Location = New System.Drawing.Point(25, 47)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(390, 47)
-        Me.Label11.TabIndex = 19
-        Me.Label11.Text = "To read Cat data from api:  " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Run C:\Users\Ken\source\repos\EmployeesAPI\Employee" &
+    CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.pnlEdit.SuspendLayout()
+    Me.pnlSearch.SuspendLayout()
+    Me.grpMenu.SuspendLayout()
+    Me.pnlNewCat.SuspendLayout()
+    CType(Me.picNewCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.pnlMain.SuspendLayout()
+    CType(Me.CatBreedBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.SuspendLayout()
+    '
+    'dgvShowCats
+    '
+    Me.dgvShowCats.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+    Me.dgvShowCats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+    Me.dgvShowCats.Location = New System.Drawing.Point(641, 47)
+    Me.dgvShowCats.MultiSelect = False
+    Me.dgvShowCats.Name = "dgvShowCats"
+    Me.dgvShowCats.ReadOnly = True
+    Me.dgvShowCats.Size = New System.Drawing.Size(664, 767)
+    Me.dgvShowCats.TabIndex = 0
+    Me.dgvShowCats.VirtualMode = True
+    '
+    'picCatPic
+    '
+    Me.picCatPic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.picCatPic.Location = New System.Drawing.Point(17, 36)
+    Me.picCatPic.Name = "picCatPic"
+    Me.picCatPic.Size = New System.Drawing.Size(237, 222)
+    Me.picCatPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+    Me.picCatPic.TabIndex = 1
+    Me.picCatPic.TabStop = False
+    '
+    'txtCatPicName
+    '
+    Me.txtCatPicName.Location = New System.Drawing.Point(17, 264)
+    Me.txtCatPicName.Name = "txtCatPicName"
+    Me.txtCatPicName.ReadOnly = True
+    Me.txtCatPicName.Size = New System.Drawing.Size(237, 20)
+    Me.txtCatPicName.TabIndex = 2
+    Me.txtCatPicName.TabStop = False
+    '
+    'Button1
+    '
+    Me.Button1.Location = New System.Drawing.Point(1291, 788)
+    Me.Button1.Name = "Button1"
+    Me.Button1.Size = New System.Drawing.Size(88, 39)
+    Me.Button1.TabIndex = 3
+    Me.Button1.Text = "Button1"
+    Me.Button1.UseVisualStyleBackColor = True
+    Me.Button1.Visible = False
+    '
+    'btnShowSelected
+    '
+    Me.btnShowSelected.Location = New System.Drawing.Point(1291, 740)
+    Me.btnShowSelected.Name = "btnShowSelected"
+    Me.btnShowSelected.Size = New System.Drawing.Size(88, 40)
+    Me.btnShowSelected.TabIndex = 4
+    Me.btnShowSelected.Text = "Selected Cats"
+    Me.btnShowSelected.UseVisualStyleBackColor = True
+    Me.btnShowSelected.Visible = False
+    '
+    'btnShowEditor
+    '
+    Me.btnShowEditor.Enabled = False
+    Me.btnShowEditor.Location = New System.Drawing.Point(1291, 758)
+    Me.btnShowEditor.Name = "btnShowEditor"
+    Me.btnShowEditor.Size = New System.Drawing.Size(88, 40)
+    Me.btnShowEditor.TabIndex = 5
+    Me.btnShowEditor.Text = "Edit Cat"
+    Me.btnShowEditor.UseVisualStyleBackColor = True
+    Me.btnShowEditor.Visible = False
+    '
+    'txtName
+    '
+    Me.txtName.Location = New System.Drawing.Point(333, 36)
+    Me.txtName.Name = "txtName"
+    Me.txtName.Size = New System.Drawing.Size(141, 20)
+    Me.txtName.TabIndex = 1
+    '
+    'txtAge
+    '
+    Me.txtAge.Location = New System.Drawing.Point(333, 62)
+    Me.txtAge.Name = "txtAge"
+    Me.txtAge.Size = New System.Drawing.Size(40, 20)
+    Me.txtAge.TabIndex = 2
+    '
+    'Label1
+    '
+    Me.Label1.AutoSize = True
+    Me.Label1.Location = New System.Drawing.Point(260, 39)
+    Me.Label1.Name = "Label1"
+    Me.Label1.Size = New System.Drawing.Size(35, 13)
+    Me.Label1.TabIndex = 9
+    Me.Label1.Text = "Name"
+    '
+    'Label2
+    '
+    Me.Label2.AutoSize = True
+    Me.Label2.Location = New System.Drawing.Point(260, 65)
+    Me.Label2.Name = "Label2"
+    Me.Label2.Size = New System.Drawing.Size(26, 13)
+    Me.Label2.TabIndex = 10
+    Me.Label2.Text = "Age"
+    '
+    'Label3
+    '
+    Me.Label3.AutoSize = True
+    Me.Label3.Location = New System.Drawing.Point(260, 123)
+    Me.Label3.Name = "Label3"
+    Me.Label3.Size = New System.Drawing.Size(42, 13)
+    Me.Label3.TabIndex = 11
+    Me.Label3.Text = "Gender"
+    '
+    'Label4
+    '
+    Me.Label4.AutoSize = True
+    Me.Label4.Location = New System.Drawing.Point(260, 150)
+    Me.Label4.Name = "Label4"
+    Me.Label4.Size = New System.Drawing.Size(62, 13)
+    Me.Label4.TabIndex = 13
+    Me.Label4.Text = "Arrival Date"
+    '
+    'btnSave
+    '
+    Me.btnSave.Location = New System.Drawing.Point(292, 245)
+    Me.btnSave.Name = "btnSave"
+    Me.btnSave.Size = New System.Drawing.Size(70, 27)
+    Me.btnSave.TabIndex = 7
+    Me.btnSave.Text = "Save"
+    Me.btnSave.UseVisualStyleBackColor = True
+    '
+    'dlgPictures
+    '
+    Me.dlgPictures.FileName = "OpenFileDialog1"
+    '
+    'pnlEdit
+    '
+    Me.pnlEdit.BackColor = System.Drawing.SystemColors.Control
+    Me.pnlEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.pnlEdit.Controls.Add(Me.tdpEditArrivalDate)
+    Me.pnlEdit.Controls.Add(Me.Label19)
+    Me.pnlEdit.Controls.Add(Me.btnSelectCatPic)
+    Me.pnlEdit.Controls.Add(Me.btnDelete)
+    Me.pnlEdit.Controls.Add(Me.Label10)
+    Me.pnlEdit.Controls.Add(Me.cmbBreed)
+    Me.pnlEdit.Controls.Add(Me.cmbGender)
+    Me.pnlEdit.Controls.Add(Me.Label5)
+    Me.pnlEdit.Controls.Add(Me.picCatPic)
+    Me.pnlEdit.Controls.Add(Me.btnSave)
+    Me.pnlEdit.Controls.Add(Me.Label1)
+    Me.pnlEdit.Controls.Add(Me.txtAge)
+    Me.pnlEdit.Controls.Add(Me.txtCatPicName)
+    Me.pnlEdit.Controls.Add(Me.txtName)
+    Me.pnlEdit.Controls.Add(Me.Label4)
+    Me.pnlEdit.Controls.Add(Me.Label2)
+    Me.pnlEdit.Controls.Add(Me.Label3)
+    Me.pnlEdit.Location = New System.Drawing.Point(86, 15)
+    Me.pnlEdit.Name = "pnlEdit"
+    Me.pnlEdit.Size = New System.Drawing.Size(493, 291)
+    Me.pnlEdit.TabIndex = 15
+    '
+    'tdpEditArrivalDate
+    '
+    Me.tdpEditArrivalDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+    Me.tdpEditArrivalDate.Location = New System.Drawing.Point(333, 147)
+    Me.tdpEditArrivalDate.Name = "tdpEditArrivalDate"
+    Me.tdpEditArrivalDate.Size = New System.Drawing.Size(86, 20)
+    Me.tdpEditArrivalDate.TabIndex = 5
+    '
+    'Label19
+    '
+    Me.Label19.AutoSize = True
+    Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label19.Location = New System.Drawing.Point(213, 13)
+    Me.Label19.Name = "Label19"
+    Me.Label19.Size = New System.Drawing.Size(118, 20)
+    Me.Label19.TabIndex = 33
+    Me.Label19.Text = "(Has validation)"
+    '
+    'btnSelectCatPic
+    '
+    Me.btnSelectCatPic.Location = New System.Drawing.Point(333, 173)
+    Me.btnSelectCatPic.Name = "btnSelectCatPic"
+    Me.btnSelectCatPic.Size = New System.Drawing.Size(86, 26)
+    Me.btnSelectCatPic.TabIndex = 6
+    Me.btnSelectCatPic.Text = "Find Image"
+    Me.btnSelectCatPic.UseVisualStyleBackColor = True
+    '
+    'btnDelete
+    '
+    Me.btnDelete.Location = New System.Drawing.Point(368, 245)
+    Me.btnDelete.Name = "btnDelete"
+    Me.btnDelete.Size = New System.Drawing.Size(66, 26)
+    Me.btnDelete.TabIndex = 8
+    Me.btnDelete.Text = "Delete"
+    Me.btnDelete.UseVisualStyleBackColor = True
+    '
+    'Label10
+    '
+    Me.Label10.AutoSize = True
+    Me.Label10.Location = New System.Drawing.Point(260, 94)
+    Me.Label10.Name = "Label10"
+    Me.Label10.Size = New System.Drawing.Size(35, 13)
+    Me.Label10.TabIndex = 18
+    Me.Label10.Text = "Breed"
+    '
+    'cmbBreed
+    '
+    Me.cmbBreed.AllowDrop = True
+    Me.cmbBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+    Me.cmbBreed.FormattingEnabled = True
+    Me.cmbBreed.Location = New System.Drawing.Point(333, 91)
+    Me.cmbBreed.Name = "cmbBreed"
+    Me.cmbBreed.Size = New System.Drawing.Size(141, 21)
+    Me.cmbBreed.TabIndex = 3
+    '
+    'cmbGender
+    '
+    Me.cmbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+    Me.cmbGender.FormattingEnabled = True
+    Me.cmbGender.Items.AddRange(New Object() {"Male", "Female"})
+    Me.cmbGender.Location = New System.Drawing.Point(333, 120)
+    Me.cmbGender.Name = "cmbGender"
+    Me.cmbGender.Size = New System.Drawing.Size(86, 21)
+    Me.cmbGender.TabIndex = 4
+    '
+    'Label5
+    '
+    Me.Label5.AutoSize = True
+    Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label5.Location = New System.Drawing.Point(156, 13)
+    Me.Label5.Name = "Label5"
+    Me.Label5.Size = New System.Drawing.Size(51, 20)
+    Me.Label5.TabIndex = 15
+    Me.Label5.Text = "Editor"
+    '
+    'btnInsert
+    '
+    Me.btnInsert.Location = New System.Drawing.Point(333, 212)
+    Me.btnInsert.Name = "btnInsert"
+    Me.btnInsert.Size = New System.Drawing.Size(86, 27)
+    Me.btnInsert.TabIndex = 26
+    Me.btnInsert.Text = "Save New"
+    Me.btnInsert.UseVisualStyleBackColor = True
+    '
+    'txtStatus
+    '
+    Me.txtStatus.BackColor = System.Drawing.SystemColors.Window
+    Me.txtStatus.ForeColor = System.Drawing.SystemColors.ControlText
+    Me.txtStatus.Location = New System.Drawing.Point(145, 319)
+    Me.txtStatus.Name = "txtStatus"
+    Me.txtStatus.Size = New System.Drawing.Size(434, 20)
+    Me.txtStatus.TabIndex = 25
+    Me.txtStatus.TabStop = False
+    '
+    'pnlSearch
+    '
+    Me.pnlSearch.BackColor = System.Drawing.SystemColors.Control
+    Me.pnlSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.pnlSearch.Controls.Add(Me.btnClearSearch)
+    Me.pnlSearch.Controls.Add(Me.txtSearchAge)
+    Me.pnlSearch.Controls.Add(Me.btnSearch)
+    Me.pnlSearch.Controls.Add(Me.Label9)
+    Me.pnlSearch.Controls.Add(Me.Label8)
+    Me.pnlSearch.Controls.Add(Me.Label7)
+    Me.pnlSearch.Controls.Add(Me.cmbSearchBreed)
+    Me.pnlSearch.Controls.Add(Me.cmbSearchGender)
+    Me.pnlSearch.Controls.Add(Me.Label6)
+    Me.pnlSearch.Location = New System.Drawing.Point(86, 15)
+    Me.pnlSearch.Name = "pnlSearch"
+    Me.pnlSearch.Size = New System.Drawing.Size(493, 291)
+    Me.pnlSearch.TabIndex = 16
+    '
+    'btnClearSearch
+    '
+    Me.btnClearSearch.Location = New System.Drawing.Point(248, 199)
+    Me.btnClearSearch.Name = "btnClearSearch"
+    Me.btnClearSearch.Size = New System.Drawing.Size(75, 23)
+    Me.btnClearSearch.TabIndex = 34
+    Me.btnClearSearch.Text = "Clear"
+    Me.btnClearSearch.UseVisualStyleBackColor = True
+    '
+    'txtSearchAge
+    '
+    Me.txtSearchAge.Location = New System.Drawing.Point(216, 153)
+    Me.txtSearchAge.Name = "txtSearchAge"
+    Me.txtSearchAge.Size = New System.Drawing.Size(32, 20)
+    Me.txtSearchAge.TabIndex = 32
+    '
+    'btnSearch
+    '
+    Me.btnSearch.Location = New System.Drawing.Point(167, 199)
+    Me.btnSearch.Name = "btnSearch"
+    Me.btnSearch.Size = New System.Drawing.Size(75, 23)
+    Me.btnSearch.TabIndex = 33
+    Me.btnSearch.Text = "Search"
+    Me.btnSearch.UseVisualStyleBackColor = True
+    '
+    'Label9
+    '
+    Me.Label9.AutoSize = True
+    Me.Label9.Location = New System.Drawing.Point(134, 160)
+    Me.Label9.Name = "Label9"
+    Me.Label9.Size = New System.Drawing.Size(26, 13)
+    Me.Label9.TabIndex = 22
+    Me.Label9.Text = "Age"
+    '
+    'Label8
+    '
+    Me.Label8.AutoSize = True
+    Me.Label8.Location = New System.Drawing.Point(134, 131)
+    Me.Label8.Name = "Label8"
+    Me.Label8.Size = New System.Drawing.Size(35, 13)
+    Me.Label8.TabIndex = 21
+    Me.Label8.Text = "Breed"
+    '
+    'Label7
+    '
+    Me.Label7.AutoSize = True
+    Me.Label7.Location = New System.Drawing.Point(134, 102)
+    Me.Label7.Name = "Label7"
+    Me.Label7.Size = New System.Drawing.Size(42, 13)
+    Me.Label7.TabIndex = 20
+    Me.Label7.Text = "Gender"
+    '
+    'cmbSearchBreed
+    '
+    Me.cmbSearchBreed.FormattingEnabled = True
+    Me.cmbSearchBreed.Location = New System.Drawing.Point(216, 126)
+    Me.cmbSearchBreed.Name = "cmbSearchBreed"
+    Me.cmbSearchBreed.Size = New System.Drawing.Size(121, 21)
+    Me.cmbSearchBreed.TabIndex = 31
+    '
+    'cmbSearchGender
+    '
+    Me.cmbSearchGender.FormattingEnabled = True
+    Me.cmbSearchGender.Location = New System.Drawing.Point(216, 99)
+    Me.cmbSearchGender.Name = "cmbSearchGender"
+    Me.cmbSearchGender.Size = New System.Drawing.Size(121, 21)
+    Me.cmbSearchGender.TabIndex = 30
+    '
+    'Label6
+    '
+    Me.Label6.AutoSize = True
+    Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label6.Location = New System.Drawing.Point(212, 10)
+    Me.Label6.Name = "Label6"
+    Me.Label6.Size = New System.Drawing.Size(60, 20)
+    Me.Label6.TabIndex = 16
+    Me.Label6.Text = "Search"
+    '
+    'radEdit
+    '
+    Me.radEdit.AutoSize = True
+    Me.radEdit.Location = New System.Drawing.Point(7, 19)
+    Me.radEdit.Name = "radEdit"
+    Me.radEdit.Size = New System.Drawing.Size(43, 17)
+    Me.radEdit.TabIndex = 10
+    Me.radEdit.TabStop = True
+    Me.radEdit.Text = "Edit"
+    Me.radEdit.UseVisualStyleBackColor = True
+    '
+    'grpMenu
+    '
+    Me.grpMenu.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+    Me.grpMenu.Controls.Add(Me.radNew)
+    Me.grpMenu.Controls.Add(Me.radSearch)
+    Me.grpMenu.Controls.Add(Me.radEdit)
+    Me.grpMenu.Location = New System.Drawing.Point(9, 117)
+    Me.grpMenu.Name = "grpMenu"
+    Me.grpMenu.Size = New System.Drawing.Size(82, 98)
+    Me.grpMenu.TabIndex = 18
+    Me.grpMenu.TabStop = False
+    '
+    'radNew
+    '
+    Me.radNew.AutoSize = True
+    Me.radNew.Location = New System.Drawing.Point(7, 45)
+    Me.radNew.Name = "radNew"
+    Me.radNew.Size = New System.Drawing.Size(69, 17)
+    Me.radNew.TabIndex = 11
+    Me.radNew.TabStop = True
+    Me.radNew.Text = "Add New"
+    Me.radNew.UseVisualStyleBackColor = True
+    '
+    'radSearch
+    '
+    Me.radSearch.AutoSize = True
+    Me.radSearch.Location = New System.Drawing.Point(7, 71)
+    Me.radSearch.Name = "radSearch"
+    Me.radSearch.Size = New System.Drawing.Size(59, 17)
+    Me.radSearch.TabIndex = 12
+    Me.radSearch.TabStop = True
+    Me.radSearch.Text = "Search"
+    Me.radSearch.UseVisualStyleBackColor = True
+    '
+    'Label11
+    '
+    Me.Label11.BackColor = System.Drawing.Color.Transparent
+    Me.Label11.Location = New System.Drawing.Point(25, 47)
+    Me.Label11.Name = "Label11"
+    Me.Label11.Size = New System.Drawing.Size(390, 47)
+    Me.Label11.TabIndex = 19
+    Me.Label11.Text = "To read Cat data from api:  " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Run C:\Users\Ken\source\repos\EmployeesAPI\Employee" &
     "sAPI\EmployeesAPI. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Change repository data source in CatBLL" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        Me.Label11.Visible = False
-        '
-        'Label12
-        '
-        Me.Label12.BackColor = System.Drawing.SystemColors.Window
-        Me.Label12.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label12.Location = New System.Drawing.Point(86, 320)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(56, 18)
-        Me.Label12.TabIndex = 26
-        Me.Label12.Text = "Status: "
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btnNewCat
-        '
-        Me.btnNewCat.Location = New System.Drawing.Point(1311, 721)
-        Me.btnNewCat.Name = "btnNewCat"
-        Me.btnNewCat.Size = New System.Drawing.Size(63, 26)
-        Me.btnNewCat.TabIndex = 27
-        Me.btnNewCat.Text = "New Cat"
-        Me.btnNewCat.UseVisualStyleBackColor = True
-        Me.btnNewCat.Visible = False
-        '
-        'pnlNewCat
-        '
-        Me.pnlNewCat.BackColor = System.Drawing.SystemColors.Control
-        Me.pnlNewCat.Controls.Add(Me.tdpNewArivalDate)
-        Me.pnlNewCat.Controls.Add(Me.btnSelectNewCatPic)
-        Me.pnlNewCat.Controls.Add(Me.txtNewCatPicName)
-        Me.pnlNewCat.Controls.Add(Me.Label14)
-        Me.pnlNewCat.Controls.Add(Me.btnInsert)
-        Me.pnlNewCat.Controls.Add(Me.cmbNewCatBreed)
-        Me.pnlNewCat.Controls.Add(Me.cmbNewCatGender)
-        Me.pnlNewCat.Controls.Add(Me.picNewCatPic)
-        Me.pnlNewCat.Controls.Add(Me.Label15)
-        Me.pnlNewCat.Controls.Add(Me.txtNewCatAge)
-        Me.pnlNewCat.Controls.Add(Me.txtNewCatName)
-        Me.pnlNewCat.Controls.Add(Me.Label16)
-        Me.pnlNewCat.Controls.Add(Me.Label17)
-        Me.pnlNewCat.Controls.Add(Me.Label18)
-        Me.pnlNewCat.Controls.Add(Me.Label13)
-        Me.pnlNewCat.Location = New System.Drawing.Point(86, 15)
-        Me.pnlNewCat.Name = "pnlNewCat"
-        Me.pnlNewCat.Size = New System.Drawing.Size(493, 291)
-        Me.pnlNewCat.TabIndex = 27
-        '
-        'tdpNewArivalDate
-        '
-        Me.tdpNewArivalDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.tdpNewArivalDate.Location = New System.Drawing.Point(333, 154)
-        Me.tdpNewArivalDate.Name = "tdpNewArivalDate"
-        Me.tdpNewArivalDate.Size = New System.Drawing.Size(86, 20)
-        Me.tdpNewArivalDate.TabIndex = 24
-        '
-        'btnSelectNewCatPic
-        '
-        Me.btnSelectNewCatPic.Location = New System.Drawing.Point(333, 180)
-        Me.btnSelectNewCatPic.Name = "btnSelectNewCatPic"
-        Me.btnSelectNewCatPic.Size = New System.Drawing.Size(86, 26)
-        Me.btnSelectNewCatPic.TabIndex = 25
-        Me.btnSelectNewCatPic.Text = "Find Image"
-        Me.btnSelectNewCatPic.UseVisualStyleBackColor = True
-        '
-        'txtNewCatPicName
-        '
-        Me.txtNewCatPicName.Location = New System.Drawing.Point(18, 267)
-        Me.txtNewCatPicName.Name = "txtNewCatPicName"
-        Me.txtNewCatPicName.ReadOnly = True
-        Me.txtNewCatPicName.Size = New System.Drawing.Size(236, 20)
-        Me.txtNewCatPicName.TabIndex = 30
-        Me.txtNewCatPicName.TabStop = False
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(260, 101)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(35, 13)
-        Me.Label14.TabIndex = 29
-        Me.Label14.Text = "Breed"
-        '
-        'cmbNewCatBreed
-        '
-        Me.cmbNewCatBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbNewCatBreed.FormattingEnabled = True
-        Me.cmbNewCatBreed.Location = New System.Drawing.Point(333, 98)
-        Me.cmbNewCatBreed.Name = "cmbNewCatBreed"
-        Me.cmbNewCatBreed.Size = New System.Drawing.Size(141, 21)
-        Me.cmbNewCatBreed.TabIndex = 22
-        '
-        'cmbNewCatGender
-        '
-        Me.cmbNewCatGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbNewCatGender.FormattingEnabled = True
-        Me.cmbNewCatGender.Items.AddRange(New Object() {"Male", "Female"})
-        Me.cmbNewCatGender.Location = New System.Drawing.Point(333, 127)
-        Me.cmbNewCatGender.Name = "cmbNewCatGender"
-        Me.cmbNewCatGender.Size = New System.Drawing.Size(76, 21)
-        Me.cmbNewCatGender.TabIndex = 23
-        '
-        'picNewCatPic
-        '
-        Me.picNewCatPic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.picNewCatPic.Location = New System.Drawing.Point(17, 37)
-        Me.picNewCatPic.Name = "picNewCatPic"
-        Me.picNewCatPic.Size = New System.Drawing.Size(237, 222)
-        Me.picNewCatPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.picNewCatPic.TabIndex = 19
-        Me.picNewCatPic.TabStop = False
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(260, 46)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(35, 13)
-        Me.Label15.TabIndex = 22
-        Me.Label15.Text = "Name"
-        '
-        'txtNewCatAge
-        '
-        Me.txtNewCatAge.Location = New System.Drawing.Point(333, 69)
-        Me.txtNewCatAge.Name = "txtNewCatAge"
-        Me.txtNewCatAge.Size = New System.Drawing.Size(40, 20)
-        Me.txtNewCatAge.TabIndex = 21
-        '
-        'txtNewCatName
-        '
-        Me.txtNewCatName.Location = New System.Drawing.Point(333, 43)
-        Me.txtNewCatName.Name = "txtNewCatName"
-        Me.txtNewCatName.Size = New System.Drawing.Size(141, 20)
-        Me.txtNewCatName.TabIndex = 20
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(260, 157)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(62, 13)
-        Me.Label16.TabIndex = 26
-        Me.Label16.Text = "Arrival Date"
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(260, 72)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(26, 13)
-        Me.Label17.TabIndex = 23
-        Me.Label17.Text = "Age"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(260, 130)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(42, 13)
-        Me.Label18.TabIndex = 24
-        Me.Label18.Text = "Gender"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(217, 10)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(69, 20)
-        Me.Label13.TabIndex = 16
-        Me.Label13.Text = "New Cat"
-        '
-        'ErrorProvider1
-        '
-        Me.ErrorProvider1.ContainerControl = Me
-        '
-        'pnlMain
-        '
-        Me.pnlMain.BackColor = System.Drawing.SystemColors.AppWorkspace
-        Me.pnlMain.Controls.Add(Me.pnlEdit)
-        Me.pnlMain.Controls.Add(Me.grpMenu)
-        Me.pnlMain.Controls.Add(Me.txtStatus)
-        Me.pnlMain.Controls.Add(Me.pnlNewCat)
-        Me.pnlMain.Controls.Add(Me.pnlSearch)
-        Me.pnlMain.Controls.Add(Me.Label12)
-        Me.pnlMain.Location = New System.Drawing.Point(28, 465)
-        Me.pnlMain.Name = "pnlMain"
-        Me.pnlMain.Size = New System.Drawing.Size(590, 349)
-        Me.pnlMain.TabIndex = 28
-        '
-        'CatBreedBindingSource
-        '
-        Me.CatBreedBindingSource.DataSource = GetType(Models.CatBreed)
-        '
-        'frmShowCats
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1386, 839)
-        Me.Controls.Add(Me.pnlMain)
-        Me.Controls.Add(Me.btnNewCat)
-        Me.Controls.Add(Me.btnShowSelected)
-        Me.Controls.Add(Me.btnShowEditor)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Label11)
-        Me.Controls.Add(Me.dgvShowCats)
-        Me.Name = "frmShowCats"
-        Me.Text = "Cat Picker"
-        CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnlEdit.ResumeLayout(False)
-        Me.pnlEdit.PerformLayout()
-        Me.pnlSearch.ResumeLayout(False)
-        Me.pnlSearch.PerformLayout()
-        Me.grpMenu.ResumeLayout(False)
-        Me.grpMenu.PerformLayout()
-        Me.pnlNewCat.ResumeLayout(False)
-        Me.pnlNewCat.PerformLayout()
-        CType(Me.picNewCatPic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnlMain.ResumeLayout(False)
-        Me.pnlMain.PerformLayout()
-        CType(Me.CatBreedBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
+    Me.Label11.Visible = False
+    '
+    'Label12
+    '
+    Me.Label12.BackColor = System.Drawing.SystemColors.Window
+    Me.Label12.ForeColor = System.Drawing.SystemColors.ControlText
+    Me.Label12.Location = New System.Drawing.Point(86, 320)
+    Me.Label12.Name = "Label12"
+    Me.Label12.Size = New System.Drawing.Size(56, 18)
+    Me.Label12.TabIndex = 26
+    Me.Label12.Text = "Status: "
+    Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    '
+    'btnNewCat
+    '
+    Me.btnNewCat.Location = New System.Drawing.Point(1311, 721)
+    Me.btnNewCat.Name = "btnNewCat"
+    Me.btnNewCat.Size = New System.Drawing.Size(63, 26)
+    Me.btnNewCat.TabIndex = 27
+    Me.btnNewCat.Text = "New Cat"
+    Me.btnNewCat.UseVisualStyleBackColor = True
+    Me.btnNewCat.Visible = False
+    '
+    'pnlNewCat
+    '
+    Me.pnlNewCat.BackColor = System.Drawing.SystemColors.Control
+    Me.pnlNewCat.Controls.Add(Me.tdpNewArivalDate)
+    Me.pnlNewCat.Controls.Add(Me.btnSelectNewCatPic)
+    Me.pnlNewCat.Controls.Add(Me.txtNewCatPicName)
+    Me.pnlNewCat.Controls.Add(Me.Label14)
+    Me.pnlNewCat.Controls.Add(Me.btnInsert)
+    Me.pnlNewCat.Controls.Add(Me.cmbNewCatBreed)
+    Me.pnlNewCat.Controls.Add(Me.cmbNewCatGender)
+    Me.pnlNewCat.Controls.Add(Me.picNewCatPic)
+    Me.pnlNewCat.Controls.Add(Me.Label15)
+    Me.pnlNewCat.Controls.Add(Me.txtNewCatAge)
+    Me.pnlNewCat.Controls.Add(Me.txtNewCatName)
+    Me.pnlNewCat.Controls.Add(Me.Label16)
+    Me.pnlNewCat.Controls.Add(Me.Label17)
+    Me.pnlNewCat.Controls.Add(Me.Label18)
+    Me.pnlNewCat.Controls.Add(Me.Label13)
+    Me.pnlNewCat.Location = New System.Drawing.Point(86, 15)
+    Me.pnlNewCat.Name = "pnlNewCat"
+    Me.pnlNewCat.Size = New System.Drawing.Size(493, 291)
+    Me.pnlNewCat.TabIndex = 27
+    '
+    'tdpNewArivalDate
+    '
+    Me.tdpNewArivalDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+    Me.tdpNewArivalDate.Location = New System.Drawing.Point(333, 154)
+    Me.tdpNewArivalDate.Name = "tdpNewArivalDate"
+    Me.tdpNewArivalDate.Size = New System.Drawing.Size(86, 20)
+    Me.tdpNewArivalDate.TabIndex = 24
+    '
+    'btnSelectNewCatPic
+    '
+    Me.btnSelectNewCatPic.Location = New System.Drawing.Point(333, 180)
+    Me.btnSelectNewCatPic.Name = "btnSelectNewCatPic"
+    Me.btnSelectNewCatPic.Size = New System.Drawing.Size(86, 26)
+    Me.btnSelectNewCatPic.TabIndex = 25
+    Me.btnSelectNewCatPic.Text = "Find Image"
+    Me.btnSelectNewCatPic.UseVisualStyleBackColor = True
+    '
+    'txtNewCatPicName
+    '
+    Me.txtNewCatPicName.Location = New System.Drawing.Point(18, 267)
+    Me.txtNewCatPicName.Name = "txtNewCatPicName"
+    Me.txtNewCatPicName.ReadOnly = True
+    Me.txtNewCatPicName.Size = New System.Drawing.Size(236, 20)
+    Me.txtNewCatPicName.TabIndex = 30
+    Me.txtNewCatPicName.TabStop = False
+    '
+    'Label14
+    '
+    Me.Label14.AutoSize = True
+    Me.Label14.Location = New System.Drawing.Point(260, 101)
+    Me.Label14.Name = "Label14"
+    Me.Label14.Size = New System.Drawing.Size(35, 13)
+    Me.Label14.TabIndex = 29
+    Me.Label14.Text = "Breed"
+    '
+    'cmbNewCatBreed
+    '
+    Me.cmbNewCatBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+    Me.cmbNewCatBreed.FormattingEnabled = True
+    Me.cmbNewCatBreed.Location = New System.Drawing.Point(333, 98)
+    Me.cmbNewCatBreed.Name = "cmbNewCatBreed"
+    Me.cmbNewCatBreed.Size = New System.Drawing.Size(141, 21)
+    Me.cmbNewCatBreed.TabIndex = 22
+    '
+    'cmbNewCatGender
+    '
+    Me.cmbNewCatGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+    Me.cmbNewCatGender.FormattingEnabled = True
+    Me.cmbNewCatGender.Items.AddRange(New Object() {"Male", "Female"})
+    Me.cmbNewCatGender.Location = New System.Drawing.Point(333, 127)
+    Me.cmbNewCatGender.Name = "cmbNewCatGender"
+    Me.cmbNewCatGender.Size = New System.Drawing.Size(76, 21)
+    Me.cmbNewCatGender.TabIndex = 23
+    '
+    'picNewCatPic
+    '
+    Me.picNewCatPic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.picNewCatPic.Location = New System.Drawing.Point(17, 37)
+    Me.picNewCatPic.Name = "picNewCatPic"
+    Me.picNewCatPic.Size = New System.Drawing.Size(237, 222)
+    Me.picNewCatPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+    Me.picNewCatPic.TabIndex = 19
+    Me.picNewCatPic.TabStop = False
+    '
+    'Label15
+    '
+    Me.Label15.AutoSize = True
+    Me.Label15.Location = New System.Drawing.Point(260, 46)
+    Me.Label15.Name = "Label15"
+    Me.Label15.Size = New System.Drawing.Size(35, 13)
+    Me.Label15.TabIndex = 22
+    Me.Label15.Text = "Name"
+    '
+    'txtNewCatAge
+    '
+    Me.txtNewCatAge.Location = New System.Drawing.Point(333, 69)
+    Me.txtNewCatAge.Name = "txtNewCatAge"
+    Me.txtNewCatAge.Size = New System.Drawing.Size(40, 20)
+    Me.txtNewCatAge.TabIndex = 21
+    '
+    'txtNewCatName
+    '
+    Me.txtNewCatName.Location = New System.Drawing.Point(333, 43)
+    Me.txtNewCatName.Name = "txtNewCatName"
+    Me.txtNewCatName.Size = New System.Drawing.Size(141, 20)
+    Me.txtNewCatName.TabIndex = 20
+    '
+    'Label16
+    '
+    Me.Label16.AutoSize = True
+    Me.Label16.Location = New System.Drawing.Point(260, 157)
+    Me.Label16.Name = "Label16"
+    Me.Label16.Size = New System.Drawing.Size(62, 13)
+    Me.Label16.TabIndex = 26
+    Me.Label16.Text = "Arrival Date"
+    '
+    'Label17
+    '
+    Me.Label17.AutoSize = True
+    Me.Label17.Location = New System.Drawing.Point(260, 72)
+    Me.Label17.Name = "Label17"
+    Me.Label17.Size = New System.Drawing.Size(26, 13)
+    Me.Label17.TabIndex = 23
+    Me.Label17.Text = "Age"
+    '
+    'Label18
+    '
+    Me.Label18.AutoSize = True
+    Me.Label18.Location = New System.Drawing.Point(260, 130)
+    Me.Label18.Name = "Label18"
+    Me.Label18.Size = New System.Drawing.Size(42, 13)
+    Me.Label18.TabIndex = 24
+    Me.Label18.Text = "Gender"
+    '
+    'Label13
+    '
+    Me.Label13.AutoSize = True
+    Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label13.Location = New System.Drawing.Point(217, 10)
+    Me.Label13.Name = "Label13"
+    Me.Label13.Size = New System.Drawing.Size(69, 20)
+    Me.Label13.TabIndex = 16
+    Me.Label13.Text = "New Cat"
+    '
+    'ErrorProvider1
+    '
+    Me.ErrorProvider1.ContainerControl = Me
+    '
+    'pnlMain
+    '
+    Me.pnlMain.BackColor = System.Drawing.SystemColors.AppWorkspace
+    Me.pnlMain.Controls.Add(Me.pnlEdit)
+    Me.pnlMain.Controls.Add(Me.pnlNewCat)
+    Me.pnlMain.Controls.Add(Me.grpMenu)
+    Me.pnlMain.Controls.Add(Me.txtStatus)
+    Me.pnlMain.Controls.Add(Me.pnlSearch)
+    Me.pnlMain.Controls.Add(Me.Label12)
+    Me.pnlMain.Location = New System.Drawing.Point(28, 465)
+    Me.pnlMain.Name = "pnlMain"
+    Me.pnlMain.Size = New System.Drawing.Size(590, 349)
+    Me.pnlMain.TabIndex = 28
+    '
+    'CatBreedBindingSource
+    '
+    Me.CatBreedBindingSource.DataSource = GetType(Models.CatBreed)
+    '
+    'frmShowCats
+    '
+    Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+    Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+    Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+    Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+    Me.ClientSize = New System.Drawing.Size(1386, 839)
+    Me.Controls.Add(Me.pnlMain)
+    Me.Controls.Add(Me.btnNewCat)
+    Me.Controls.Add(Me.btnShowSelected)
+    Me.Controls.Add(Me.btnShowEditor)
+    Me.Controls.Add(Me.Button1)
+    Me.Controls.Add(Me.Label11)
+    Me.Controls.Add(Me.dgvShowCats)
+    Me.Name = "frmShowCats"
+    Me.Text = "Cat Picker"
+    CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.pnlEdit.ResumeLayout(False)
+    Me.pnlEdit.PerformLayout()
+    Me.pnlSearch.ResumeLayout(False)
+    Me.pnlSearch.PerformLayout()
+    Me.grpMenu.ResumeLayout(False)
+    Me.grpMenu.PerformLayout()
+    Me.pnlNewCat.ResumeLayout(False)
+    Me.pnlNewCat.PerformLayout()
+    CType(Me.picNewCatPic, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.pnlMain.ResumeLayout(False)
+    Me.pnlMain.PerformLayout()
+    CType(Me.CatBreedBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.ResumeLayout(False)
 
-    End Sub
+  End Sub
 
-    Friend WithEvents dgvShowCats As DataGridView
+  Friend WithEvents dgvShowCats As DataGridView
     Friend WithEvents picCatPic As PictureBox
     Friend WithEvents txtCatPicName As TextBox
     Friend WithEvents Button1 As Button
