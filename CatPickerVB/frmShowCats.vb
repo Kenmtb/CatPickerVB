@@ -373,6 +373,7 @@ abort:
 
 abort:
 
+    txtStatus.Text = Messages.statusMsg
   End Sub
 
   Private Sub dgvShowCats_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvShowCats.CellContentClick
@@ -433,6 +434,9 @@ abort:
 
     initForm(vm)
 abort:
+
+    txtStatus.Text = Messages.statusMsg
+
   End Sub
 
   Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
@@ -456,9 +460,12 @@ abort:
 
     End If
 
+    initForm(vm)
+
 abort:
 
-    initForm(vm)
+    txtStatus.Text = Messages.statusMsg
+
   End Sub
 
   Private Sub btnClearSearch_Click(sender As Object, e As EventArgs) Handles btnClearSearch.Click
@@ -504,7 +511,10 @@ abort:
     Messages.statusMsg = "Save successful, Record count: " + vm.catList.Count.ToString
 
     initForm(vm)
+
 abort:
+    txtStatus.Text = Messages.statusMsg
+
   End Sub
 
   Private Sub btnNewCat_Click(sender As Object, e As EventArgs) Handles btnNewCat.Click

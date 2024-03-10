@@ -5,9 +5,9 @@ Public Class CatBLL
   'Run C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI\EmployeesAPI app must be running
 
   'Choose the model's repository.Local or API - 
-  Dim rep As New CatRepository(Of Cat)
+  'Dim rep As New CatRepository(Of Cat)
 
-  'Dim rep As New CatApiRepository(Of Cat)
+  Dim rep As New CatApiRepository(Of Cat)
 
   Dim vmRep As New CatVMRepository(rep)
 
