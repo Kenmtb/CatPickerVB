@@ -41,7 +41,6 @@ Partial Class frmShowCats
     Me.pnlEdit = New System.Windows.Forms.Panel()
     Me.tdpEditArrivalDate = New System.Windows.Forms.DateTimePicker()
     Me.Label19 = New System.Windows.Forms.Label()
-    Me.btnSelectCatPic = New System.Windows.Forms.Button()
     Me.btnDelete = New System.Windows.Forms.Button()
     Me.Label10 = New System.Windows.Forms.Label()
     Me.cmbBreed = New System.Windows.Forms.ComboBox()
@@ -68,7 +67,6 @@ Partial Class frmShowCats
     Me.btnNewCat = New System.Windows.Forms.Button()
     Me.pnlNewCat = New System.Windows.Forms.Panel()
     Me.tdpNewArivalDate = New System.Windows.Forms.DateTimePicker()
-    Me.btnSelectNewCatPic = New System.Windows.Forms.Button()
     Me.txtNewCatPicName = New System.Windows.Forms.TextBox()
     Me.Label14 = New System.Windows.Forms.Label()
     Me.cmbNewCatBreed = New System.Windows.Forms.ComboBox()
@@ -85,6 +83,7 @@ Partial Class frmShowCats
     Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
     Me.pnlMain = New System.Windows.Forms.Panel()
     Me.CatBreedBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+    Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
     CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.pnlEdit.SuspendLayout()
@@ -105,7 +104,7 @@ Partial Class frmShowCats
     Me.dgvShowCats.MultiSelect = False
     Me.dgvShowCats.Name = "dgvShowCats"
     Me.dgvShowCats.ReadOnly = True
-    Me.dgvShowCats.Size = New System.Drawing.Size(664, 767)
+    Me.dgvShowCats.Size = New System.Drawing.Size(454, 767)
     Me.dgvShowCats.TabIndex = 0
     Me.dgvShowCats.VirtualMode = True
     '
@@ -118,6 +117,7 @@ Partial Class frmShowCats
     Me.picCatPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
     Me.picCatPic.TabIndex = 1
     Me.picCatPic.TabStop = False
+    Me.ToolTip1.SetToolTip(Me.picCatPic, "Click to insert a picture")
     '
     'txtCatPicName
     '
@@ -228,7 +228,6 @@ Partial Class frmShowCats
     Me.pnlEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.pnlEdit.Controls.Add(Me.tdpEditArrivalDate)
     Me.pnlEdit.Controls.Add(Me.Label19)
-    Me.pnlEdit.Controls.Add(Me.btnSelectCatPic)
     Me.pnlEdit.Controls.Add(Me.btnDelete)
     Me.pnlEdit.Controls.Add(Me.Label10)
     Me.pnlEdit.Controls.Add(Me.cmbBreed)
@@ -265,15 +264,6 @@ Partial Class frmShowCats
     Me.Label19.Size = New System.Drawing.Size(118, 20)
     Me.Label19.TabIndex = 33
     Me.Label19.Text = "(Has validation)"
-    '
-    'btnSelectCatPic
-    '
-    Me.btnSelectCatPic.Location = New System.Drawing.Point(333, 173)
-    Me.btnSelectCatPic.Name = "btnSelectCatPic"
-    Me.btnSelectCatPic.Size = New System.Drawing.Size(86, 26)
-    Me.btnSelectCatPic.TabIndex = 6
-    Me.btnSelectCatPic.Text = "Find Image"
-    Me.btnSelectCatPic.UseVisualStyleBackColor = True
     '
     'btnDelete
     '
@@ -519,7 +509,6 @@ Partial Class frmShowCats
     '
     Me.pnlNewCat.BackColor = System.Drawing.SystemColors.Control
     Me.pnlNewCat.Controls.Add(Me.tdpNewArivalDate)
-    Me.pnlNewCat.Controls.Add(Me.btnSelectNewCatPic)
     Me.pnlNewCat.Controls.Add(Me.txtNewCatPicName)
     Me.pnlNewCat.Controls.Add(Me.Label14)
     Me.pnlNewCat.Controls.Add(Me.btnInsert)
@@ -545,15 +534,6 @@ Partial Class frmShowCats
     Me.tdpNewArivalDate.Name = "tdpNewArivalDate"
     Me.tdpNewArivalDate.Size = New System.Drawing.Size(86, 20)
     Me.tdpNewArivalDate.TabIndex = 24
-    '
-    'btnSelectNewCatPic
-    '
-    Me.btnSelectNewCatPic.Location = New System.Drawing.Point(333, 180)
-    Me.btnSelectNewCatPic.Name = "btnSelectNewCatPic"
-    Me.btnSelectNewCatPic.Size = New System.Drawing.Size(86, 26)
-    Me.btnSelectNewCatPic.TabIndex = 25
-    Me.btnSelectNewCatPic.Text = "Find Image"
-    Me.btnSelectNewCatPic.UseVisualStyleBackColor = True
     '
     'txtNewCatPicName
     '
@@ -601,6 +581,7 @@ Partial Class frmShowCats
     Me.picNewCatPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
     Me.picNewCatPic.TabIndex = 19
     Me.picNewCatPic.TabStop = False
+    Me.ToolTip1.SetToolTip(Me.picNewCatPic, "Click to insert a picture")
     '
     'Label15
     '
@@ -771,13 +752,12 @@ Partial Class frmShowCats
     Friend WithEvents Label13 As Label
     Friend WithEvents openFileDialog1 As OpenFileDialog
     Friend WithEvents txtNewCatPicName As TextBox
-    Friend WithEvents btnSelectNewCatPic As Button
-    Friend WithEvents radNew As RadioButton
-    Friend WithEvents cmbNewCatBreed As ComboBox
-    Friend WithEvents btnSelectCatPic As Button
-    Friend WithEvents ErrorProvider1 As ErrorProvider
-    Friend WithEvents Label19 As Label
+  Friend WithEvents radNew As RadioButton
+  Friend WithEvents cmbNewCatBreed As ComboBox
+  Friend WithEvents ErrorProvider1 As ErrorProvider
+  Friend WithEvents Label19 As Label
     Friend WithEvents tdpEditArrivalDate As DateTimePicker
     Friend WithEvents tdpNewArivalDate As DateTimePicker
     Friend WithEvents pnlMain As Panel
+  Friend WithEvents ToolTip1 As ToolTip
 End Class

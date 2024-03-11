@@ -295,7 +295,7 @@ endd:
     ctrl.ShowEditor(vm)
   End Sub
 
-  Private Sub picCatPic_Click(sender As Object, e As EventArgs) Handles picCatPic.Click
+  Private Sub picCatPic_Click(sender As Object, e As EventArgs) Handles picCatPic.Click, picNewCatPic.Click
 
     'dlgPictures.ShowDialog()
     'txtCatPicName.Text = System.IO.Path.GetFileName(dlgPictures.FileName)
@@ -557,13 +557,13 @@ abort:
 
 
 
-  Private Sub btnSelectNewCatPic_Click(sender As Object, e As EventArgs) Handles btnSelectNewCatPic.Click
+  Private Sub btnSelectNewCatPic_Click(sender As Object, e As EventArgs)
     Dim picFile As String = getCatPicFile()
     picNewCatPic.Image = Image.FromFile(imageDir + picFile)
     txtNewCatPicName.Text = picFile
   End Sub
 
-  Private Sub btnSelectCatPic_Click(sender As Object, e As EventArgs) Handles btnSelectCatPic.Click
+  Private Sub btnSelectCatPic_Click(sender As Object, e As EventArgs)
     Dim picFile As String = getCatPicFile()
     If picFile = "" Then GoTo abort
     picCatPic.Image = Image.FromFile(imageDir + picFile)
