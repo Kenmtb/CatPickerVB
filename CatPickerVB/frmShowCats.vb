@@ -295,7 +295,7 @@ endd:
     ctrl.ShowEditor(vm)
   End Sub
 
-  Private Sub picCatPic_Click(sender As Object, e As EventArgs) Handles picCatPic.Click, picNewCatPic.Click
+  Private Sub picCatPic_Click(sender As Object, e As EventArgs) Handles picCatPic.Click
 
     'dlgPictures.ShowDialog()
     'txtCatPicName.Text = System.IO.Path.GetFileName(dlgPictures.FileName)
@@ -710,4 +710,14 @@ abort:
 
   End Sub
 
+  Private Sub picNewCatPic_Click(sender As Object, e As EventArgs) Handles picNewCatPic.Click
+    Dim picFile As String = getCatPicFile()
+    If picFile = "" Then GoTo abort
+    picNewCatPic.Image = Image.FromFile(imageDir + picFile)
+    txtNewCatPicName.Text = picFile
+    'txtNewCatPicName.DataBindings("Text").WriteValue() 'the control is bound so if it changes programatically then update the binding
+
+    bs.EndEdit()
+abort:
+  End Sub
 End Class
