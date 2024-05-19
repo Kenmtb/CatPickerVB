@@ -3,6 +3,7 @@
 
 Public Interface ICatRepository(Of T)
   'Function getAll(Optional ByVal sqlStr As String = Nothing, Optional ByRef paramList As List(Of SqlParameter) = Nothing) As IEnumerable(Of T)
+
   Function getAll() As IEnumerable(Of T)
 
   Function getAll(spParams As List(Of (String, String))) As IEnumerable(Of T)

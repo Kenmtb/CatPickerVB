@@ -17,9 +17,6 @@ Public Class CatApiRepository(Of T)
   Private urlParameters = ""
   Private client As HttpClient = New HttpClient
 
-
-
-
   Public Sub insert(obj As Cat) Implements ICatRepository(Of Cat).insert
     '***** Must run api server first! C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI
 
@@ -95,9 +92,15 @@ Public Class CatApiRepository(Of T)
     'Throw New NotImplementedException()
   End Sub
 
-
+  'get(spParams)
   Public Function getAll(spParams As List(Of (String, String))) As IEnumerable(Of Cat) Implements ICatRepository(Of Cat).getAll
     Dim cats As List(Of Cat) = getAllHelper(spParams).Result
+    Return cats
+  End Function
+
+  'get()
+  Public Function getAll() As IEnumerable(Of Cat) Implements ICatRepository(Of Cat).getAll
+    Dim cats As List(Of Cat) = getAllHelper(New List(Of (String, String))).Result
     Return cats
   End Function
 
@@ -109,17 +112,13 @@ Public Class CatApiRepository(Of T)
       client = New HttpClient()
 
       'convert data object to string
-
       client.BaseAddress = New Uri(url + "/Post-GetAll")
       client.DefaultRequestHeaders.Accept.Add(New System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"))
-      Dim str As String = JsonConvert.SerializeObject(spParams.ToArray)
 
-      'Dim sl As New List(Of SQLParam)
-      'Dim sq As New SQLParam
-      'sq.item1 = "aaa"
-      'sq.item2 = "bbb"
-      'sl.Add(sq)
-      'Dim str As String = JsonConvert.SerializeObject(sl)
+      'im str As String = ""
+      'If spParams.Count > 0 Then
+      Dim str = JsonConvert.SerializeObject(spParams.ToArray)
+      'End If
 
       Dim buffer = System.Text.Encoding.UTF8.GetBytes(str)
       Dim byteData As ByteArrayContent = New ByteArrayContent(buffer)
@@ -151,27 +150,28 @@ Public Class CatApiRepository(Of T)
     'Throw New NotImplementedException()
   End Function
 
-  Public Function getAll() As IEnumerable(Of Cat) Implements ICatRepository(Of Cat).getAll
-    '***** Must run api server first! C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI
+  '********************************* getAll() now uses the same helper as getAll(spParams) the function can be removed when code is fully tested
+  'Public Function getAll() As IEnumerable(Of Cat) Implements ICatRepository(Of Cat).getAll
+  '  '***** Must run api server first! C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI
 
-    Dim webClient As New System.Net.WebClient
-    Try
+  '  Dim webClient As New System.Net.WebClient
+  '  Try
 
-      'Get rest data from the web api
-      Dim jsonStr As String = webClient.DownloadString(url)
+  '    'Get rest data from the web api
+  '    Dim jsonStr As String = webClient.DownloadString(url)
 
-      Dim result As New List(Of Cat)
+  '    Dim result As New List(Of Cat)
 
-      'Pack json content into the model
-      result = JsonConvert.DeserializeObject(Of List(Of Cat))(jsonStr)
-      'res = JsonConvert.DeserializeObject(Of List(Of Cat))(response.Content.ToString)
-      Return result
-    Catch ex As Exception
-      Messages.statusMsg = "Error getting record(s) | API Server error"
-      'MsgBox("Make sure API server is running:C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI\EmployeesAPI ", 0, "API Server error")
-    End Try
+  '    'Pack json content into the model
+  '    result = JsonConvert.DeserializeObject(Of List(Of Cat))(jsonStr)
+  '    'res = JsonConvert.DeserializeObject(Of List(Of Cat))(response.Content.ToString)
+  '    Return result
+  '  Catch ex As Exception
+  '    Messages.statusMsg = "Error getting record(s) | API Server error"
+  '    'MsgBox("Make sure API server is running:C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI\EmployeesAPI ", 0, "API Server error")
+  '  End Try
 
-  End Function
+  'End Function
 
   Public Function getById(id As Object) As Cat Implements ICatRepository(Of Cat).getById
     Throw New NotImplementedException()
