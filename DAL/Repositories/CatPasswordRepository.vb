@@ -5,7 +5,7 @@ Imports Globals
 'We are currently not doing CRUD on passwords, this class may not be needed.
 Public Class CatPasswordRepository(Of T)
   Inherits ODBCRep(Of CatPassword)
-  Implements ICatPasswordRepository(Of CatPassword)
+  Implements IRepository(Of CatPassword)
 
   Dim rec As CatPassword
   Dim passwordDAL As New DAL.passwordDAL
@@ -19,17 +19,17 @@ Public Class CatPasswordRepository(Of T)
     Return passwordDAL.validatePassword(username, password, records)
   End Function
 
-  Public Sub insert(obj As CatPassword) Implements ICatPasswordRepository(Of CatPassword).insert
+  Public Sub insert(obj As CatPassword) Implements IRepository(Of CatPassword).insert
     'Throw New NotImplementedException()
     insertRecords(obj)
   End Sub
 
-  Public Function delete(id As Object) As Object Implements ICatPasswordRepository(Of CatPassword).delete
+  Public Function delete(id As Object) As Object Implements IRepository(Of CatPassword).delete
 
   End Function
 
 
-  Public Sub save(obj As CatPassword) Implements ICatPasswordRepository(Of CatPassword).save
+  Public Sub save(obj As CatPassword) Implements IRepository(Of CatPassword).save
     Try
       saveRecords(obj, obj.Id)
     Catch ex As Exception
@@ -50,7 +50,7 @@ Public Class CatPasswordRepository(Of T)
   End Function
 
 
-  Public Function getAll() As IEnumerable(Of CatPassword) Implements ICatPasswordRepository(Of CatPassword).getAll
+  Public Function getAll() As IEnumerable(Of CatPassword) Implements IRepository(Of CatPassword).getAll
     Try
       Return getRecords()
     Catch ex As Exception
@@ -58,7 +58,7 @@ Public Class CatPasswordRepository(Of T)
     End Try
   End Function
 
-  Public Function getAll(spParams As List(Of (String, String))) As IEnumerable(Of CatPassword) Implements ICatPasswordRepository(Of CatPassword).getAll
+  Public Function getAll(spParams As List(Of (String, String))) As IEnumerable(Of CatPassword) Implements IRepository(Of CatPassword).getAll
     Try
       'Return getRecords("dbo.spGetCatsBy_Age_Breed_Gender", spParams)      
     Catch ex As Exception
@@ -112,7 +112,7 @@ Public Class CatPasswordRepository(Of T)
 
   End Function
 
-  Public Function getById(id As Object) As CatPassword Implements ICatPasswordRepository(Of CatPassword).getById
+  Public Function getById(id As Object) As CatPassword Implements IRepository(Of CatPassword).getById
     'return (GetRecords("SELECT * FROM dbo.cats WHERE Id = " + id)).FirstOrDefault();
     ' id = -1 means a New record Is requested for the editor, otherwise return a record
 

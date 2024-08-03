@@ -12,6 +12,7 @@ Public Class passwordDAL
       Return loggedIn
 
     Catch ex As Exception
+      Return Nothing
     End Try
   End Function
 

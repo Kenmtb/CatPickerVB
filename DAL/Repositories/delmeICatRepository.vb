@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 
 
-Public Interface ICatRepository(Of T)
+Public Interface delmeIRepository(Of T)
   'Function getAll(Optional ByVal sqlStr As String = Nothing, Optional ByRef paramList As List(Of SqlParameter) = Nothing) As IEnumerable(Of T)
 
   Function getAll() As IEnumerable(Of T)
@@ -14,7 +14,7 @@ Public Interface ICatRepository(Of T)
 
   Sub insert(obj As T)
 
-  Function delete(id As Object)
+  Function delete(id As Object) As Object
 
   Sub save(obj As T)
 

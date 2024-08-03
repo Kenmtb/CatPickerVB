@@ -2,7 +2,6 @@
 Imports Models
 Imports Globals
 Imports CatPickerVB
-
 Imports System.Windows.Forms
 
 Public Class CatController

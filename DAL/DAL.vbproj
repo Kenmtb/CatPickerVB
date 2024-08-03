@@ -44,6 +44,10 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="APIBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\APIBase\APIBase\bin\Debug\APIBase.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -112,8 +116,9 @@
     <Compile Include="Repositories\CatVMFilterepository.vb" />
     <Compile Include="Repositories\CatRepository.vb" />
     <Compile Include="Repositories\CatVMRepository.vb" />
-    <Compile Include="Repositories\ICatPasswordRepository.vb" />
-    <Compile Include="Repositories\ICatRepository.vb" />
+    <Compile Include="Repositories\delmeICatPasswordRepository.vb" />
+    <Compile Include="Repositories\IRepository.vb" />
+    <Compile Include="Repositories\delmeICatRepository.vb" />
     <Compile Include="Repositories\ODBCRep\ODBCRep.vb" />
     <Compile Include="Repositories\ODBCRep\StoredProcRep.vb" />
   </ItemGroup>

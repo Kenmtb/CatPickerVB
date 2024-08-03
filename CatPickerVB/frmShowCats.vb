@@ -623,6 +623,17 @@ abort:
       valid = False
       txtNewCatAge.Focus()
 
+    ElseIf String.IsNullOrEmpty(cmbNewCatGender.Text.Trim) Then
+      ErrorProvider1.SetError(cmbNewCatGender, "Please enter a value")
+      valid = False
+      cmbNewCatGender.Focus()
+
+    ElseIf cmbNewCatBreed.Text = Globals.Defs.selectString Then
+      ErrorProvider1.SetError(cmbNewCatBreed, "Please enter a value")
+      valid = False
+      cmbNewCatBreed.Focus()
+
+
     ElseIf (Not IsNumeric(txtNewCatAge.Text.Trim)) OrElse (Convert.ToInt32(txtNewCatAge.Text) > 99 Or Convert.ToInt32(txtNewCatAge.Text) < 1) Then
       ErrorProvider1.SetError(txtNewCatAge, "Please enter number (1-99)")
       valid = False
@@ -719,5 +730,13 @@ abort:
 
     bs.EndEdit()
 abort:
+  End Sub
+
+  Private Sub pnlEdit_Paint(sender As Object, e As PaintEventArgs) Handles pnlEdit.Paint
+
+  End Sub
+
+  Private Sub cmbNewCatBreed_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbNewCatBreed.SelectedIndexChanged
+
   End Sub
 End Class

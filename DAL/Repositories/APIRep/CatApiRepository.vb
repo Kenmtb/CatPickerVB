@@ -8,36 +8,38 @@ Imports Newtonsoft
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 Imports Globals
+Imports APIBase
+
 
 Public Class CatApiRepository(Of T)
-  Implements ICatRepository(Of Cat)
-
+  Inherits APIBase(Of Cat)
+  Implements IRepository(Of Cat)
 
   Private url As String = "https://localhost:7117/api/CatEmployees"
-  Private urlParameters = ""
-  Private client As HttpClient = New HttpClient
 
-  Public Sub insert(obj As Cat) Implements ICatRepository(Of Cat).insert
+  'Private urlParameters As String = ""
+  Private client As HttpClient ' = New HttpClient
+
+  Public Sub New()
+    MyBase.uri = "https://localhost:7117/api/CatEmployees"
+  End Sub
+
+
+  Public Sub insert(obj As Cat) Implements IRepository(Of Cat).insert
     '***** Must run api server first! C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI
 
-    Dim webClient As New System.Net.WebClient
+    'remove unmapped field data
+    obj.image = Nothing
+
+    insertHelper(obj)
+
+  End Sub
+
+  Public Async Sub insertHelper(obj As Cat)
     Try
 
-      'remove unmapped field data
-      obj.image = Nothing
-
-      'convert data object to string
-      client = New HttpClient()
-      client.BaseAddress = New Uri(url)
-      client.DefaultRequestHeaders.Accept.Add(New System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"))
-
-      Dim str As String = JsonConvert.SerializeObject(obj)
-      Dim buffer = System.Text.Encoding.UTF8.GetBytes(str)
-      Dim byteData As ByteArrayContent = New ByteArrayContent(buffer)
-      byteData.Headers.ContentType = New MediaTypeHeaderValue("application/json")
-
-      'Dim response As HttpResponseMessage = client.PutAsync("", byteData).Result
-      Dim response As HttpResponseMessage = client.PostAsync("", byteData).Result
+      Dim response As HttpResponseMessage = MyBase.insertAPIHelper(obj).Result
+      Dim resStr As String = Await response.Content.ReadAsStringAsync
 
       If response.IsSuccessStatusCode Then
 
@@ -51,30 +53,32 @@ Public Class CatApiRepository(Of T)
       Messages.statusMsg = "Error updating record(s) | API Server error"
       'MsgBox("Make sure API server is running:C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI\EmployeesAPI ", 0, "API Server error")
     End Try
-
   End Sub
 
-  Public Sub save(obj As Cat) Implements ICatRepository(Of Cat).save
+  Public Sub save(obj As Cat) Implements IRepository(Of Cat).save
     '***** Must run api server first! C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI
 
-    Dim webClient As New System.Net.WebClient
+    'Dim webClient As New System.Net.WebClient
+    'Try
+
+    'remove unmapped field data
+    obj.image = Nothing
+
+    saveHelper(obj)
+
+    'Catch ex As Exception
+    '  Messages.statusMsg = "Error saving record(s) | API Server error"
+    '  'MsgBox("Make sure API server is running:C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI\EmployeesAPI ", 0, "API Server error")
+    'End Try
+
+    'Throw New NotImplementedException()
+  End Sub
+
+  Public Async Sub saveHelper(obj As Cat)
     Try
 
-      'remove unmapped field data
-      obj.image = Nothing
-
-      'convert data object to string
-      client = New HttpClient()
-      client.BaseAddress = New Uri(url)
-      client.DefaultRequestHeaders.Accept.Add(New System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"))
-
-      Dim str As String = JsonConvert.SerializeObject(obj)
-      'Dim str As String = '[{\"personID\":1,\"personName\":\"joe\",\"personAge\":20,\"personGender\":\"m\"}]'
-      Dim buffer = System.Text.Encoding.UTF8.GetBytes(str)
-      Dim byteData As ByteArrayContent = New ByteArrayContent(buffer)
-      byteData.Headers.ContentType = New MediaTypeHeaderValue("application/json")
-
-      Dim response As HttpResponseMessage = client.PutAsync("", byteData).Result
+      Dim response As HttpResponseMessage = MyBase.saveAPIHelper(obj).Result
+      Dim resStr As String = Await response.Content.ReadAsStringAsync
 
       If response.IsSuccessStatusCode Then
 
@@ -86,47 +90,30 @@ Public Class CatApiRepository(Of T)
 
     Catch ex As Exception
       Messages.statusMsg = "Error saving record(s) | API Server error"
-      'MsgBox("Make sure API server is running:C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI\EmployeesAPI ", 0, "API Server error")
+    'MsgBox("Make sure API server is running:C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI\EmployeesAPI ", 0, "API Server error")
     End Try
 
-    'Throw New NotImplementedException()
   End Sub
 
-  'get(spParams)
-  Public Function getAll(spParams As List(Of (String, String))) As IEnumerable(Of Cat) Implements ICatRepository(Of Cat).getAll
-    Dim cats As List(Of Cat) = getAllHelper(spParams).Result
-    Return cats
+  Public Function getAll(spParams As List(Of (String, String))) As IEnumerable(Of Cat) Implements IRepository(Of Cat).getAll
+    'Dim cats As List(Of Cat) = getAllHelper(spParams).Result
+    'Dim cats As List(Of Cat) = MyBase.getAll(spParams)
+    'Return MyBase.getAll(spParams)
+
+    Dim result As List(Of Cat) = getAllHelper(spParams).Result
+    Return result
+  End Function
+
+  Private Function getAll() As IEnumerable(Of Cat) Implements IRepository(Of Cat).getAll
+    Dim result As List(Of Cat) = getAllHelper(New List(Of (String, String))).Result
+    Return result
   End Function
 
   'get()
-  Public Function getAll() As IEnumerable(Of Cat) Implements ICatRepository(Of Cat).getAll
-    Dim cats As List(Of Cat) = getAllHelper(New List(Of (String, String))).Result
-    Return cats
-  End Function
-
-  Public Async Function getAllHelper(spParams As List(Of (String, String))) As Task(Of IEnumerable(Of Cat))
-
-    '***** Must run api server first! C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI
-
+  Public Async Function getAllHelper(List As List(Of (String, String))) As Task(Of IEnumerable(Of Cat))
     Try
-      client = New HttpClient()
-
-      'convert data object to string
-      client.BaseAddress = New Uri(url + "/Post-GetAll")
-      client.DefaultRequestHeaders.Accept.Add(New System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"))
-
-      'im str As String = ""
-      'If spParams.Count > 0 Then
-      Dim str = JsonConvert.SerializeObject(spParams.ToArray)
-      'End If
-
-      Dim buffer = System.Text.Encoding.UTF8.GetBytes(str)
-      Dim byteData As ByteArrayContent = New ByteArrayContent(buffer)
-      byteData.Headers.ContentType = New MediaTypeHeaderValue("application/json")
-
-      'Dim response As HttpResponseMessage = client.PutAsync("", byteData).Result
-      Dim response As HttpResponseMessage = client.PostAsync("", byteData).Result
-
+      Dim response As HttpResponseMessage = Await getAllAPIHelper(List)
+      'Dim response As HttpResponseMessage = MyBase.getAllAPIHelper(List).Result
       Dim resStr As String = Await response.Content.ReadAsStringAsync
 
       If response.IsSuccessStatusCode Then
@@ -147,69 +134,39 @@ Public Class CatApiRepository(Of T)
       'MsgBox("Make sure API server is running:C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI\EmployeesAPI ", 0, "API Server error")
     End Try
 
-    'Throw New NotImplementedException()
   End Function
 
-  '********************************* getAll() now uses the same helper as getAll(spParams) the function can be removed when code is fully tested
-  'Public Function getAll() As IEnumerable(Of Cat) Implements ICatRepository(Of Cat).getAll
-  '  '***** Must run api server first! C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI
 
-  '  Dim webClient As New System.Net.WebClient
-  '  Try
+  Public Function delete(id As Object) As Object Implements IRepository(Of Cat).delete
 
-  '    'Get rest data from the web api
-  '    Dim jsonStr As String = webClient.DownloadString(url)
-
-  '    Dim result As New List(Of Cat)
-
-  '    'Pack json content into the model
-  '    result = JsonConvert.DeserializeObject(Of List(Of Cat))(jsonStr)
-  '    'res = JsonConvert.DeserializeObject(Of List(Of Cat))(response.Content.ToString)
-  '    Return result
-  '  Catch ex As Exception
-  '    Messages.statusMsg = "Error getting record(s) | API Server error"
-  '    'MsgBox("Make sure API server is running:C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI\EmployeesAPI ", 0, "API Server error")
-  '  End Try
-
-  'End Function
-
-  Public Function getById(id As Object) As Cat Implements ICatRepository(Of Cat).getById
-    Throw New NotImplementedException()
+    'The unusedVar is needed to supress a warning that await is required. This function's interface wont allow await and this function calls 
+    'a dll with an an await, we need to assign a bogus variable.
+    Dim unusedVar = deleteHelper(id)
+    Return Nothing
   End Function
 
-  Public Function delete(id As Object) As Object Implements ICatRepository(Of Cat).delete
-    '***** Must run api server first! C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI
+  Public Async Function deleteHelper(id As Object) As Task(Of Boolean)
+    ''***** Must run api server first! C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI
 
-    Dim webClient As New System.Net.WebClient
     Try
-
-      client = New HttpClient()
-      client.BaseAddress = New Uri(url + "/" + id.ToString)
-      client.DefaultRequestHeaders.Accept.Add(New System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"))
-
-      'Dim str As String = JsonConvert.SerializeObject(obj)
-      'Dim buffer = System.Text.Encoding.UTF8.GetBytes(str)
-      'Dim byteData As ByteArrayContent = New ByteArrayContent(buffer)
-      'byteData.Headers.ContentType = New MediaTypeHeaderValue("application/json")
-
-      'Dim response As HttpResponseMessage = client.PutAsync("", byteData).Result
-      Dim response As HttpResponseMessage = client.DeleteAsync("").Result
+      Dim response As HttpResponseMessage = Await MyBase.deleteAPIHelper(id)
 
       If response.IsSuccessStatusCode Then
-
       Else
         MsgBox("Rest service error ", 0, "API service error")
       End If
 
-      Dim result As New List(Of Cat)
+      Return Nothing
 
     Catch ex As Exception
       Messages.statusMsg = "Error deleting record(s) | API Server error"
+      Return Nothing
       'MsgBox("Make sure API server is running:C:\Users\Ken\source\repos\EmployeesAPI\EmployeesAPI\EmployeesAPI\EmployeesAPI ", 0, "API Server error")
     End Try
   End Function
 
-
-
+  Public Function getById(id As Object) As Cat Implements IRepository(Of Cat).getById
+    Throw New NotImplementedException()
+  End Function
 
 End Class

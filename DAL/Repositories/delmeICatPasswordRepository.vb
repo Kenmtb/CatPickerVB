@@ -3,7 +3,7 @@
 'Local password repo. If a universal password repo is needed it would go in EmployeesAPI
 'Currently we do not do CRUD on passwords
 
-Public Interface ICatPasswordRepository(Of T)
+Public Interface delmeICatPasswordRepository(Of T)
   'Function getAll(Optional ByVal sqlStr As String = Nothing, Optional ByRef paramList As List(Of SqlParameter) = Nothing) As IEnumerable(Of T)
   Function getAll() As IEnumerable(Of T)
 

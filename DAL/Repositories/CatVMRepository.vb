@@ -4,14 +4,15 @@ Imports Globals
 Public Class CatVMRepository
 
   Private vm As CatVM
+  Private VMprimaryList As List(Of Cat) 'This will be the VM's primary list coming from an API callback
 
   'rep - comes from catRepository. rep's repository is changed in catRepository
-  Private rep As ICatRepository(Of Cat)
+  Private rep As IRepository(Of Cat)
 
   Private catbreed As New CatBreedRepository(Of CatBreed)
   Private detailsRep As CatDetailRepository(Of CatDetail)
 
-  Public Sub New(rep As ICatRepository(Of Cat))
+  Public Sub New(rep As IRepository(Of Cat))
 
     Me.rep = rep
     'Dim rep = New CatRepository(Of Cat)
@@ -56,6 +57,7 @@ Public Class CatVMRepository
       'Messages.statusMsg = "API service error"
     End Try
   End Function
+
 
   Public Function getById(id As Integer) As CatVM
 

@@ -3,7 +3,7 @@ Imports Globals
 
 Public Class CatRepository(Of T)
   Inherits ODBCRep(Of Cat)
-  Implements ICatRepository(Of Cat)
+  Implements IRepository(Of Cat)
 
   Dim rec As Cat
   'foriegn
@@ -14,17 +14,17 @@ Public Class CatRepository(Of T)
     MyBase.createSQLstrings("dbo.cats")
   End Sub
 
-  Public Sub insert(obj As Cat) Implements ICatRepository(Of Cat).insert
+  Public Sub insert(obj As Cat) Implements IRepository(Of Cat).insert
     'Throw New NotImplementedException()
     insertRecords(obj)
   End Sub
 
-  Public Function delete(id As Object) As Object Implements ICatRepository(Of Cat).delete
+  Public Function delete(id As Object) As Object Implements IRepository(Of Cat).delete
     deleteRecord(id)
   End Function
 
 
-  Public Sub save(obj As Cat) Implements ICatRepository(Of Cat).save
+  Public Sub save(obj As Cat) Implements IRepository(Of Cat).save
     Try
       saveRecords(obj, obj.Id)
     Catch ex As Exception
@@ -44,14 +44,14 @@ Public Class CatRepository(Of T)
     Return testList
   End Function
 
-  'Public Function getAll(spParams As List(Of ValueTuple(Of String, String))) As List(Of Cat) Implements ICatRepository(Of Cat).getAll
+  'Public Function getAll(spParams As List(Of ValueTuple(Of String, String))) As List(Of Cat) Implements IRepository(Of Cat).getAll
 
   '  Return getRecords("dbo.spGetCatsBy_Age_Breed_Gender", spParams)
 
   'End Function
 
 
-  Public Function getAll() As IEnumerable(Of Cat) Implements ICatRepository(Of Cat).getAll
+  Public Function getAll() As IEnumerable(Of Cat) Implements IRepository(Of Cat).getAll
     Try
       Return getRecords()
     Catch ex As Exception
@@ -59,7 +59,7 @@ Public Class CatRepository(Of T)
     End Try
   End Function
 
-  Public Function getAll(spParams As List(Of (String, String))) As IEnumerable(Of Cat) Implements ICatRepository(Of Cat).getAll
+  Public Function getAll(spParams As List(Of (String, String))) As IEnumerable(Of Cat) Implements IRepository(Of Cat).getAll
     Try
       Return getRecords("dbo.spGetCatsBy_Age_Breed_Gender", spParams)
     Catch ex As Exception
@@ -108,7 +108,7 @@ Public Class CatRepository(Of T)
 
   End Function
 
-  Public Function getById(id As Object) As Cat Implements ICatRepository(Of Cat).getById
+  Public Function getById(id As Object) As Cat Implements IRepository(Of Cat).getById
     'return (GetRecords("SELECT * FROM dbo.cats WHERE Id = " + id)).FirstOrDefault();
     ' id = -1 means a New record Is requested for the editor, otherwise return a record
 
