@@ -34,6 +34,7 @@ Public Class frmShowCats
     pnlSearch.Visible = False
     pnlNewCat.Visible = False
     pnlEdit.Visible = True
+    pnlCatDetails.Visible = False
     pnlMain.BackColor = Color.FromArgb(100, 44, 44, 44)
 
     grpMenu.Controls.Find("radEdit", True)(0).Select()
@@ -126,6 +127,7 @@ Public Class frmShowCats
       cmbGender.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "gender", True, 2))
       tdpEditArrivalDate.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "arrivalDate", True, 2))
       txtCatPicName.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "pic", True, 2))
+      txtCatDetailsCatPicName.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "pic", True, 2))
 
       'hide
       dgvShowCats.Columns("Id").Visible = False
@@ -196,6 +198,7 @@ endd:
     cmbGender.DataBindings.Clear()
     tdpEditArrivalDate.DataBindings.Clear()
     txtCatPicName.DataBindings.Clear()
+    txtCatDetailsCatPicName.DataBindings.Clear()
   End Sub
 
   Private Function getImageFromStringPathName(imagePathName As String) As Image
@@ -207,7 +210,7 @@ endd:
     txtCatPicName.Text = name
   End Sub
 
-  Private Sub dgvShowCats_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgvShowCats.RowEnter
+    Private Sub dgvShowCats_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgvShowCats.RowEnter
 
     validateEditor()
 
@@ -220,523 +223,537 @@ endd:
       'catDetails(Image.FromFile(imageDir + cells("pic").Value), cells("pic").Value)
       Try
         picCatPic.Image = Image.FromFile(imageDir + cells("pic").Value)
+        picCatDetailsCatPic.Image = Image.FromFile(imageDir + cells("pic").Value)
       Catch ex As Exception
         'if there is no image in the dirctory that matches the image in the dgv then insert a no image jpg.
         picCatPic.Image = Image.FromFile(imageDir + "noImage.jpg")
+        picCatDetailsCatPic.Image = Image.FromFile(imageDir + "noImage.jpg")
         cells("pic").Value = "noImage.jpg"
       End Try
 
 
       'editor controls
       Dim breeds As List(Of CatBreed) = vm.catBreedList
-      Dim breedNames = From brd In breeds
-                       Where brd.Id = cells("breedId").Value
+            Dim breedNames = From brd In breeds
+                             Where brd.Id = cells("breedId").Value
 
-      cmbBreed.Text = breedNames(0).breedName
+            cmbBreed.Text = breedNames(0).breedName
 
-    End If
-  End Sub
+        End If
+    End Sub
 
-  Private Sub updateViewModel()
+    Private Sub updateViewModel()
 
-  End Sub
+    End Sub
 
-  Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-    ErrorProvider1.SetError(txtName, "Maximum of 20 characters")
-
-
-    'If Not frm.Visible Then
-    '  'frm = New Form1()
-    '  frm.Show()
-    'End If
-
-    'frm.Show()
-    'frm.TextBox1.Text = txtCatPicName.Text
-    'txtCatPicName.Text = frm.sayHi() + " " + txtCatPicName.Text
-  End Sub
-
-  Private Sub IFormView_Show() Implements IFormView(Of CatVM).Show
-    'this overloads the the interface's base class Form.Show()
-    Me.Show()
-  End Sub
-
-  Private Sub btnShowSelected_Click(sender As Object, e As EventArgs) Handles btnShowSelected.Click
-    'Get catID, catname and pic of each checked cat, put into tuple.
-
-    Dim catList As New List(Of Cat)
-
-    For Each dr As DataGridViewRow In dgvShowCats.Rows
-      Dim catRec As Cat
-      If dr.Cells("selected").Value = True Then
-        catRec = New Cat
-        catRec.name = dr.Cells("name").Value
-        catRec.Id = dr.Cells("Id").Value
-        catRec.pic = dr.Cells("pic").Value
-        catList.Add(catRec)
-      End If
-    Next
-
-    'Display the selected cats
-    Dim vm As New CatVM
-    vm.catList = catList
-
-    ctrl = New CatController
-    ctrl.ShowEditor(vm)
+        ErrorProvider1.SetError(txtName, "Maximum of 20 characters")
 
 
-  End Sub
+        'If Not frm.Visible Then
+        '  'frm = New Form1()
+        '  frm.Show()
+        'End If
 
-  Private Sub btnShowEditor_Click(sender As Object, e As EventArgs) Handles btnShowEditor.Click
-    Dim vm As New CatVM
-    vm.catList = catList
+        'frm.Show()
+        'frm.TextBox1.Text = txtCatPicName.Text
+        'txtCatPicName.Text = frm.sayHi() + " " + txtCatPicName.Text
+    End Sub
 
-    ctrl = New CatController
-    ctrl.ShowEditor(vm)
-  End Sub
+    Private Sub IFormView_Show() Implements IFormView(Of CatVM).Show
+        'this overloads the the interface's base class Form.Show()
+        Me.Show()
+    End Sub
 
-  Private Sub picCatPic_Click(sender As Object, e As EventArgs) Handles picCatPic.Click
+    Private Sub btnShowSelected_Click(sender As Object, e As EventArgs) Handles btnShowSelected.Click
+        'Get catID, catname and pic of each checked cat, put into tuple.
 
-    'dlgPictures.ShowDialog()
-    'txtCatPicName.Text = System.IO.Path.GetFileName(dlgPictures.FileName)
-    'txtCatPicName.DataBindings("Text").WriteValue() ' required to programatically update controls because ms is to stupid to make it simple
-    'picCatPic.Image = Image.FromFile(dlgPictures.FileName)
+        Dim catList As New List(Of Cat)
 
-    Dim picFile As String = getCatPicFile()
-    If picFile = "" Then GoTo abort
-    picCatPic.Image = Image.FromFile(imageDir + picFile)
-    txtCatPicName.Text = picFile
-    txtCatPicName.DataBindings("Text").WriteValue() 'the control is bound so if it changes programatically then update the binding
+        For Each dr As DataGridViewRow In dgvShowCats.Rows
+            Dim catRec As Cat
+            If dr.Cells("selected").Value = True Then
+                catRec = New Cat
+                catRec.name = dr.Cells("name").Value
+                catRec.Id = dr.Cells("Id").Value
+                catRec.pic = dr.Cells("pic").Value
+                catList.Add(catRec)
+            End If
+        Next
 
-    bs.EndEdit()
+        'Display the selected cats
+        Dim vm As New CatVM
+        vm.catList = catList
+
+        ctrl = New CatController
+        ctrl.ShowEditor(vm)
 
 
+    End Sub
 
-abort:
+    Private Sub btnShowEditor_Click(sender As Object, e As EventArgs) Handles btnShowEditor.Click
+        Dim vm As New CatVM
+        vm.catList = catList
 
-  End Sub
+        ctrl = New CatController
+        ctrl.ShowEditor(vm)
+    End Sub
 
-  Private Sub radEdit_CheckedChanged(sender As Object, e As EventArgs) Handles radEdit.CheckedChanged
-    If radEdit.Checked Then
-      pnlSearch.Visible = False
-      pnlNewCat.Visible = False
-      pnlEdit.Visible = True
-    End If
-  End Sub
+    Private Sub picCatPic_Click(sender As Object, e As EventArgs) Handles picCatPic.Click
 
-  Private Sub radSearch_CheckedChanged(sender As Object, e As EventArgs) Handles radSearch.CheckedChanged
-    If radSearch.Checked Then
-      pnlSearch.Visible = True
-      pnlNewCat.Visible = False
-      pnlEdit.Visible = False
+        'dlgPictures.ShowDialog()
+        'txtCatPicName.Text = System.IO.Path.GetFileName(dlgPictures.FileName)
+        'txtCatPicName.DataBindings("Text").WriteValue() ' required to programatically update controls because ms is to stupid to make it simple
+        'picCatPic.Image = Image.FromFile(dlgPictures.FileName)
 
-      'get panel data
-      Dim filterVM As Models.CatFilterVM
-      filterVM = filterBll.getAll()
-      cmbSearchBreed.DataSource = filterVM.catBreedList
-      cmbSearchBreed.DisplayMember = "breedName"
-      cmbSearchBreed.ValueMember = "Id"
+        Dim picFile As String = getCatPicFile()
+        If picFile = "" Then GoTo abort
+        picCatPic.Image = Image.FromFile(imageDir + picFile)
+        txtCatPicName.Text = picFile
+        txtCatPicName.DataBindings("Text").WriteValue() 'the control is bound so if it changes programatically then update the binding
 
-      cmbSearchGender.Items.Clear()
-      cmbSearchGender.Items.Add("Male")
-      cmbSearchGender.Items.Add("Female")
+        bs.EndEdit()
 
-    End If
 
-  End Sub
-
-  Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-    If Not validateSearchEditor() Then GoTo abort
-
-    Messages.statusMsg = "Searching"
-    txtStatus.Text = Messages.statusMsg
-
-    Dim breedId As String = If(IsNothing(cmbSearchBreed.SelectedValue) Or cmbSearchBreed.Text = "", "", cmbSearchBreed.SelectedValue)
-    Dim gender As String = cmbSearchGender.Text
-    Dim age As String = txtSearchAge.Text
-
-    'Call SP
-    Dim spBLL As New BLL.StoredProcBLL(Of Cat)
-
-    'Set up params
-    parmList.Clear()
-    parmList.Add(ValueTuple.Create("breedId", breedId))
-    parmList.Add(ValueTuple.Create("gender", gender))
-    parmList.Add(ValueTuple.Create("age", age))
-
-    Dim vm As CatVM = bll.getAll(parmList)
-    If IsNothing(vm) Then GoTo abort
-
-    Messages.statusMsg = "Record count: " + vm.catList.Count.ToString
-
-    initForm(vm)
 
 abort:
 
-    txtStatus.Text = Messages.statusMsg
-  End Sub
+    End Sub
 
-  Private Sub dgvShowCats_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvShowCats.CellContentClick
+    Private Sub radEdit_CheckedChanged(sender As Object, e As EventArgs) Handles radEdit.CheckedChanged
+        If radEdit.Checked Then
+            pnlSearch.Visible = False
+            pnlNewCat.Visible = False
+            pnlEdit.Visible = True
+        End If
+    End Sub
 
-    If dgvShowCats.Columns(e.ColumnIndex).Name.ToString = "selected" Then
+    Private Sub radSearch_CheckedChanged(sender As Object, e As EventArgs) Handles radSearch.CheckedChanged
+        If radSearch.Checked Then
+            pnlSearch.Visible = True
+            pnlNewCat.Visible = False
+            pnlEdit.Visible = False
 
-      'Toggle the selected check box
-      dgvShowCats.Rows(e.RowIndex).Cells("selected").Value = Not (dgvShowCats.Rows(e.RowIndex).Cells("selected").Value)
-    End If
+            'get panel data
+            Dim filterVM As Models.CatFilterVM
+            filterVM = filterBll.getAll()
+            cmbSearchBreed.DataSource = filterVM.catBreedList
+            cmbSearchBreed.DisplayMember = "breedName"
+            cmbSearchBreed.ValueMember = "Id"
 
-    'Preserve the last selected datagrid row
-    lastRowSelected = dgvShowCats.SelectedCells(0).RowIndex
+            cmbSearchGender.Items.Clear()
+            cmbSearchGender.Items.Add("Male")
+            cmbSearchGender.Items.Add("Female")
 
-  End Sub
+        End If
 
-  Private Sub dgvShowCats_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles dgvShowCats.RowStateChanged
-    'Preserve the last selected row check box
-    If dgvShowCats.SelectedRows.Count > 0 Then
-      lastRowBoxSelected = dgvShowCats.SelectedRows(0).Index
-    End If
-  End Sub
+    End Sub
 
-  Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
-    'get the record
-    If Not validateNewCatEditor() Then GoTo abort
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        If Not validateSearchEditor() Then GoTo abort
 
-    Messages.statusMsg = "Adding new record ..."
-    txtStatus.Text = Messages.statusMsg
+        Messages.statusMsg = "Searching"
+        txtStatus.Text = Messages.statusMsg
 
-    Dim rec As New Cat
-    rec.name = txtNewCatName.Text
-    rec.age = txtNewCatAge.Text
-    rec.gender = cmbNewCatGender.Text
-    rec.breedId = cmbNewCatBreed.SelectedValue
-    'rec.breedName = txtn
-    rec.detailsId = defaultDetailsId
-    rec.mainColor = defaultCatColor
-    rec.secondColor = defaultCatColor
-    rec.thirdColor = defaultCatColor
-    rec.pic = txtNewCatPicName.Text
+        Dim breedId As String = If(IsNothing(cmbSearchBreed.SelectedValue) Or cmbSearchBreed.Text = "", "", cmbSearchBreed.SelectedValue)
+        Dim gender As String = cmbSearchGender.Text
+        Dim age As String = txtSearchAge.Text
 
-    If txtNewCatPicName.Text = "" Then
-      rec.pic = Defs.defaultPicName
-    Else
-      rec.pic = txtNewCatPicName.Text
-    End If
+        'Call SP
+        Dim spBLL As New BLL.StoredProcBLL(Of Cat)
 
-    'rec.arrivalDate = If(IsDate(txtNewCatDate.Text), txtNewCatDate.Text, #01/01/1900#)
-    rec.arrivalDate = If(IsDate(tdpNewArivalDate.Text), tdpNewArivalDate.Text, #01/01/1900#)
-    bll.insert(rec)
-    If Messages.statusMsg.Contains("Error") Then GoTo abort
+        'Set up params
+        parmList.Clear()
+        parmList.Add(ValueTuple.Create("breedId", breedId))
+        parmList.Add(ValueTuple.Create("gender", gender))
+        parmList.Add(ValueTuple.Create("age", age))
 
-    dgvShowCats.DataSource = Nothing
-    vm = bll.getAll()
-    If IsNothing(vm) Then GoTo abort
+        Dim vm As CatVM = bll.getAll(parmList)
+        If IsNothing(vm) Then GoTo abort
 
-    If Not IsNothing(vm) Then Messages.statusMsg = "New record created, Record count: " + vm.catList.Count.ToString
+        Messages.statusMsg = "Record count: " + vm.catList.Count.ToString
 
-    initForm(vm)
-abort:
-
-    txtStatus.Text = Messages.statusMsg
-
-  End Sub
-
-  Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-
-    Dim response As String
-    rec = catList(recIndex)
-
-    response = MsgBox("Delete Y/N?", vbYesNo)
-    If response = vbYes Then
-      Messages.statusMsg = "Deleting record ..."
-      txtStatus.Text = Messages.statusMsg
-      bll.delete(rec.Id)
-      If Messages.statusMsg.Contains("Error") Then GoTo abort
-
-      dgvShowCats.DataSource = Nothing
-      vm = bll.getAll()
-      If IsNothing(vm) Then GoTo abort
-
-      If Not IsNothing(vm) Then Messages.statusMsg = "Delete successful, Record count: " + vm.catList.Count.ToString
-
-
-    End If
-
-    initForm(vm)
+        initForm(vm)
 
 abort:
 
-    txtStatus.Text = Messages.statusMsg
+        txtStatus.Text = Messages.statusMsg
+    End Sub
 
-  End Sub
+    Private Sub dgvShowCats_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvShowCats.CellContentClick
 
-  Private Sub btnClearSearch_Click(sender As Object, e As EventArgs) Handles btnClearSearch.Click
-    parmList.Clear()
-    parmList.Add(ValueTuple.Create("breedId", ""))
-    parmList.Add(ValueTuple.Create("gender", ""))
-    parmList.Add(ValueTuple.Create("age", ""))
+        If dgvShowCats.Columns(e.ColumnIndex).Name.ToString = "selected" Then
 
-    cmbSearchBreed.Text = ""
-    cmbSearchGender.Text = ""
-    txtSearchAge.Text = ""
+            'Toggle the selected check box
+            dgvShowCats.Rows(e.RowIndex).Cells("selected").Value = Not (dgvShowCats.Rows(e.RowIndex).Cells("selected").Value)
+        End If
 
-    'Dim vm As CatVM = bll.getAll(parmList)
-    'initForm(vm)
+        'Preserve the last selected datagrid row
+        lastRowSelected = dgvShowCats.SelectedCells(0).RowIndex
 
-    'txtStatus.Text = Messages.statusMsg
-  End Sub
+    End Sub
 
-  Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-    If Not validateEditor() Then GoTo abort
+    Private Sub dgvShowCats_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles dgvShowCats.RowStateChanged
+        'Preserve the last selected row check box
+        If dgvShowCats.SelectedRows.Count > 0 Then
+            lastRowBoxSelected = dgvShowCats.SelectedRows(0).Index
+        End If
+    End Sub
 
-    Messages.statusMsg = "Saving record ..."
-    txtStatus.Text = Messages.statusMsg
+    Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
+        'get the record
+        If Not validateNewCatEditor() Then GoTo abort
 
-    rec = catList(recIndex)
+        Messages.statusMsg = "Adding new record ..."
+        txtStatus.Text = Messages.statusMsg
 
-    'pack control data into data object. 
-    rec.breedId = cmbBreed.SelectedItem.Id
-    rec.breedName = cmbBreed.Text
-    rec.age = txtAge.Text
-    rec.name = txtName.Text
-    rec.gender = cmbGender.SelectedItem.ToString
-    rec.arrivalDate = tdpEditArrivalDate.Value
-    rec.pic = txtCatPicName.Text
+        Dim rec As New Cat
+        rec.name = txtNewCatName.Text
+        rec.age = txtNewCatAge.Text
+        rec.gender = cmbNewCatGender.Text
+        rec.breedId = cmbNewCatBreed.SelectedValue
+        'rec.breedName = txtn
+        rec.detailsId = defaultDetailsId
+        rec.mainColor = defaultCatColor
+        rec.secondColor = defaultCatColor
+        rec.thirdColor = defaultCatColor
+        rec.pic = txtNewCatPicName.Text
 
-    bll.save(rec)
-    If Messages.statusMsg.Contains("Error") Then GoTo abort
+        If txtNewCatPicName.Text = "" Then
+            rec.pic = Defs.defaultPicName
+        Else
+            rec.pic = txtNewCatPicName.Text
+        End If
 
-    dgvShowCats.DataSource = Nothing
-    vm = bll.getAll(parmList)
-    If IsNothing(vm) Then GoTo abort
+        'rec.arrivalDate = If(IsDate(txtNewCatDate.Text), txtNewCatDate.Text, #01/01/1900#)
+        rec.arrivalDate = If(IsDate(tdpNewArivalDate.Text), tdpNewArivalDate.Text, #01/01/1900#)
+        bll.insert(rec)
+        If Messages.statusMsg.Contains("Error") Then GoTo abort
 
-    Messages.statusMsg = "Save successful, Record count: " + vm.catList.Count.ToString
+        dgvShowCats.DataSource = Nothing
+        vm = bll.getAll()
+        If IsNothing(vm) Then GoTo abort
 
-    initForm(vm)
+        If Not IsNothing(vm) Then Messages.statusMsg = "New record created, Record count: " + vm.catList.Count.ToString
+
+        initForm(vm)
+abort:
+
+        txtStatus.Text = Messages.statusMsg
+
+    End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+
+        Dim response As String
+        rec = catList(recIndex)
+
+        response = MsgBox("Delete Y/N?", vbYesNo)
+        If response = vbYes Then
+            Messages.statusMsg = "Deleting record ..."
+            txtStatus.Text = Messages.statusMsg
+            bll.delete(rec.Id)
+            If Messages.statusMsg.Contains("Error") Then GoTo abort
+
+            dgvShowCats.DataSource = Nothing
+            vm = bll.getAll()
+            If IsNothing(vm) Then GoTo abort
+
+            If Not IsNothing(vm) Then Messages.statusMsg = "Delete successful, Record count: " + vm.catList.Count.ToString
+
+
+        End If
+
+        initForm(vm)
 
 abort:
-    txtStatus.Text = Messages.statusMsg
 
-  End Sub
+        txtStatus.Text = Messages.statusMsg
 
-  Private Sub btnNewCat_Click(sender As Object, e As EventArgs) Handles btnNewCat.Click
-    pnlNewCat.Visible = True
-    pnlEdit.Visible = False
-    pnlSearch.Visible = False
-    cmbNewCatBreed.SelectedIndex = 0
-  End Sub
+    End Sub
 
-  Private Sub Label13_Click(sender As Object, e As EventArgs) Handles Label13.Click
+    Private Sub btnClearSearch_Click(sender As Object, e As EventArgs) Handles btnClearSearch.Click
+        parmList.Clear()
+        parmList.Add(ValueTuple.Create("breedId", ""))
+        parmList.Add(ValueTuple.Create("gender", ""))
+        parmList.Add(ValueTuple.Create("age", ""))
 
-  End Sub
+        cmbSearchBreed.Text = ""
+        cmbSearchGender.Text = ""
+        txtSearchAge.Text = ""
 
-  Private Function getCatPicFile() As String
-    Dim picFile As String = ""
+        'Dim vm As CatVM = bll.getAll(parmList)
+        'initForm(vm)
 
-    openFileDialog1.Filter = "Image File | *.jpg"
+        'txtStatus.Text = Messages.statusMsg
+    End Sub
 
-    If Directory.Exists(imageDir) Then
-      openFileDialog1.InitialDirectory = imageDir
-    Else
-      openFileDialog1.InitialDirectory = "C:\"
-    End If
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        If Not validateEditor() Then GoTo abort
 
-    If openFileDialog1.ShowDialog = DialogResult.OK Then
-      picFile = openFileDialog1.SafeFileName
-    End If
+        Messages.statusMsg = "Saving record ..."
+        txtStatus.Text = Messages.statusMsg
 
-    Return picFile
+        rec = catList(recIndex)
 
-  End Function
+        'pack control data into data object. 
+        rec.breedId = cmbBreed.SelectedItem.Id
+        rec.breedName = cmbBreed.Text
+        rec.age = txtAge.Text
+        rec.name = txtName.Text
+        rec.gender = cmbGender.SelectedItem.ToString
+        rec.arrivalDate = tdpEditArrivalDate.Value
+        rec.pic = txtCatPicName.Text
 
+        bll.save(rec)
+        If Messages.statusMsg.Contains("Error") Then GoTo abort
 
-  Private Sub radNew_CheckedChanged(sender As Object, e As EventArgs) Handles radNew.CheckedChanged
-    pnlNewCat.Visible = True
-    pnlEdit.Visible = False
-    pnlSearch.Visible = False
-    cmbNewCatBreed.SelectedIndex = 0
-  End Sub
+        dgvShowCats.DataSource = Nothing
+        vm = bll.getAll(parmList)
+        If IsNothing(vm) Then GoTo abort
 
+        Messages.statusMsg = "Save successful, Record count: " + vm.catList.Count.ToString
 
+        initForm(vm)
 
-  Private Sub btnSelectNewCatPic_Click(sender As Object, e As EventArgs)
-    Dim picFile As String = getCatPicFile()
-    picNewCatPic.Image = Image.FromFile(imageDir + picFile)
-    txtNewCatPicName.Text = picFile
-  End Sub
-
-  Private Sub btnSelectCatPic_Click(sender As Object, e As EventArgs)
-    Dim picFile As String = getCatPicFile()
-    If picFile = "" Then GoTo abort
-    picCatPic.Image = Image.FromFile(imageDir + picFile)
-    txtCatPicName.Text = picFile
-    txtCatPicName.DataBindings("Text").WriteValue() 'the control is bound so if it changes programatically then update the binding
 abort:
-  End Sub
+        txtStatus.Text = Messages.statusMsg
 
-  Private Function validateEditor() As Boolean
-    Dim valid As Boolean = True
-    'Note, txtAge is bound so set prop CausesValidation=false otherwise errors will prevent leaving control's editor.
+    End Sub
 
-    ErrorProvider1.Clear()
+    Private Sub btnNewCat_Click(sender As Object, e As EventArgs) Handles btnNewCat.Click
+        pnlNewCat.Visible = True
+        pnlEdit.Visible = False
+        pnlSearch.Visible = False
+        cmbNewCatBreed.SelectedIndex = 0
+    End Sub
 
-    If String.IsNullOrEmpty(txtName.Text.Trim) Then
-      ErrorProvider1.SetError(txtName, "Please enter a value")
-      valid = False
-      txtName.Focus()
+    Private Sub Label13_Click(sender As Object, e As EventArgs) Handles Label13.Click
 
-    ElseIf txtName.Text.Length > 20 Then
-      ErrorProvider1.SetError(txtName, "Maximum of 20 characters")
-      valid = False
-      txtName.Focus()
+    End Sub
 
-    ElseIf String.IsNullOrEmpty(txtAge.Text.Trim) Then
-      ErrorProvider1.SetError(txtAge, "Please enter a value")
-      valid = False
-      txtAge.Focus()
+    Private Function getCatPicFile() As String
+        Dim picFile As String = ""
 
-    ElseIf (Not IsNumeric(txtAge.Text.Trim)) OrElse (Convert.ToInt32(txtAge.Text) > 99 Or Convert.ToInt32(txtAge.Text) < 1) Then
-      ErrorProvider1.SetError(txtAge, "Please enter number (1-99)")
-      valid = False
-      txtAge.Focus()
-    End If
+        openFileDialog1.Filter = "Image File | *.jpg"
 
-    Return valid
+        If Directory.Exists(imageDir) Then
+            openFileDialog1.InitialDirectory = imageDir
+        Else
+            openFileDialog1.InitialDirectory = "C:\"
+        End If
 
-  End Function
+        If openFileDialog1.ShowDialog = DialogResult.OK Then
+            picFile = openFileDialog1.SafeFileName
+        End If
 
-  Private Function validateNewCatEditor() As Boolean
-    Dim valid As Boolean = True
+        Return picFile
 
-    ErrorProvider1.Clear()
-
-    If String.IsNullOrEmpty(txtNewCatName.Text.Trim) Then
-      ErrorProvider1.SetError(txtNewCatName, "Please enter a value")
-      valid = False
-      txtNewCatName.Focus()
-
-    ElseIf txtNewCatName.Text.Length > 20 Then
-      ErrorProvider1.SetError(txtNewCatName, "Maximum of 20 characters")
-      valid = False
-      txtNewCatName.Focus()
-
-    ElseIf String.IsNullOrEmpty(txtNewCatAge.Text.Trim) Then
-      ErrorProvider1.SetError(txtNewCatAge, "Please enter a value")
-      valid = False
-      txtNewCatAge.Focus()
-
-    ElseIf String.IsNullOrEmpty(cmbNewCatGender.Text.Trim) Then
-      ErrorProvider1.SetError(cmbNewCatGender, "Please enter a value")
-      valid = False
-      cmbNewCatGender.Focus()
-
-    ElseIf cmbNewCatBreed.Text = Globals.Defs.selectString Then
-      ErrorProvider1.SetError(cmbNewCatBreed, "Please enter a value")
-      valid = False
-      cmbNewCatBreed.Focus()
+    End Function
 
 
-    ElseIf (Not IsNumeric(txtNewCatAge.Text.Trim)) OrElse (Convert.ToInt32(txtNewCatAge.Text) > 99 Or Convert.ToInt32(txtNewCatAge.Text) < 1) Then
-      ErrorProvider1.SetError(txtNewCatAge, "Please enter number (1-99)")
-      valid = False
-      txtNewCatAge.Focus()
-    End If
-
-    Return valid
-
-  End Function
-
-  Private Function validateSearchEditor() As Boolean
-    Dim valid As Boolean = True
-
-    ErrorProvider1.Clear()
-
-    If (txtSearchAge.Text.Length > 0) AndAlso ((Not IsNumeric(txtSearchAge.Text.Trim)) OrElse (Convert.ToInt32(txtSearchAge.Text) > 99 Or Convert.ToInt32(txtSearchAge.Text) < 1)) Then
-      ErrorProvider1.SetError(txtSearchAge, "Please enter number (1-99)")
-      valid = False
-      txtSearchAge.Focus()
-    End If
-
-    Return valid
-
-  End Function
-
-  Private Sub txtAge_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs)
-
-  End Sub
-
-  Private Sub cmbSearchGender_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbSearchGender.KeyDown
-    e.SuppressKeyPress = True
-  End Sub
-
-  Private Sub cmbSearchBreed_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbSearchBreed.KeyDown
-    e.SuppressKeyPress = True
-  End Sub
-
-  Private Sub dgvShowCats_RowLeave(sender As Object, e As DataGridViewCellEventArgs) Handles dgvShowCats.RowLeave
-
-    'Initialize the DGV row
-    ErrorProvider1.Clear()
-
-    validateEditor()
-  End Sub
-
-  Private Sub dgvShowCats_SelectionChanged(sender As Object, e As EventArgs) Handles dgvShowCats.SelectionChanged
-    'Initialize the DGV row
-    ErrorProvider1.Clear()
-    validateEditor()
-  End Sub
-
-  Private Sub txtAge_Enter(sender As Object, e As EventArgs) Handles txtAge.Enter
-    'txtAge.DataBindings.Clear()
-    'txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True))
-  End Sub
-
-  Private Sub dgvShowCats_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs)
+    Private Sub radNew_CheckedChanged(sender As Object, e As EventArgs) Handles radNew.CheckedChanged
+        pnlNewCat.Visible = True
+        pnlEdit.Visible = False
+        pnlSearch.Visible = False
+        cmbNewCatBreed.SelectedIndex = 0
+    End Sub
 
 
-  End Sub
 
-  Private Sub dgvShowCats_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs)
+    Private Sub btnSelectNewCatPic_Click(sender As Object, e As EventArgs)
+        Dim picFile As String = getCatPicFile()
+        picNewCatPic.Image = Image.FromFile(imageDir + picFile)
+        txtNewCatPicName.Text = picFile
+    End Sub
 
-  End Sub
-
-  Private Sub txtAge_Leave(sender As Object, e As EventArgs) Handles txtAge.Leave
-    'txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True))
-  End Sub
-
-  Private Sub dgvShowCats_Leave(sender As Object, e As EventArgs) Handles dgvShowCats.Leave
-    'txtAge.DataBindings.Clear()
-  End Sub
-
-  Private Sub dgvShowCats_Enter(sender As Object, e As EventArgs) Handles dgvShowCats.Enter
-    'txtAge.DataBindings.Clear()
-    'txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True, 2))
-    'txtAge.DataBindings.DefaultDataSourceUpdateMode = 2
-  End Sub
-
-  Private Sub txtAge_TextChanged(sender As Object, e As EventArgs) Handles txtAge.TextChanged
-
-  End Sub
-
-  Private Sub txtAge_Validating_1(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtAge.Validating
-
-  End Sub
-
-  Private Sub picNewCatPic_Click(sender As Object, e As EventArgs) Handles picNewCatPic.Click
-    Dim picFile As String = getCatPicFile()
-    If picFile = "" Then GoTo abort
-    picNewCatPic.Image = Image.FromFile(imageDir + picFile)
-    txtNewCatPicName.Text = picFile
-    'txtNewCatPicName.DataBindings("Text").WriteValue() 'the control is bound so if it changes programatically then update the binding
-
-    bs.EndEdit()
+    Private Sub btnSelectCatPic_Click(sender As Object, e As EventArgs)
+        Dim picFile As String = getCatPicFile()
+        If picFile = "" Then GoTo abort
+        picCatPic.Image = Image.FromFile(imageDir + picFile)
+        txtCatPicName.Text = picFile
+        txtCatPicName.DataBindings("Text").WriteValue() 'the control is bound so if it changes programatically then update the binding
 abort:
-  End Sub
+    End Sub
 
-  Private Sub pnlEdit_Paint(sender As Object, e As PaintEventArgs) Handles pnlEdit.Paint
+    Private Function validateEditor() As Boolean
+        Dim valid As Boolean = True
+        'Note, txtAge is bound so set prop CausesValidation=false otherwise errors will prevent leaving control's editor.
+
+        ErrorProvider1.Clear()
+
+        If String.IsNullOrEmpty(txtName.Text.Trim) Then
+            ErrorProvider1.SetError(txtName, "Please enter a value")
+            valid = False
+            txtName.Focus()
+
+        ElseIf txtName.Text.Length > 20 Then
+            ErrorProvider1.SetError(txtName, "Maximum of 20 characters")
+            valid = False
+            txtName.Focus()
+
+        ElseIf String.IsNullOrEmpty(txtAge.Text.Trim) Then
+            ErrorProvider1.SetError(txtAge, "Please enter a value")
+            valid = False
+            txtAge.Focus()
+
+        ElseIf (Not IsNumeric(txtAge.Text.Trim)) OrElse (Convert.ToInt32(txtAge.Text) > 99 Or Convert.ToInt32(txtAge.Text) < 1) Then
+            ErrorProvider1.SetError(txtAge, "Please enter number (1-99)")
+            valid = False
+            txtAge.Focus()
+        End If
+
+        Return valid
+
+    End Function
+
+    Private Function validateNewCatEditor() As Boolean
+        Dim valid As Boolean = True
+
+        ErrorProvider1.Clear()
+
+        If String.IsNullOrEmpty(txtNewCatName.Text.Trim) Then
+            ErrorProvider1.SetError(txtNewCatName, "Please enter a value")
+            valid = False
+            txtNewCatName.Focus()
+
+        ElseIf txtNewCatName.Text.Length > 20 Then
+            ErrorProvider1.SetError(txtNewCatName, "Maximum of 20 characters")
+            valid = False
+            txtNewCatName.Focus()
+
+        ElseIf String.IsNullOrEmpty(txtNewCatAge.Text.Trim) Then
+            ErrorProvider1.SetError(txtNewCatAge, "Please enter a value")
+            valid = False
+            txtNewCatAge.Focus()
+
+        ElseIf String.IsNullOrEmpty(cmbNewCatGender.Text.Trim) Then
+            ErrorProvider1.SetError(cmbNewCatGender, "Please enter a value")
+            valid = False
+            cmbNewCatGender.Focus()
+
+        ElseIf cmbNewCatBreed.Text = Globals.Defs.selectString Then
+            ErrorProvider1.SetError(cmbNewCatBreed, "Please enter a value")
+            valid = False
+            cmbNewCatBreed.Focus()
+
+
+        ElseIf (Not IsNumeric(txtNewCatAge.Text.Trim)) OrElse (Convert.ToInt32(txtNewCatAge.Text) > 99 Or Convert.ToInt32(txtNewCatAge.Text) < 1) Then
+            ErrorProvider1.SetError(txtNewCatAge, "Please enter number (1-99)")
+            valid = False
+            txtNewCatAge.Focus()
+        End If
+
+        Return valid
+
+    End Function
+
+    Private Function validateSearchEditor() As Boolean
+        Dim valid As Boolean = True
+
+        ErrorProvider1.Clear()
+
+        If (txtSearchAge.Text.Length > 0) AndAlso ((Not IsNumeric(txtSearchAge.Text.Trim)) OrElse (Convert.ToInt32(txtSearchAge.Text) > 99 Or Convert.ToInt32(txtSearchAge.Text) < 1)) Then
+            ErrorProvider1.SetError(txtSearchAge, "Please enter number (1-99)")
+            valid = False
+            txtSearchAge.Focus()
+        End If
+
+        Return valid
+
+    End Function
+
+    Private Sub txtAge_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs)
+
+    End Sub
+
+    Private Sub cmbSearchGender_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbSearchGender.KeyDown
+        e.SuppressKeyPress = True
+    End Sub
+
+    Private Sub cmbSearchBreed_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbSearchBreed.KeyDown
+        e.SuppressKeyPress = True
+    End Sub
+
+    Private Sub dgvShowCats_RowLeave(sender As Object, e As DataGridViewCellEventArgs) Handles dgvShowCats.RowLeave
+
+        'Initialize the DGV row
+        ErrorProvider1.Clear()
+
+        validateEditor()
+    End Sub
+
+    Private Sub dgvShowCats_SelectionChanged(sender As Object, e As EventArgs) Handles dgvShowCats.SelectionChanged
+        'Initialize the DGV row
+        ErrorProvider1.Clear()
+        validateEditor()
+    End Sub
+
+    Private Sub txtAge_Enter(sender As Object, e As EventArgs) Handles txtAge.Enter
+        'txtAge.DataBindings.Clear()
+        'txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True))
+    End Sub
+
+    Private Sub dgvShowCats_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs)
+
+
+    End Sub
+
+    Private Sub dgvShowCats_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs)
+
+    End Sub
+
+    Private Sub txtAge_Leave(sender As Object, e As EventArgs) Handles txtAge.Leave
+        'txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True))
+    End Sub
+
+    Private Sub dgvShowCats_Leave(sender As Object, e As EventArgs) Handles dgvShowCats.Leave
+        'txtAge.DataBindings.Clear()
+    End Sub
+
+    Private Sub dgvShowCats_Enter(sender As Object, e As EventArgs) Handles dgvShowCats.Enter
+        'txtAge.DataBindings.Clear()
+        'txtAge.DataBindings.Add(New System.Windows.Forms.Binding("Text", bs.DataSource, "age", True, 2))
+        'txtAge.DataBindings.DefaultDataSourceUpdateMode = 2
+    End Sub
+
+    Private Sub txtAge_TextChanged(sender As Object, e As EventArgs) Handles txtAge.TextChanged
+
+    End Sub
+
+    Private Sub txtAge_Validating_1(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtAge.Validating
+
+    End Sub
+
+    Private Sub picNewCatPic_Click(sender As Object, e As EventArgs) Handles picNewCatPic.Click
+        Dim picFile As String = getCatPicFile()
+        If picFile = "" Then GoTo abort
+        picNewCatPic.Image = Image.FromFile(imageDir + picFile)
+        txtNewCatPicName.Text = picFile
+        'txtNewCatPicName.DataBindings("Text").WriteValue() 'the control is bound so if it changes programatically then update the binding
+
+        bs.EndEdit()
+abort:
+    End Sub
+
+    Private Sub pnlEdit_Paint(sender As Object, e As PaintEventArgs) Handles pnlEdit.Paint
 
   End Sub
 
   Private Sub cmbNewCatBreed_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbNewCatBreed.SelectedIndexChanged
 
+  End Sub
+
+  Private Sub radDetails_CheckedChanged(sender As Object, e As EventArgs) Handles radDetails.CheckedChanged
+    If radDetails.Checked Then
+      pnlCatDetails.Visible = True
+      'pnlNewCat.Visible = False
+      'pnlEdit.Visible = True
+    End If
+  End Sub
+
+  Private Sub btnCloseCatDetails_Click(sender As Object, e As EventArgs) Handles btnCloseCatDetails.Click
+    pnlCatDetails.Visible = False
   End Sub
 End Class

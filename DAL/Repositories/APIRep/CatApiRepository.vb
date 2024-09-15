@@ -15,13 +15,13 @@ Public Class CatApiRepository(Of T)
   Inherits APIBase(Of Cat)
   Implements IRepository(Of Cat)
 
-  Private url As String = "https://localhost:7117/api/CatEmployees"
+  Private APIurl As String = "https://localhost:7117/api/CatEmployees"
 
   'Private urlParameters As String = ""
   Private client As HttpClient ' = New HttpClient
 
   Public Sub New()
-    MyBase.uri = "https://localhost:7117/api/CatEmployees"
+    MyBase.url = APIurl
   End Sub
 
 

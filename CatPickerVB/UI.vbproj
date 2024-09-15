@@ -121,9 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="frmShowCats.resx">
       <DependentUpon>frmShowCats.vb</DependentUpon>
@@ -155,6 +155,21 @@
       <Project>{d9d5e9ec-755c-44cd-94ec-7bd4df120858}</Project>
       <Name>Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlueVertiNextArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlueUpArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RedDownArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlueUpArrow1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RedDownArrow1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

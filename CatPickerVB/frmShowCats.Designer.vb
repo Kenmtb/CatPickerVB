@@ -60,30 +60,45 @@ Partial Class frmShowCats
     Me.Label6 = New System.Windows.Forms.Label()
     Me.radEdit = New System.Windows.Forms.RadioButton()
     Me.grpMenu = New System.Windows.Forms.GroupBox()
-    Me.radNew = New System.Windows.Forms.RadioButton()
-    Me.radSearch = New System.Windows.Forms.RadioButton()
-    Me.Label11 = New System.Windows.Forms.Label()
-    Me.Label12 = New System.Windows.Forms.Label()
-    Me.btnNewCat = New System.Windows.Forms.Button()
-    Me.pnlNewCat = New System.Windows.Forms.Panel()
-    Me.tdpNewArivalDate = New System.Windows.Forms.DateTimePicker()
-    Me.txtNewCatPicName = New System.Windows.Forms.TextBox()
-    Me.Label14 = New System.Windows.Forms.Label()
-    Me.cmbNewCatBreed = New System.Windows.Forms.ComboBox()
-    Me.cmbNewCatGender = New System.Windows.Forms.ComboBox()
-    Me.picNewCatPic = New System.Windows.Forms.PictureBox()
-    Me.Label15 = New System.Windows.Forms.Label()
-    Me.txtNewCatAge = New System.Windows.Forms.TextBox()
-    Me.txtNewCatName = New System.Windows.Forms.TextBox()
-    Me.Label16 = New System.Windows.Forms.Label()
-    Me.Label17 = New System.Windows.Forms.Label()
-    Me.Label18 = New System.Windows.Forms.Label()
-    Me.Label13 = New System.Windows.Forms.Label()
-    Me.openFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-    Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-    Me.pnlMain = New System.Windows.Forms.Panel()
-    Me.CatBreedBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-    Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.radDetails = New System.Windows.Forms.RadioButton()
+        Me.radNew = New System.Windows.Forms.RadioButton()
+        Me.radSearch = New System.Windows.Forms.RadioButton()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.btnNewCat = New System.Windows.Forms.Button()
+        Me.pnlNewCat = New System.Windows.Forms.Panel()
+        Me.tdpNewArivalDate = New System.Windows.Forms.DateTimePicker()
+        Me.txtNewCatPicName = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.cmbNewCatBreed = New System.Windows.Forms.ComboBox()
+        Me.cmbNewCatGender = New System.Windows.Forms.ComboBox()
+        Me.picNewCatPic = New System.Windows.Forms.PictureBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.txtNewCatAge = New System.Windows.Forms.TextBox()
+        Me.txtNewCatName = New System.Windows.Forms.TextBox()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.openFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.pnlMain = New System.Windows.Forms.Panel()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.picCatDetailsCatPic = New System.Windows.Forms.PictureBox()
+        Me.pnlCatDetails = New System.Windows.Forms.Panel()
+        Me.bntPrevDetail = New System.Windows.Forms.Button()
+        Me.btnNextDetail = New System.Windows.Forms.Button()
+        Me.txtPageNumber = New System.Windows.Forms.TextBox()
+        Me.txtNewCatDetailsCatDetails = New System.Windows.Forms.TextBox()
+        Me.tdpCatDetailTimeStamp = New System.Windows.Forms.DateTimePicker()
+        Me.btnNewCatDetail = New System.Windows.Forms.Button()
+        Me.txtCatDetailsCatPicName = New System.Windows.Forms.TextBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.CatBreedBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.btnDeleteCatDetail = New System.Windows.Forms.Button()
+        Me.btnSaveCatDetail = New System.Windows.Forms.Button()
+        Me.btnCloseCatDetails = New System.Windows.Forms.Button()
         CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlEdit.SuspendLayout()
@@ -93,6 +108,8 @@ Partial Class frmShowCats
         CType(Me.picNewCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlMain.SuspendLayout()
+        CType(Me.picCatDetailsCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlCatDetails.SuspendLayout()
         CType(Me.CatBreedBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -242,7 +259,7 @@ Partial Class frmShowCats
         Me.pnlEdit.Controls.Add(Me.Label4)
         Me.pnlEdit.Controls.Add(Me.Label2)
         Me.pnlEdit.Controls.Add(Me.Label3)
-        Me.pnlEdit.Location = New System.Drawing.Point(86, 15)
+        Me.pnlEdit.Location = New System.Drawing.Point(341, 11)
         Me.pnlEdit.Name = "pnlEdit"
         Me.pnlEdit.Size = New System.Drawing.Size(493, 291)
         Me.pnlEdit.TabIndex = 15
@@ -442,14 +459,26 @@ Partial Class frmShowCats
         'grpMenu
         '
         Me.grpMenu.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        Me.grpMenu.Controls.Add(Me.radDetails)
         Me.grpMenu.Controls.Add(Me.radNew)
         Me.grpMenu.Controls.Add(Me.radSearch)
         Me.grpMenu.Controls.Add(Me.radEdit)
         Me.grpMenu.Location = New System.Drawing.Point(9, 117)
         Me.grpMenu.Name = "grpMenu"
-        Me.grpMenu.Size = New System.Drawing.Size(82, 98)
+        Me.grpMenu.Size = New System.Drawing.Size(82, 121)
         Me.grpMenu.TabIndex = 18
         Me.grpMenu.TabStop = False
+        '
+        'radDetails
+        '
+        Me.radDetails.AutoSize = True
+        Me.radDetails.Location = New System.Drawing.Point(7, 94)
+        Me.radDetails.Name = "radDetails"
+        Me.radDetails.Size = New System.Drawing.Size(57, 17)
+        Me.radDetails.TabIndex = 13
+        Me.radDetails.TabStop = True
+        Me.radDetails.Text = "Details"
+        Me.radDetails.UseVisualStyleBackColor = True
         '
         'radNew
         '
@@ -522,7 +551,7 @@ Partial Class frmShowCats
         Me.pnlNewCat.Controls.Add(Me.Label17)
         Me.pnlNewCat.Controls.Add(Me.Label18)
         Me.pnlNewCat.Controls.Add(Me.Label13)
-        Me.pnlNewCat.Location = New System.Drawing.Point(86, 15)
+        Me.pnlNewCat.Location = New System.Drawing.Point(671, 470)
         Me.pnlNewCat.Name = "pnlNewCat"
         Me.pnlNewCat.Size = New System.Drawing.Size(493, 291)
         Me.pnlNewCat.TabIndex = 27
@@ -651,7 +680,6 @@ Partial Class frmShowCats
         '
         Me.pnlMain.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.pnlMain.Controls.Add(Me.pnlEdit)
-        Me.pnlMain.Controls.Add(Me.pnlNewCat)
         Me.pnlMain.Controls.Add(Me.grpMenu)
         Me.pnlMain.Controls.Add(Me.txtStatus)
         Me.pnlMain.Controls.Add(Me.pnlSearch)
@@ -661,9 +689,156 @@ Partial Class frmShowCats
         Me.pnlMain.Size = New System.Drawing.Size(590, 349)
         Me.pnlMain.TabIndex = 28
         '
+        'picCatDetailsCatPic
+        '
+        Me.picCatDetailsCatPic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.picCatDetailsCatPic.Location = New System.Drawing.Point(17, 38)
+        Me.picCatDetailsCatPic.Name = "picCatDetailsCatPic"
+        Me.picCatDetailsCatPic.Size = New System.Drawing.Size(125, 103)
+        Me.picCatDetailsCatPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.picCatDetailsCatPic.TabIndex = 19
+        Me.picCatDetailsCatPic.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.picCatDetailsCatPic, "Click to insert a picture")
+        '
+        'pnlCatDetails
+        '
+        Me.pnlCatDetails.BackColor = System.Drawing.SystemColors.Control
+        Me.pnlCatDetails.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pnlCatDetails.Controls.Add(Me.btnCloseCatDetails)
+        Me.pnlCatDetails.Controls.Add(Me.btnSaveCatDetail)
+        Me.pnlCatDetails.Controls.Add(Me.btnDeleteCatDetail)
+        Me.pnlCatDetails.Controls.Add(Me.bntPrevDetail)
+        Me.pnlCatDetails.Controls.Add(Me.btnNextDetail)
+        Me.pnlCatDetails.Controls.Add(Me.txtPageNumber)
+        Me.pnlCatDetails.Controls.Add(Me.txtNewCatDetailsCatDetails)
+        Me.pnlCatDetails.Controls.Add(Me.tdpCatDetailTimeStamp)
+        Me.pnlCatDetails.Controls.Add(Me.btnNewCatDetail)
+        Me.pnlCatDetails.Controls.Add(Me.picCatDetailsCatPic)
+        Me.pnlCatDetails.Controls.Add(Me.txtCatDetailsCatPicName)
+        Me.pnlCatDetails.Controls.Add(Me.Label22)
+        Me.pnlCatDetails.Controls.Add(Me.Label25)
+        Me.pnlCatDetails.Location = New System.Drawing.Point(178, 155)
+        Me.pnlCatDetails.Name = "pnlCatDetails"
+        Me.pnlCatDetails.Size = New System.Drawing.Size(493, 291)
+        Me.pnlCatDetails.TabIndex = 29
+        '
+        'bntPrevDetail
+        '
+        Me.bntPrevDetail.BackgroundImage = CType(resources.GetObject("bntPrevDetail.BackgroundImage"), System.Drawing.Image)
+        Me.bntPrevDetail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.bntPrevDetail.Location = New System.Drawing.Point(285, 221)
+        Me.bntPrevDetail.Name = "bntPrevDetail"
+        Me.bntPrevDetail.Size = New System.Drawing.Size(147, 40)
+        Me.bntPrevDetail.TabIndex = 34
+        Me.bntPrevDetail.Text = "Prev"
+        Me.bntPrevDetail.UseVisualStyleBackColor = True
+        '
+        'btnNextDetail
+        '
+        Me.btnNextDetail.BackColor = System.Drawing.Color.Transparent
+        Me.btnNextDetail.BackgroundImage = CType(resources.GetObject("btnNextDetail.BackgroundImage"), System.Drawing.Image)
+        Me.btnNextDetail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnNextDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNextDetail.Location = New System.Drawing.Point(285, 172)
+        Me.btnNextDetail.Name = "btnNextDetail"
+        Me.btnNextDetail.Size = New System.Drawing.Size(147, 43)
+        Me.btnNextDetail.TabIndex = 33
+        Me.btnNextDetail.Text = "Next"
+        Me.btnNextDetail.UseVisualStyleBackColor = False
+        '
+        'txtPageNumber
+        '
+        Me.txtPageNumber.Location = New System.Drawing.Point(423, 267)
+        Me.txtPageNumber.Name = "txtPageNumber"
+        Me.txtPageNumber.ReadOnly = True
+        Me.txtPageNumber.Size = New System.Drawing.Size(53, 20)
+        Me.txtPageNumber.TabIndex = 32
+        Me.txtPageNumber.TabStop = False
+        '
+        'txtNewCatDetailsCatDetails
+        '
+        Me.txtNewCatDetailsCatDetails.Location = New System.Drawing.Point(154, 38)
+        Me.txtNewCatDetailsCatDetails.Multiline = True
+        Me.txtNewCatDetailsCatDetails.Name = "txtNewCatDetailsCatDetails"
+        Me.txtNewCatDetailsCatDetails.Size = New System.Drawing.Size(322, 129)
+        Me.txtNewCatDetailsCatDetails.TabIndex = 31
+        '
+        'tdpCatDetailTimeStamp
+        '
+        Me.tdpCatDetailTimeStamp.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.tdpCatDetailTimeStamp.Location = New System.Drawing.Point(154, 173)
+        Me.tdpCatDetailTimeStamp.Name = "tdpCatDetailTimeStamp"
+        Me.tdpCatDetailTimeStamp.Size = New System.Drawing.Size(125, 20)
+        Me.tdpCatDetailTimeStamp.TabIndex = 24
+        '
+        'btnNewCatDetail
+        '
+        Me.btnNewCatDetail.Location = New System.Drawing.Point(193, 199)
+        Me.btnNewCatDetail.Name = "btnNewCatDetail"
+        Me.btnNewCatDetail.Size = New System.Drawing.Size(86, 27)
+        Me.btnNewCatDetail.TabIndex = 26
+        Me.btnNewCatDetail.Text = "New"
+        Me.btnNewCatDetail.UseVisualStyleBackColor = True
+        '
+        'txtCatDetailsCatPicName
+        '
+        Me.txtCatDetailsCatPicName.Enabled = False
+        Me.txtCatDetailsCatPicName.Location = New System.Drawing.Point(17, 147)
+        Me.txtCatDetailsCatPicName.Name = "txtCatDetailsCatPicName"
+        Me.txtCatDetailsCatPicName.ReadOnly = True
+        Me.txtCatDetailsCatPicName.Size = New System.Drawing.Size(125, 20)
+        Me.txtCatDetailsCatPicName.TabIndex = 20
+        Me.txtCatDetailsCatPicName.TabStop = False
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(103, 179)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(30, 13)
+        Me.Label22.TabIndex = 26
+        Me.Label22.Text = "Date"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.Location = New System.Drawing.Point(192, 15)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(87, 20)
+        Me.Label25.TabIndex = 16
+        Me.Label25.Text = "Cat Details"
+        '
         'CatBreedBindingSource
         '
         Me.CatBreedBindingSource.DataSource = GetType(Models.CatBreed)
+        '
+        'btnDeleteCatDetail
+        '
+        Me.btnDeleteCatDetail.Location = New System.Drawing.Point(193, 260)
+        Me.btnDeleteCatDetail.Name = "btnDeleteCatDetail"
+        Me.btnDeleteCatDetail.Size = New System.Drawing.Size(86, 27)
+        Me.btnDeleteCatDetail.TabIndex = 35
+        Me.btnDeleteCatDetail.Text = "Delete"
+        Me.btnDeleteCatDetail.UseVisualStyleBackColor = True
+        '
+        'btnSaveCatDetail
+        '
+        Me.btnSaveCatDetail.Location = New System.Drawing.Point(193, 228)
+        Me.btnSaveCatDetail.Name = "btnSaveCatDetail"
+        Me.btnSaveCatDetail.Size = New System.Drawing.Size(86, 27)
+        Me.btnSaveCatDetail.TabIndex = 36
+        Me.btnSaveCatDetail.Text = "Save"
+        Me.btnSaveCatDetail.UseVisualStyleBackColor = True
+        '
+        'btnCloseCatDetails
+        '
+        Me.btnCloseCatDetails.Location = New System.Drawing.Point(390, 5)
+        Me.btnCloseCatDetails.Name = "btnCloseCatDetails"
+        Me.btnCloseCatDetails.Size = New System.Drawing.Size(86, 27)
+        Me.btnCloseCatDetails.TabIndex = 37
+        Me.btnCloseCatDetails.Text = "Close"
+        Me.btnCloseCatDetails.UseVisualStyleBackColor = True
         '
         'frmShowCats
         '
@@ -672,6 +847,8 @@ Partial Class frmShowCats
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1241, 839)
+        Me.Controls.Add(Me.pnlNewCat)
+        Me.Controls.Add(Me.pnlCatDetails)
         Me.Controls.Add(Me.pnlMain)
         Me.Controls.Add(Me.btnNewCat)
         Me.Controls.Add(Me.btnShowSelected)
@@ -695,6 +872,9 @@ Partial Class frmShowCats
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlMain.ResumeLayout(False)
         Me.pnlMain.PerformLayout()
+        CType(Me.picCatDetailsCatPic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlCatDetails.ResumeLayout(False)
+        Me.pnlCatDetails.PerformLayout()
         CType(Me.CatBreedBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -760,4 +940,19 @@ Partial Class frmShowCats
     Friend WithEvents tdpNewArivalDate As DateTimePicker
     Friend WithEvents pnlMain As Panel
   Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents radDetails As RadioButton
+    Friend WithEvents txtNewCatDetailsCatDetails As TextBox
+    Friend WithEvents tdpCatDetailTimeStamp As DateTimePicker
+    Friend WithEvents btnNewCatDetail As Button
+    Friend WithEvents picCatDetailsCatPic As PictureBox
+    Friend WithEvents txtCatDetailsCatPicName As TextBox
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label25 As Label
+    Friend WithEvents txtPageNumber As TextBox
+    Friend WithEvents bntPrevDetail As Button
+    Friend WithEvents btnNextDetail As Button
+    Friend WithEvents btnSaveCatDetail As Button
+    Friend WithEvents btnDeleteCatDetail As Button
+    Private WithEvents pnlCatDetails As Panel
+    Friend WithEvents btnCloseCatDetails As Button
 End Class
