@@ -86,6 +86,9 @@ Partial Class frmShowCats
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.picCatDetailsCatPic = New System.Windows.Forms.PictureBox()
         Me.pnlCatDetails = New System.Windows.Forms.Panel()
+        Me.btnCloseCatDetails = New System.Windows.Forms.Button()
+        Me.btnSaveCatDetail = New System.Windows.Forms.Button()
+        Me.btnDeleteCatDetail = New System.Windows.Forms.Button()
         Me.bntPrevDetail = New System.Windows.Forms.Button()
         Me.btnNextDetail = New System.Windows.Forms.Button()
         Me.txtPageNumber = New System.Windows.Forms.TextBox()
@@ -96,9 +99,6 @@ Partial Class frmShowCats
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.CatBreedBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.btnDeleteCatDetail = New System.Windows.Forms.Button()
-        Me.btnSaveCatDetail = New System.Windows.Forms.Button()
-        Me.btnCloseCatDetails = New System.Windows.Forms.Button()
         CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlEdit.SuspendLayout()
@@ -722,6 +722,33 @@ Partial Class frmShowCats
         Me.pnlCatDetails.Size = New System.Drawing.Size(493, 291)
         Me.pnlCatDetails.TabIndex = 29
         '
+        'btnCloseCatDetails
+        '
+        Me.btnCloseCatDetails.Location = New System.Drawing.Point(390, 5)
+        Me.btnCloseCatDetails.Name = "btnCloseCatDetails"
+        Me.btnCloseCatDetails.Size = New System.Drawing.Size(86, 27)
+        Me.btnCloseCatDetails.TabIndex = 37
+        Me.btnCloseCatDetails.Text = "Close"
+        Me.btnCloseCatDetails.UseVisualStyleBackColor = True
+        '
+        'btnSaveCatDetail
+        '
+        Me.btnSaveCatDetail.Location = New System.Drawing.Point(193, 228)
+        Me.btnSaveCatDetail.Name = "btnSaveCatDetail"
+        Me.btnSaveCatDetail.Size = New System.Drawing.Size(86, 27)
+        Me.btnSaveCatDetail.TabIndex = 36
+        Me.btnSaveCatDetail.Text = "Save"
+        Me.btnSaveCatDetail.UseVisualStyleBackColor = True
+        '
+        'btnDeleteCatDetail
+        '
+        Me.btnDeleteCatDetail.Location = New System.Drawing.Point(193, 260)
+        Me.btnDeleteCatDetail.Name = "btnDeleteCatDetail"
+        Me.btnDeleteCatDetail.Size = New System.Drawing.Size(86, 27)
+        Me.btnDeleteCatDetail.TabIndex = 35
+        Me.btnDeleteCatDetail.Text = "Delete"
+        Me.btnDeleteCatDetail.UseVisualStyleBackColor = True
+        '
         'bntPrevDetail
         '
         Me.bntPrevDetail.BackgroundImage = CType(resources.GetObject("bntPrevDetail.BackgroundImage"), System.Drawing.Image)
@@ -812,33 +839,6 @@ Partial Class frmShowCats
         'CatBreedBindingSource
         '
         Me.CatBreedBindingSource.DataSource = GetType(Models.CatBreed)
-        '
-        'btnDeleteCatDetail
-        '
-        Me.btnDeleteCatDetail.Location = New System.Drawing.Point(193, 260)
-        Me.btnDeleteCatDetail.Name = "btnDeleteCatDetail"
-        Me.btnDeleteCatDetail.Size = New System.Drawing.Size(86, 27)
-        Me.btnDeleteCatDetail.TabIndex = 35
-        Me.btnDeleteCatDetail.Text = "Delete"
-        Me.btnDeleteCatDetail.UseVisualStyleBackColor = True
-        '
-        'btnSaveCatDetail
-        '
-        Me.btnSaveCatDetail.Location = New System.Drawing.Point(193, 228)
-        Me.btnSaveCatDetail.Name = "btnSaveCatDetail"
-        Me.btnSaveCatDetail.Size = New System.Drawing.Size(86, 27)
-        Me.btnSaveCatDetail.TabIndex = 36
-        Me.btnSaveCatDetail.Text = "Save"
-        Me.btnSaveCatDetail.UseVisualStyleBackColor = True
-        '
-        'btnCloseCatDetails
-        '
-        Me.btnCloseCatDetails.Location = New System.Drawing.Point(390, 5)
-        Me.btnCloseCatDetails.Name = "btnCloseCatDetails"
-        Me.btnCloseCatDetails.Size = New System.Drawing.Size(86, 27)
-        Me.btnCloseCatDetails.TabIndex = 37
-        Me.btnCloseCatDetails.Text = "Close"
-        Me.btnCloseCatDetails.UseVisualStyleBackColor = True
         '
         'frmShowCats
         '

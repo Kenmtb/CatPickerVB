@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CatBLL.vb" />
+    <Compile Include="CatDetailsBLL.vb" />
     <Compile Include="CatFilterBLL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

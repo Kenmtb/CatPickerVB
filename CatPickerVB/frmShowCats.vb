@@ -16,6 +16,7 @@ Public Class frmShowCats
   Dim frm As Form1
   Dim ctrl As CatController
   Dim vm As CatVM
+
   Dim rec As Cat
   Dim recIndex As Integer
   Dim bs As BindingSource
@@ -755,5 +756,12 @@ abort:
 
   Private Sub btnCloseCatDetails_Click(sender As Object, e As EventArgs) Handles btnCloseCatDetails.Click
     pnlCatDetails.Visible = False
+  End Sub
+
+  Private Sub pnlCatDetails_Paint(sender As Object, e As PaintEventArgs) Handles pnlCatDetails.Paint
+    Dim detailVM As CatDetailsVM
+    Dim catDetailBll As New BLL.CatDetailsBLL
+    detailVM = catDetailBll.getAll(parmList)
+
   End Sub
 End Class
