@@ -12,7 +12,7 @@ Public Class CatDetailApiRepository(Of T)
   Inherits APIBase(Of CatDetail)
   Implements IRepository(Of CatDetail)
 
-  Private APIurl As String = "https://localhost:7117/api/CatEmployees"
+  Private APIurl As String = "https://localhost:7117/api/CatDetails"
 
   'Private urlParameters As String = ""
   Private client As HttpClient ' = New HttpClient

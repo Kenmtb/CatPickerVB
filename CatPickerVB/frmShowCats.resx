@@ -837,7 +837,7 @@
         FMiCKA4c0AnmgOUG/9k=
 </value>
   </data>
-  <data name="bntPrevDetail.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="bntPrevCatNote.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAkGBxAPDxANDRANDw0PEA4PDQ0PDg8NDg0NFREWFhURExUY
         HSggGBolGxUVJTUtJSkrLi4vFx8zODMsNzQtLiv/2wBDAQoKCg4NDhsQEBsrJh8lLS0tLS4tLy0tLS0t
@@ -960,7 +960,7 @@
         ni0GQxBnNQZsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/9k=
 </value>
   </data>
-  <data name="btnNextDetail.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnNextCatNote.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAkGBxISEhUSExIVFRUXFRUYFRUWGBUXFxUVFRUXFhgXFRoY
         HSggGBolHRUYITEiJSkrLi4uFx8zODMtNygtLiv/2wBDAQoKCg4NDhsQEBsxJSAlNy0tMi8tLS0tLTUt

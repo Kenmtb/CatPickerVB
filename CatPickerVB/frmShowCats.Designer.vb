@@ -86,19 +86,22 @@ Partial Class frmShowCats
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.picCatDetailsCatPic = New System.Windows.Forms.PictureBox()
         Me.pnlCatDetails = New System.Windows.Forms.Panel()
+        Me.AddCatNotes = New System.Windows.Forms.Button()
+        Me.txtCatNotes = New System.Windows.Forms.TextBox()
+        Me.txtCatDetailsCatId = New System.Windows.Forms.TextBox()
         Me.btnCloseCatDetails = New System.Windows.Forms.Button()
         Me.btnSaveCatDetail = New System.Windows.Forms.Button()
         Me.btnDeleteCatDetail = New System.Windows.Forms.Button()
-        Me.bntPrevDetail = New System.Windows.Forms.Button()
-        Me.btnNextDetail = New System.Windows.Forms.Button()
+        Me.bntPrevCatNote = New System.Windows.Forms.Button()
+        Me.btnNextCatNote = New System.Windows.Forms.Button()
         Me.txtPageNumber = New System.Windows.Forms.TextBox()
-        Me.txtNewCatDetailsCatDetails = New System.Windows.Forms.TextBox()
+        Me.txtCatDetails = New System.Windows.Forms.TextBox()
         Me.tdpCatDetailTimeStamp = New System.Windows.Forms.DateTimePicker()
         Me.btnNewCatDetail = New System.Windows.Forms.Button()
         Me.txtCatDetailsCatPicName = New System.Windows.Forms.TextBox()
-        Me.Label22 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.CatBreedBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.txtCatNoteStatus = New System.Windows.Forms.TextBox()
         CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlEdit.SuspendLayout()
@@ -259,7 +262,7 @@ Partial Class frmShowCats
         Me.pnlEdit.Controls.Add(Me.Label4)
         Me.pnlEdit.Controls.Add(Me.Label2)
         Me.pnlEdit.Controls.Add(Me.Label3)
-        Me.pnlEdit.Location = New System.Drawing.Point(341, 11)
+        Me.pnlEdit.Location = New System.Drawing.Point(585, 48)
         Me.pnlEdit.Name = "pnlEdit"
         Me.pnlEdit.Size = New System.Drawing.Size(493, 291)
         Me.pnlEdit.TabIndex = 15
@@ -704,23 +707,51 @@ Partial Class frmShowCats
         '
         Me.pnlCatDetails.BackColor = System.Drawing.SystemColors.Control
         Me.pnlCatDetails.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pnlCatDetails.Controls.Add(Me.txtCatNoteStatus)
+        Me.pnlCatDetails.Controls.Add(Me.AddCatNotes)
+        Me.pnlCatDetails.Controls.Add(Me.txtCatNotes)
+        Me.pnlCatDetails.Controls.Add(Me.txtCatDetailsCatId)
         Me.pnlCatDetails.Controls.Add(Me.btnCloseCatDetails)
         Me.pnlCatDetails.Controls.Add(Me.btnSaveCatDetail)
         Me.pnlCatDetails.Controls.Add(Me.btnDeleteCatDetail)
-        Me.pnlCatDetails.Controls.Add(Me.bntPrevDetail)
-        Me.pnlCatDetails.Controls.Add(Me.btnNextDetail)
+        Me.pnlCatDetails.Controls.Add(Me.bntPrevCatNote)
+        Me.pnlCatDetails.Controls.Add(Me.btnNextCatNote)
         Me.pnlCatDetails.Controls.Add(Me.txtPageNumber)
-        Me.pnlCatDetails.Controls.Add(Me.txtNewCatDetailsCatDetails)
+        Me.pnlCatDetails.Controls.Add(Me.txtCatDetails)
         Me.pnlCatDetails.Controls.Add(Me.tdpCatDetailTimeStamp)
         Me.pnlCatDetails.Controls.Add(Me.btnNewCatDetail)
         Me.pnlCatDetails.Controls.Add(Me.picCatDetailsCatPic)
         Me.pnlCatDetails.Controls.Add(Me.txtCatDetailsCatPicName)
-        Me.pnlCatDetails.Controls.Add(Me.Label22)
         Me.pnlCatDetails.Controls.Add(Me.Label25)
         Me.pnlCatDetails.Location = New System.Drawing.Point(178, 155)
         Me.pnlCatDetails.Name = "pnlCatDetails"
         Me.pnlCatDetails.Size = New System.Drawing.Size(493, 291)
         Me.pnlCatDetails.TabIndex = 29
+        '
+        'AddCatNotes
+        '
+        Me.AddCatNotes.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.AddCatNotes.Location = New System.Drawing.Point(289, 9)
+        Me.AddCatNotes.Name = "AddCatNotes"
+        Me.AddCatNotes.Size = New System.Drawing.Size(94, 23)
+        Me.AddCatNotes.TabIndex = 40
+        Me.AddCatNotes.Text = "Auto note add"
+        Me.AddCatNotes.UseVisualStyleBackColor = False
+        '
+        'txtCatNotes
+        '
+        Me.txtCatNotes.Location = New System.Drawing.Point(154, 38)
+        Me.txtCatNotes.Multiline = True
+        Me.txtCatNotes.Name = "txtCatNotes"
+        Me.txtCatNotes.Size = New System.Drawing.Size(321, 128)
+        Me.txtCatNotes.TabIndex = 39
+        '
+        'txtCatDetailsCatId
+        '
+        Me.txtCatDetailsCatId.Location = New System.Drawing.Point(296, 236)
+        Me.txtCatDetailsCatId.Name = "txtCatDetailsCatId"
+        Me.txtCatDetailsCatId.Size = New System.Drawing.Size(51, 20)
+        Me.txtCatDetailsCatId.TabIndex = 38
         '
         'btnCloseCatDetails
         '
@@ -733,7 +764,7 @@ Partial Class frmShowCats
         '
         'btnSaveCatDetail
         '
-        Me.btnSaveCatDetail.Location = New System.Drawing.Point(193, 228)
+        Me.btnSaveCatDetail.Location = New System.Drawing.Point(154, 197)
         Me.btnSaveCatDetail.Name = "btnSaveCatDetail"
         Me.btnSaveCatDetail.Size = New System.Drawing.Size(86, 27)
         Me.btnSaveCatDetail.TabIndex = 36
@@ -742,36 +773,36 @@ Partial Class frmShowCats
         '
         'btnDeleteCatDetail
         '
-        Me.btnDeleteCatDetail.Location = New System.Drawing.Point(193, 260)
+        Me.btnDeleteCatDetail.Location = New System.Drawing.Point(154, 229)
         Me.btnDeleteCatDetail.Name = "btnDeleteCatDetail"
         Me.btnDeleteCatDetail.Size = New System.Drawing.Size(86, 27)
         Me.btnDeleteCatDetail.TabIndex = 35
         Me.btnDeleteCatDetail.Text = "Delete"
         Me.btnDeleteCatDetail.UseVisualStyleBackColor = True
         '
-        'bntPrevDetail
+        'bntPrevCatNote
         '
-        Me.bntPrevDetail.BackgroundImage = CType(resources.GetObject("bntPrevDetail.BackgroundImage"), System.Drawing.Image)
-        Me.bntPrevDetail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.bntPrevDetail.Location = New System.Drawing.Point(285, 221)
-        Me.bntPrevDetail.Name = "bntPrevDetail"
-        Me.bntPrevDetail.Size = New System.Drawing.Size(147, 40)
-        Me.bntPrevDetail.TabIndex = 34
-        Me.bntPrevDetail.Text = "Prev"
-        Me.bntPrevDetail.UseVisualStyleBackColor = True
+        Me.bntPrevCatNote.BackgroundImage = CType(resources.GetObject("bntPrevCatNote.BackgroundImage"), System.Drawing.Image)
+        Me.bntPrevCatNote.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.bntPrevCatNote.Location = New System.Drawing.Point(416, 221)
+        Me.bntPrevCatNote.Name = "bntPrevCatNote"
+        Me.bntPrevCatNote.Size = New System.Drawing.Size(60, 36)
+        Me.bntPrevCatNote.TabIndex = 34
+        Me.bntPrevCatNote.Text = "Prev"
+        Me.bntPrevCatNote.UseVisualStyleBackColor = True
         '
-        'btnNextDetail
+        'btnNextCatNote
         '
-        Me.btnNextDetail.BackColor = System.Drawing.Color.Transparent
-        Me.btnNextDetail.BackgroundImage = CType(resources.GetObject("btnNextDetail.BackgroundImage"), System.Drawing.Image)
-        Me.btnNextDetail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnNextDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNextDetail.Location = New System.Drawing.Point(285, 172)
-        Me.btnNextDetail.Name = "btnNextDetail"
-        Me.btnNextDetail.Size = New System.Drawing.Size(147, 43)
-        Me.btnNextDetail.TabIndex = 33
-        Me.btnNextDetail.Text = "Next"
-        Me.btnNextDetail.UseVisualStyleBackColor = False
+        Me.btnNextCatNote.BackColor = System.Drawing.Color.Transparent
+        Me.btnNextCatNote.BackgroundImage = CType(resources.GetObject("btnNextCatNote.BackgroundImage"), System.Drawing.Image)
+        Me.btnNextCatNote.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnNextCatNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNextCatNote.Location = New System.Drawing.Point(416, 173)
+        Me.btnNextCatNote.Name = "btnNextCatNote"
+        Me.btnNextCatNote.Size = New System.Drawing.Size(60, 42)
+        Me.btnNextCatNote.TabIndex = 33
+        Me.btnNextCatNote.Text = "Next"
+        Me.btnNextCatNote.UseVisualStyleBackColor = False
         '
         'txtPageNumber
         '
@@ -782,25 +813,25 @@ Partial Class frmShowCats
         Me.txtPageNumber.TabIndex = 32
         Me.txtPageNumber.TabStop = False
         '
-        'txtNewCatDetailsCatDetails
+        'txtCatDetails
         '
-        Me.txtNewCatDetailsCatDetails.Location = New System.Drawing.Point(154, 38)
-        Me.txtNewCatDetailsCatDetails.Multiline = True
-        Me.txtNewCatDetailsCatDetails.Name = "txtNewCatDetailsCatDetails"
-        Me.txtNewCatDetailsCatDetails.Size = New System.Drawing.Size(322, 129)
-        Me.txtNewCatDetailsCatDetails.TabIndex = 31
+        Me.txtCatDetails.Location = New System.Drawing.Point(17, 172)
+        Me.txtCatDetails.Multiline = True
+        Me.txtCatDetails.Name = "txtCatDetails"
+        Me.txtCatDetails.Size = New System.Drawing.Size(125, 88)
+        Me.txtCatDetails.TabIndex = 31
         '
         'tdpCatDetailTimeStamp
         '
         Me.tdpCatDetailTimeStamp.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.tdpCatDetailTimeStamp.Location = New System.Drawing.Point(154, 173)
+        Me.tdpCatDetailTimeStamp.Location = New System.Drawing.Point(258, 169)
         Me.tdpCatDetailTimeStamp.Name = "tdpCatDetailTimeStamp"
         Me.tdpCatDetailTimeStamp.Size = New System.Drawing.Size(125, 20)
         Me.tdpCatDetailTimeStamp.TabIndex = 24
         '
         'btnNewCatDetail
         '
-        Me.btnNewCatDetail.Location = New System.Drawing.Point(193, 199)
+        Me.btnNewCatDetail.Location = New System.Drawing.Point(154, 168)
         Me.btnNewCatDetail.Name = "btnNewCatDetail"
         Me.btnNewCatDetail.Size = New System.Drawing.Size(86, 27)
         Me.btnNewCatDetail.TabIndex = 26
@@ -817,15 +848,6 @@ Partial Class frmShowCats
         Me.txtCatDetailsCatPicName.TabIndex = 20
         Me.txtCatDetailsCatPicName.TabStop = False
         '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(103, 179)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(30, 13)
-        Me.Label22.TabIndex = 26
-        Me.Label22.Text = "Date"
-        '
         'Label25
         '
         Me.Label25.AutoSize = True
@@ -839,6 +861,15 @@ Partial Class frmShowCats
         'CatBreedBindingSource
         '
         Me.CatBreedBindingSource.DataSource = GetType(Models.CatBreed)
+        '
+        'txtCatNoteStatus
+        '
+        Me.txtCatNoteStatus.Location = New System.Drawing.Point(154, 267)
+        Me.txtCatNoteStatus.Name = "txtCatNoteStatus"
+        Me.txtCatNoteStatus.ReadOnly = True
+        Me.txtCatNoteStatus.Size = New System.Drawing.Size(229, 20)
+        Me.txtCatNoteStatus.TabIndex = 41
+        Me.txtCatNoteStatus.TabStop = False
         '
         'frmShowCats
         '
@@ -941,18 +972,21 @@ Partial Class frmShowCats
     Friend WithEvents pnlMain As Panel
   Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents radDetails As RadioButton
-    Friend WithEvents txtNewCatDetailsCatDetails As TextBox
+    Friend WithEvents txtCatDetails As TextBox
     Friend WithEvents tdpCatDetailTimeStamp As DateTimePicker
     Friend WithEvents btnNewCatDetail As Button
     Friend WithEvents picCatDetailsCatPic As PictureBox
     Friend WithEvents txtCatDetailsCatPicName As TextBox
-    Friend WithEvents Label22 As Label
     Friend WithEvents Label25 As Label
     Friend WithEvents txtPageNumber As TextBox
-    Friend WithEvents bntPrevDetail As Button
-    Friend WithEvents btnNextDetail As Button
+    Friend WithEvents bntPrevCatNote As Button
+    Friend WithEvents btnNextCatNote As Button
     Friend WithEvents btnSaveCatDetail As Button
     Friend WithEvents btnDeleteCatDetail As Button
     Private WithEvents pnlCatDetails As Panel
     Friend WithEvents btnCloseCatDetails As Button
+    Friend WithEvents txtCatDetailsCatId As TextBox
+    Friend WithEvents txtCatNotes As TextBox
+    Friend WithEvents AddCatNotes As Button
+    Friend WithEvents txtCatNoteStatus As TextBox
 End Class
