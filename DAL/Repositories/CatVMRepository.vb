@@ -10,7 +10,7 @@ Public Class CatVMRepository
   Private rep As IRepository(Of Cat)
 
   Private catbreed As New CatBreedRepository(Of CatBreed)
-  Private detailsRep As CatDetailRepository(Of CatDetail)
+  'Private detailsRep As CatDetailRepository(Of CatDetail)
 
   Public Sub New(rep As IRepository(Of Cat))
 

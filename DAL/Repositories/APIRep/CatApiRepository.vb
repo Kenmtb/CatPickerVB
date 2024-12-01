@@ -105,6 +105,7 @@ Public Class CatApiRepository(Of T)
   End Function
 
   Private Function getAll() As IEnumerable(Of Cat) Implements IRepository(Of Cat).getAll
+    'If no parameters, create empty list
     Dim result As List(Of Cat) = getAllHelper(New List(Of (String, String))).Result
     Return result
   End Function
@@ -165,8 +166,7 @@ Public Class CatApiRepository(Of T)
     End Try
   End Function
 
-  Public Function getById(id As Object) As Cat Implements IRepository(Of Cat).getById
+  Private Function IRepository_getById(id As Object) As IEnumerable(Of Cat) Implements IRepository(Of Cat).getById
     Throw New NotImplementedException()
   End Function
-
 End Class

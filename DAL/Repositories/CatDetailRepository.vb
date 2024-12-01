@@ -16,6 +16,10 @@ Public Class CatDetailRepository(Of T)
     Throw New NotImplementedException()
   End Sub
 
+  Public Function delete(id As Object) As Object Implements IRepository(Of CatDetail).delete
+    Throw New NotImplementedException()
+  End Function
+
   Public Sub save(obj As CatDetail) Implements IRepository(Of CatDetail).save
     Throw New NotImplementedException()
   End Sub
@@ -29,7 +33,7 @@ Public Class CatDetailRepository(Of T)
     Throw New NotImplementedException()
   End Function
 
-  Public Function getById(id As Object) As CatDetail Implements IRepository(Of CatDetail).getById
+  Public Function getById(id As Object) As IEnumerable(Of CatDetail) Implements IRepository(Of CatDetail).getById
     'return (GetRecords("SELECT * FROM dbo.cats WHERE Id = " + id)).FirstOrDefault();
     ' id = -1 means a New record Is requested for the editor, otherwise return a record
 
@@ -42,7 +46,5 @@ Public Class CatDetailRepository(Of T)
     End If
   End Function
 
-  Public Function delete(id As Object) As Object Implements IRepository(Of CatDetail).delete
-    Throw New NotImplementedException()
-  End Function
+
 End Class

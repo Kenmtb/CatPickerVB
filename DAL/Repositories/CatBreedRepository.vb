@@ -27,7 +27,7 @@ Public Class CatBreedRepository(Of T)
     Throw New NotImplementedException()
   End Function
 
-  Public Function getById(id As Object) As CatBreed Implements IRepository(Of CatBreed).getById
+  Public Function getById(id As Object) As IEnumerable(Of CatBreed) Implements IRepository(Of CatBreed).getById
     'return (GetRecords("SELECT * FROM dbo.cats WHERE Id = " + id)).FirstOrDefault();
     ' id = -1 means a New record Is requested for the editor, otherwise return a record
 

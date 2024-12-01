@@ -3,7 +3,7 @@
   'Public Property breedid As Integer
 
   'foreign fields
-
+  Public Property catNoteList As List(Of CatNote)
 
   Public Property catDetailList As List(Of CatDetail)
 

@@ -102,8 +102,8 @@ Public Class CatDetailApiRepository(Of T)
   'get()
   Public Async Function getAllHelper(List As List(Of (String, String))) As Task(Of IEnumerable(Of CatDetail))
     Try
-      Dim response As HttpResponseMessage = Await getAllAPIHelper(List)
-      'Dim response As HttpResponseMessage = MyBase.getAllAPIHelper(List).Result
+      'Dim response As HttpResponseMessage = Await getAllAPIHelper(List)
+      Dim response As HttpResponseMessage = MyBase.getAllAPIHelper(List).Result
       Dim resStr As String = Await response.Content.ReadAsStringAsync
 
       If response.IsSuccessStatusCode Then
@@ -155,7 +155,7 @@ Public Class CatDetailApiRepository(Of T)
     End Try
   End Function
 
-  Public Function getById(id As Object) As CatDetail Implements IRepository(Of CatDetail).getById
+  Public Function getById(id As Object) As IEnumerable(Of CatDetail) Implements IRepository(Of CatDetail).getById
     Throw New NotImplementedException()
   End Function
 

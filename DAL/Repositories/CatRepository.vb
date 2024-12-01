@@ -81,7 +81,7 @@ Public Class CatRepository(Of T)
     catRec.breedId = If(Not IsDBNull(dr("breedId")), DirectCast(dr("breedId"), Integer?), Nothing)
     catRec.detailsId = If(Not IsDBNull(dr("detailsId")), DirectCast(dr("detailsId"), Nullable(Of Integer)), Nothing)
     'foriegn
-    catRec.breedName = catbreed.getById(catRec.breedId).breedName
+    catRec.breedName = catbreed.getById(catRec.breedId)(0).breedName
 
 
     Return catRec
@@ -108,7 +108,7 @@ Public Class CatRepository(Of T)
 
   End Function
 
-  Public Function getById(id As Object) As Cat Implements IRepository(Of Cat).getById
+  Public Function getById(id As Object) As IEnumerable(Of Cat) Implements IRepository(Of Cat).getById
     'return (GetRecords("SELECT * FROM dbo.cats WHERE Id = " + id)).FirstOrDefault();
     ' id = -1 means a New record Is requested for the editor, otherwise return a record
 

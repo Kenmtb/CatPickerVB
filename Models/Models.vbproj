@@ -120,6 +120,7 @@
     </Compile>
     <Compile Include="ViewModels\CatDetailsVM.vb" />
     <Compile Include="ViewModels\CatFilterVM.vb" />
+    <Compile Include="ViewModels\CatNotesVM.vb" />
     <Compile Include="ViewModels\CatVM.vb" />
   </ItemGroup>
   <ItemGroup>

@@ -112,7 +112,7 @@ Public Class CatPasswordRepository(Of T)
 
   End Function
 
-  Public Function getById(id As Object) As CatPassword Implements IRepository(Of CatPassword).getById
+  Public Function getById(id As Object) As IEnumerable(Of CatPassword) Implements IRepository(Of CatPassword).getById
     'return (GetRecords("SELECT * FROM dbo.cats WHERE Id = " + id)).FirstOrDefault();
     ' id = -1 means a New record Is requested for the editor, otherwise return a record
 

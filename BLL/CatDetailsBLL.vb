@@ -7,8 +7,9 @@ Public Class CatDetailsBLL
   'Dim rep As New CatRepository(Of Cat)
 
   Dim rep As New CatDetailApiRepository(Of CatDetail)
+  Dim catNoteRep As New CatNoteApiRepository(Of CatNote)
 
-  Dim vmRep As New CatDetailVMRepository(rep)
+  Dim vmRep As New CatDetailVMRepository(rep, catNoteRep)
 
 
 

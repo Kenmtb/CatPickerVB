@@ -86,6 +86,7 @@ Partial Class frmShowCats
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.picCatDetailsCatPic = New System.Windows.Forms.PictureBox()
         Me.pnlCatDetails = New System.Windows.Forms.Panel()
+        Me.txtCatNoteStatus = New System.Windows.Forms.TextBox()
         Me.AddCatNotes = New System.Windows.Forms.Button()
         Me.txtCatNotes = New System.Windows.Forms.TextBox()
         Me.txtCatDetailsCatId = New System.Windows.Forms.TextBox()
@@ -101,7 +102,6 @@ Partial Class frmShowCats
         Me.txtCatDetailsCatPicName = New System.Windows.Forms.TextBox()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.CatBreedBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.txtCatNoteStatus = New System.Windows.Forms.TextBox()
         CType(Me.dgvShowCats, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picCatPic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlEdit.SuspendLayout()
@@ -262,7 +262,7 @@ Partial Class frmShowCats
         Me.pnlEdit.Controls.Add(Me.Label4)
         Me.pnlEdit.Controls.Add(Me.Label2)
         Me.pnlEdit.Controls.Add(Me.Label3)
-        Me.pnlEdit.Location = New System.Drawing.Point(585, 48)
+        Me.pnlEdit.Location = New System.Drawing.Point(28, 24)
         Me.pnlEdit.Name = "pnlEdit"
         Me.pnlEdit.Size = New System.Drawing.Size(493, 291)
         Me.pnlEdit.TabIndex = 15
@@ -540,6 +540,7 @@ Partial Class frmShowCats
         'pnlNewCat
         '
         Me.pnlNewCat.BackColor = System.Drawing.SystemColors.Control
+        Me.pnlNewCat.Controls.Add(Me.pnlEdit)
         Me.pnlNewCat.Controls.Add(Me.tdpNewArivalDate)
         Me.pnlNewCat.Controls.Add(Me.txtNewCatPicName)
         Me.pnlNewCat.Controls.Add(Me.Label14)
@@ -682,7 +683,6 @@ Partial Class frmShowCats
         'pnlMain
         '
         Me.pnlMain.BackColor = System.Drawing.SystemColors.AppWorkspace
-        Me.pnlMain.Controls.Add(Me.pnlEdit)
         Me.pnlMain.Controls.Add(Me.grpMenu)
         Me.pnlMain.Controls.Add(Me.txtStatus)
         Me.pnlMain.Controls.Add(Me.pnlSearch)
@@ -727,6 +727,15 @@ Partial Class frmShowCats
         Me.pnlCatDetails.Name = "pnlCatDetails"
         Me.pnlCatDetails.Size = New System.Drawing.Size(493, 291)
         Me.pnlCatDetails.TabIndex = 29
+        '
+        'txtCatNoteStatus
+        '
+        Me.txtCatNoteStatus.Location = New System.Drawing.Point(154, 267)
+        Me.txtCatNoteStatus.Name = "txtCatNoteStatus"
+        Me.txtCatNoteStatus.ReadOnly = True
+        Me.txtCatNoteStatus.Size = New System.Drawing.Size(229, 20)
+        Me.txtCatNoteStatus.TabIndex = 41
+        Me.txtCatNoteStatus.TabStop = False
         '
         'AddCatNotes
         '
@@ -861,15 +870,6 @@ Partial Class frmShowCats
         'CatBreedBindingSource
         '
         Me.CatBreedBindingSource.DataSource = GetType(Models.CatBreed)
-        '
-        'txtCatNoteStatus
-        '
-        Me.txtCatNoteStatus.Location = New System.Drawing.Point(154, 267)
-        Me.txtCatNoteStatus.Name = "txtCatNoteStatus"
-        Me.txtCatNoteStatus.ReadOnly = True
-        Me.txtCatNoteStatus.Size = New System.Drawing.Size(229, 20)
-        Me.txtCatNoteStatus.TabIndex = 41
-        Me.txtCatNoteStatus.TabStop = False
         '
         'frmShowCats
         '
